@@ -1,0 +1,26 @@
+body{
+    background-color: black;
+    position: relative;
+    color:white;
+}
+#toTheTopImg{
+    width: 10vw;
+    
+}
+#toTheTopArrow{
+    top:90vh;
+    right: 50%;
+    transform: translate(50%,-50%);
+    position:fixed;
+}
+h1{
+    font-size: 100px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    margin-top: 10vh;
+    height: 50vh;
+}
+#firstBlock{
+    height: 100vh;
+}
