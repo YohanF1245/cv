@@ -4,7 +4,9 @@ var touchEndX;
 var touchEndY;
 const scrollIds = ["firstBlock", "secondBlock", "thirdBlock", "fourthBlock", "fifthBlock"]
 let scrollPosition = 0;
-
+function resetScrollpos() {
+    scrollPosition = 0;
+}
 addEventListener("touchstart", (event) => {
 	touchStartX = event.touches[0].clientX;
 	touchStartY = event.touches[0].clientY;

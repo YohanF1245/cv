@@ -11,15 +11,24 @@ body{
     /* width:900vw; */
     
 }
-#toTheTopArrow{
+#toTheTopArrow, .blocContact{
     top:90vh;
     right: 50%;
     transform: translate(50%,-50%);
     position:fixed;
-    width: 10vw;
+    border:5px solid beige ;
+}
+#toTheTopArrow{
+    z-index: 3;
+    border-radius: 50%;
+    border-bottom:0;
+    top:83.5vh;
 }
 #toTheTopImg{
     width: 10vw;
+    border-radius: 50%;
+    background-color: white;
+    
 }
 h1{
     font-size: 100px;
