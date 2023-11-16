@@ -30,7 +30,7 @@ body {
 	background-color: white;
 }
 h1 {
-	font-size: 100px;
+	font-size: 80px;
 	font-weight: 900;
 	color: white;
 	text-align: center;
@@ -39,7 +39,6 @@ h1 {
 }
 .block {
 	height: 100vh;
-	border: 2px solid red;
 }
 .blocContact {
 	background-color: white;
@@ -62,19 +61,26 @@ h1 {
 	border: 5px solid beige;
 	margin-top: 10px;
 	text-align: center;
-
+    background-image: url("../img/fond2.jpg");
+    background-size: cover;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
+    -webkit-text-stroke: 1px #fff;
+    font-size:2.5rem;
+}
+.backGroundBlock>h3{
+    font-size: 4rem;
 }
 .linkButtons {
-	border: 3px solid blue;
-	background-color: lightblue;
+	border: 3px solid beige;
+	background-color: white;
 	border-radius: 25px;
 	padding: 10px 20px;
 	text-decoration: none;
 	width: 30%;
 	text-align: center;
+    
 }
 #buttonsDiv {
 	display: flex;
