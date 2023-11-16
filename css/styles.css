@@ -41,3 +41,14 @@ h1{
     height:50px;
 
 }
+.backGroundBlock{
+    background-color: white;
+    border-radius: 50px;
+    width: 90vw;
+    height: 90vh;
+    color:black;
+    margin:auto;
+    border: 5px solid beige;
+    margin-top:10px;
+    text-align: center;
+}
