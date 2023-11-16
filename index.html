@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="css/reset.css" rel="stylesheet" />
 		<link href="css/styles.css" rel="stylesheet" />
-        <script src="script/script.js" defer></script>
+		<script src="script/script.js" defer></script>
 		<title>Document</title>
 	</head>
 	<body>
@@ -15,8 +15,11 @@
 				<a onClick="resetScrollpos()" id="toTheTopArrow" href="#top"
 					><img id="toTheTopImg" alt="" src="img/top-arrow-4-svgrepo-com.svg"
 				/></a>
-				<a class="linkButtons" href="#secondBlock">Mon CV</a>
-				<a class="linkButtons" href="#">Mes réalistations</a>
+				<div id="buttonsDiv">
+					<a class="linkButtons" href="#secondBlock">Mon CV</a>
+					<a class="linkButtons" href="#">Mes réalistations</a>
+				</div>
+
 				<div class="blocContact">
 					<a
 						id="linkedinLink"
@@ -58,21 +61,26 @@
 			<div id="fourthBlock" class="block">
 				<div class="backGroundBlock">
 					<h3>Formation</h3>
-					<p>Bep Métiers du secrétariat</p>
-					<p>LP du Hainaut</p>
-					<p>2004</p>
-					<br />
-					<p>DAEU B</p>
-					<p>Université du Mont Houy</p>
-					<p>2016</p>
+					<div>
+						<p>Bep Métiers du secrétariat</p>
+						<p>LP du Hainaut</p>
+						<p>2004</p>
+					</div>
+					<div>
+						<p>DAEU B</p>
+						<p>Université du Mont Houy</p>
+						<p>2016</p>
+					</div>
 				</div>
 			</div>
 			<div id="fifthBlock" class="block">
 				<div class="backGroundBlock">
 					<h3>Experience</h3>
-					<p>Employé polyvalent du numérique</p>
-					<p>Association AGEVAL</p>
-					<p>2023</p>
+					<div>
+						<p>Employé polyvalent du numérique</p>
+						<p>Association AGEVAL</p>
+						<p>2023</p>
+					</div>
 				</div>
 			</div>
 		</main>
