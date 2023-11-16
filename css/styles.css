@@ -1,9 +1,14 @@
+html,body{
+
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+}
 body{
     background-color: black;
     position: relative;
     color:white;
     display: inline;
-    width:900vw;
+    /* width:900vw; */
     
 }
 #toTheTopArrow{
