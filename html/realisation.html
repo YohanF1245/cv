@@ -1,19 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <h1>Mes réalisations</h1>
-    </header>
-    <main>
-
-    </main>
-    <footer>
-
-    </footer>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="../css/reset.css" rel="stylesheet" />
+		<link href="../css/realisation.css" rel="stylesheet" />
+		<script src="../script/realisations.js" defer></script>
+		<title>Mes réalisation</title>
+	</head>
+	<body>
+		<header>
+			<h1>Mes réalisations</h1>
+		</header>
+		<main>
+			<div id="navProjectBar">
+				<!-- <img class="imgNavProject"  alt="" src="../img/calculator.jpg"> -->
+				<div id="crazyFoodMenu" class="imgMenu">
+					<h2 class="appTitle">Crazy food</h2>
+				</div>
+			</div>
+			<div id="appArea">
+				<div class="modal" id="calculator"></div>
+				<div class="modal" id="crazyFood">
+					<div id="levelFrame">
+						<div class="radioGroup">
+							<input type="radio" id="radio1" name="radioLevel" checked />
+							<label for="radio1">Level 1</label>
+						</div>
+						<div class="radioGroup" id="divRadio2">
+							<input type="radio" id="radio2" name="radioLevel" />
+							<label for="radio2">Level 2</label>
+						</div>
+						<div class="radioGroup" id="divRadio3">
+							<input type="radio" id="radio3" name="radioLevel" />
+							<label for="radio3">Level 3</label>
+						</div>
+						<div class="radioGroup" id="divRadio4">
+							<input type="radio" id="radio4" name="radioLevel" />
+							<label for="radio4">Level 4</label>
+						</div>
+						<div class="radioGroup" id="divRadio5">
+							<input type="radio" id="radio5" name="radioLevel" />
+							<label for="radio5">Level 5</label>
+						</div>
+					</div>
+					<div id="bottomBlock">
+						<div id="weaponBox">
+							<div id="cagnotte">
+								<img
+									src="../img/crazy-food/savings-box-161876_1280.png"
+									alt=""
+								/>
+								<p>0</p>
+								<img src="../img/crazy-food/coin.png" />
+							</div>
+							<div class="weaponBuy" onclick="showCranDarret()" id="cutter">
+								<img
+									src="../img/crazy-food/construction-1296216_640.png"
+									alt=""
+								/>
+								<p id="priceCutter">5</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
+							</div>
+							<div
+								class="weaponBuy"
+								id="cranDarret"
+								onclick="showHokutoDeCuisine()"
+							>
+								<img src="../img/crazy-food/jackknife-29321_640.png" alt="" />
+								<p id="priceCranDarret">20</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
+							</div>
+							<div
+								class="weaponBuy"
+								id="hokutoDeCuisine"
+								onclick="showHachoir()"
+							>
+								<img
+									src="../img/crazy-food/kitchen-knife-1135268_640.png"
+									alt=""
+								/>
+								<p id="priceHokuto">50</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
+							</div>
+							<div class="weaponBuy" id="hachoir" onclick="showKatana()">
+								<img src="../img/crazy-food/cleaver-159513_640.png" alt="" />
+								<p id="priceHachoir">100</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
+							</div>
+							<div class="weaponBuy" id="katana" onclick="showChainsaw()">
+								<img src="../img/crazy-food/katana-150859_640.png" alt="" />
+								<p id="priceKatana">200</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
+							</div>
+							<div class="weaponBuy" id="chainsaw" onclick="chaisawClick()">
+								<img src="../img/crazy-food/chainsaw-24442_640.png" alt="" />
+								<p id="priceChainsaw">500</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
+							</div>
+						</div>
+						<div id="playFrame">
+							<p>Monsters remaining: 10/10</p>
+							<div id="heatlhGroup">
+                                <p id="healthNumber">10/10</p>
+								<div id="healthBar"></div>
+							</div>
+							<img
+								src="../img//crazy-food/dog-bowl-162044_640.png"
+								id="dogBowl"
+								alt=""
+							/>
+							<img src="" alt="" id="mobPlaceHolder" onclick="mobHit()" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer></footer>
+	</body>
 </html>

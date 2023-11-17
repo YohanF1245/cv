@@ -1,0 +1,160 @@
+h1 {
+	color: white;
+	font-size: 4rem;
+	background-color: rgba(0, 0, 0, 0.37);
+	display: block;
+	width: fit-content;
+	border-radius: 40px;
+	padding: 10px 30px;
+	border: 2px solid black;
+}
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 20vh;
+	background-image: url("../img/programation-banniere-desktop.png");
+}
+#crazyFoodMenu {
+	background-image: url("../img/crazy-food/salad-8385520_640.jpg");
+	background-size: cover;
+	width: 20vw;
+	height: 90%;
+}
+#appArea {
+	height: 60vh;
+	border: 1px solid green;
+	background-color: lightblue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#navProjectBar {
+	height: 20vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid red;
+	background-color: rgba(10, 10, 10, 0.767);
+}
+#crazyFood {
+	width: 80vw;
+	height: 50vh;
+	border: 1px solid greenyellow;
+	background-color: aqua;
+}
+.imgMenu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px;
+	border: 2px solid beige;
+}
+.appTitle {
+	font-size: 1.2rem;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 2px solid beige;
+	padding: 5px;
+	border-radius: 25px;
+}
+img {
+	width: 18px;
+}
+#weaponBox {
+    margin-top: -5%;
+	width: 20vw;
+	border: 2px solid greenyellow;
+}
+
+.weaponBuy,
+#cagnotte {
+	display: flex;
+	flex-direction: row;
+	border: 1px solid orange;
+	justify-content: space-between;
+	padding: 10% 0%;
+}
+#cranDarret,
+#hokutoDeCuisine,
+#hachoir,
+#katana,
+#chainsaw {
+	display: none;
+}
+.radioGroup {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#levelFrame {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#playFrame {
+	background-image: url("../img/crazy-food/kitchen-7167309_1280.png");
+	background-size: cover;
+	width: 65%;
+	height: auto;
+	position: relative;
+}
+#dogBowl {
+	position: absolute;
+	top: 60%;
+	right: 50%;
+	width: 50%;
+	transform: translate(50%, -50%);
+    filter: drop-shadow(-5px 22px 9px #000000);
+
+}
+#heatlhGroup{
+	position: absolute;
+	top: 25%;
+	right: 50%;
+    transform: translate(50%, 0%);
+    
+}
+#healthBar{
+    background: rgb(77,164,13);
+    background: linear-gradient(100deg, rgba(77,164,13,1) 0%, rgba(95,255,0,0) 100%);
+    width: 40px;
+    height: 10px;
+    border: 2px solid green;
+    border-radius: 25px;
+}
+#mobPlaceHolder{
+    position: absolute;
+    top: 50%;
+	right: 50%;
+	width: 30%;
+	transform: translate(50%, -50%);
+}
+#healthNumber{
+    text-align: center;
+}
+#bottomBlock {
+	display: flex;
+	justify-content: space-evenly;
+	height: 70%;
+	margin-top: 10%;
+}
+#divRadio2,#divRadio3,#divRadio4,#divRadio5{
+    display:none;
+}
+
+@media screen and (max-width: 480px) {
+	h1 {
+		font-size: 2rem;
+	}
+	header {
+		background-image: url("../img/programation-banniere-mobile.png");
+	}
+	#crazyFoodMenu {
+		width: 45vw;
+	}
+	#cagnotte {
+		margin-bottom: 3vh;
+	}
+}
