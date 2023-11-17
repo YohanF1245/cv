@@ -141,7 +141,7 @@ img {
 	margin-top: 10%;
 }
 #divRadio2,#divRadio3,#divRadio4,#divRadio5{
-    display:none;
+    /* display:none; */
 }
 
 @media screen and (max-width: 480px) {
