@@ -3,6 +3,7 @@ var currentMonster =0;
 var mobList = ["monster-bananas.png","monster-cherry.png","monster-coconut.png","monster-strawberry.png","monster-watermelon.png"]
 var playerCoins=0;
 var lifeTimeCoins=0;
+var currentLevel=1;
 var maxLevel=1;
 var monsterHealth = 10;
 randMob();
@@ -38,6 +39,9 @@ function chaisawClick(){
 function randMob(){
     var randomizeNum=Math.floor(Math.random()*5);
     document.getElementById("mobPlaceHolder").src = "../img//crazy-food/"+mobList[randomizeNum];
+    monsterHealth=10*Math.pow(currentLevel,2);//flemme de penser a une fonction exponetielle équilibrée
+    document.getElementById("healthNumber").innerHTML=(monsterHealth+"/10");
+    document.getElementById("healthBar").style.background = "linear-gradient(100deg, rgba(77,164,13,1) 0%, rgba(95,255,0,0) 100%)";
 }
 function mobHit(){
     monsterHealth--;
@@ -50,9 +54,12 @@ function mobHit(){
 }
 function mobDeath(){
     playerCoins++;
+    document.getElementById("currentCoinsText").innerHTML=playerCoins;
     lifeTimeCoins++;
-    if(monsterRemaing>0){
+    if(monsterRemaining>0){
         monsterRemaining--;
+        document.getElementById("monsterRemainingText").innerHTML = ("Monsters remaining: "+monsterRemaining+"/10");
+        randMob();
         if(monsterRemaining===0){
         unlockNextLevel();
         }
