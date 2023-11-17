@@ -17,13 +17,13 @@ var radios = document.querySelectorAll('input[type=radio][name="radioLevel"]');
 radios.forEach((radio) =>
 	radio.addEventListener("change", () => refreshLevels(radio.value))
 );
-function refreshLevels(toLevel){
-    console.log(toLevel);
-    monsterRemaining = levelStatus[toLevel];
-    currentLevel=toLevel;
-    document.getElementById("monsterRemainingText").innerHTML =
-			"Monsters remaining: " + levelStatus[toLevel] + "/10";
-    randMob();
+function refreshLevels(toLevel) {
+	console.log(toLevel);
+	monsterRemaining = levelStatus[toLevel];
+	currentLevel = toLevel;
+	document.getElementById("monsterRemainingText").innerHTML =
+		"Monsters remaining: " + levelStatus[toLevel] + "/10";
+	randMob();
 }
 randMob();
 function showCranDarret() {
@@ -60,13 +60,15 @@ function randMob() {
 	document.getElementById("mobPlaceHolder").src =
 		"../img//crazy-food/" + mobList[randomizeNum];
 	monsterHealth = 1 * Math.pow(currentLevel, 2); //flemme de penser a une fonction exponentielle équilibrée
-	document.getElementById("healthNumber").innerHTML = monsterHealth + "/"+1 * Math.pow(currentLevel, 2);
+	document.getElementById("healthNumber").innerHTML =
+		monsterHealth + "/" + 1 * Math.pow(currentLevel, 2);
 	document.getElementById("healthBar").style.background =
 		"linear-gradient(100deg, rgba(77,164,13,1) 0%, rgba(95,255,0,0) 100%)";
 }
 function mobHit() {
 	monsterHealth--;
-	document.getElementById("healthNumber").innerHTML = monsterHealth + "/"+1 * Math.pow(currentLevel, 2);
+	document.getElementById("healthNumber").innerHTML =
+		monsterHealth + "/" + 1 * Math.pow(currentLevel, 2);
 	var healthPercent = (monsterHealth / 10) * 100;
 	document.getElementById("healthBar").style.background =
 		"linear-gradient(100deg, rgba(77,164,13,1) 0%, rgba(95,255,0,0) " +
@@ -75,17 +77,26 @@ function mobHit() {
 	if (monsterHealth === 0) {
 		mobDeath();
 	}
+	for (var i = 0; i < 3; i++) {
+		document.getElementsByClassName("hitEffect")[i].style.display = "block";
+	}
+	setTimeout(() => {
+		for (var i = 0; i < 3; i++) {
+			document.getElementsByClassName("hitEffect")[i].style.display = "none";
+		}
+	}, 50);
+	document.getElementById("evilMagicRumble").checked = "true";
 }
+
 function mobDeath() {
 	playerCoins++;
 	document.getElementById("currentCoinsText").innerHTML = playerCoins;
 	lifeTimeCoins++;
 	if (monsterRemaining > 0) {
 		monsterRemaining--;
-        levelStatus[currentLevel] = monsterRemaining;
+		levelStatus[currentLevel] = monsterRemaining;
 		document.getElementById("monsterRemainingText").innerHTML =
 			"Monsters remaining: " + levelStatus[currentLevel] + "/10";
-
 		console.log("mob remaining :" + monsterRemaining);
 		if (monsterRemaining === 0) {
 			unlockNextLevel();
@@ -93,6 +104,7 @@ function mobDeath() {
 	}
 	randMob();
 }
+function mobHitEffect() {}
 function unlockNextLevel() {
 	if (maxLevel < 6) {
 		maxLevel++;

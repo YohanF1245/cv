@@ -22,6 +22,7 @@ addEventListener("touchend", (event) => {
 	touchEndY = event.changedTouches[0].clientY;
 	jumpLocation(touchStartY, touchEndY);
 });
+
 function jumpLocation(end, start) {
 	if (start - end > 0) {
 		if (scrollPosition < 5 && scrollPosition > 0) {

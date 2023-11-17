@@ -62,7 +62,7 @@ img {
 	width: 18px;
 }
 #weaponBox {
-    margin-top: -5%;
+	margin-top: -5%;
 	width: 20vw;
 	border: 2px solid greenyellow;
 }
@@ -106,33 +106,57 @@ img {
 	right: 50%;
 	width: 50%;
 	transform: translate(50%, -50%);
-    filter: drop-shadow(-5px 22px 9px #000000);
-
+	filter: drop-shadow(-5px 22px 9px #000000);
 }
-#heatlhGroup{
+#heatlhGroup {
 	position: absolute;
 	top: 25%;
 	right: 50%;
-    transform: translate(50%, 0%);
-    
+	transform: translate(50%, 0%);
 }
-#healthBar{
-    background: rgb(77,164,13);
-    background: linear-gradient(100deg, rgba(77,164,13,1) 0%, rgba(95,255,0,0) 100%);
-    width: 40px;
-    height: 10px;
-    border: 2px solid green;
-    border-radius: 25px;
+#healthBar {
+	background: rgb(77, 164, 13);
+	background: linear-gradient(
+		100deg,
+		rgba(77, 164, 13, 1) 0%,
+		rgba(95, 255, 0, 0) 100%
+	);
+	width: 40px;
+	height: 10px;
+	border: 2px solid green;
+	border-radius: 25px;
 }
-#mobPlaceHolder{
-    position: absolute;
-    top: 50%;
+#mobPlaceHolder {
+	position: absolute;
+	top: 50%;
 	right: 50%;
 	width: 30%;
 	transform: translate(50%, -50%);
 }
-#healthNumber{
-    text-align: center;
+#hitEffect1,
+#hitEffect2,
+#hitEffect3 {
+	position: absolute;
+	position: absolute;
+	transform: translate(50%, -50%);
+	width: 12%;
+	pointer-events: none;
+	display: none;
+}
+#hitEffect1 {
+	top: 46%;
+	right: 50%;
+}
+#hitEffect2 {
+	top: 51%;
+	right: 42%;
+}
+#hitEffect3 {
+	top: 56%;
+	right: 61%;
+}
+#healthNumber {
+	text-align: center;
 }
 #bottomBlock {
 	display: flex;
@@ -140,10 +164,61 @@ img {
 	height: 70%;
 	margin-top: 10%;
 }
-#divRadio2,#divRadio3,#divRadio4,#divRadio5{
-    /* display:none; */
+#divRadio2,
+#divRadio3,
+#divRadio4,
+#divRadio5 {
+	/* display:none; */
+}
+#evilMagicRumble {
+	/* display: none; */
+}
+#evilMagicRumble:checked ~ #appArea{
+	background-color: #000000;
+}
+#evilMagicRumble:checked ~ #mobPlaceHolder {
+	/* Start the shake animation and make the animation last for 0.5 seconds */
+	animation: shake 0.5s;
+
+	/* When the animation is finished, start again */
+	animation-iteration-count: infinite;
 }
 
+@keyframes shake {
+	0% {
+		transform: translate(1px, 1px) rotate(0deg);
+	}
+	10% {
+		transform: translate(-1px, -2px) rotate(-1deg);
+	}
+	20% {
+		transform: translate(-3px, 0px) rotate(1deg);
+	}
+	30% {
+		transform: translate(3px, 2px) rotate(0deg);
+	}
+	40% {
+		transform: translate(1px, -1px) rotate(1deg);
+	}
+	50% {
+		transform: translate(-1px, 2px) rotate(-1deg);
+	}
+	60% {
+		transform: translate(-3px, 1px) rotate(0deg);
+	}
+	70% {
+		transform: translate(3px, 1px) rotate(-1deg);
+	}
+	80% {
+		transform: translate(-1px, -1px) rotate(1deg);
+	}
+	90% {
+		transform: translate(1px, 2px) rotate(0deg);
+	}
+	100% {
+		transform: translate(1px, -2px) rotate(-1deg);
+	}
+}
 @media screen and (max-width: 480px) {
 	h1 {
 		font-size: 2rem;
