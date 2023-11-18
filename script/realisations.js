@@ -14,6 +14,8 @@ var maxLevel = 1;
 var monsterHealth = 1;
 var levelStatus = [null, 10, 10, 10, 10, 10];
 var radios = document.querySelectorAll('input[type=radio][name="radioLevel"]');
+
+
 radios.forEach((radio) =>
 	radio.addEventListener("change", () => refreshLevels(radio.value))
 );
@@ -85,9 +87,12 @@ function mobHit() {
 			document.getElementsByClassName("hitEffect")[i].style.display = "none";
 		}
 	}, 50);
-	document.getElementById("evilMagicRumble").checked = "true";
+	setTimeout(() => {
+		document.getElementById("evilMagicRumble").checked = false;
+	}, 200);
+	document.getElementById("evilMagicRumble").checked = true;
+	
 }
-
 function mobDeath() {
 	playerCoins++;
 	document.getElementById("currentCoinsText").innerHTML = playerCoins;
@@ -104,7 +109,6 @@ function mobDeath() {
 	}
 	randMob();
 }
-function mobHitEffect() {}
 function unlockNextLevel() {
 	if (maxLevel < 6) {
 		maxLevel++;
