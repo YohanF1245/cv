@@ -117,4 +117,3 @@ function unlockNextLevel() {
 		document.getElementById(idLevel).style.display = "flex";
 	}
 }
-

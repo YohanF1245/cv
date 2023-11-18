@@ -54,6 +54,7 @@
 					</div>
 					<div id="bottomBlock">
 						<div id="weaponBox">
+							<label>Cagotte:</label>
 							<div id="cagnotte">
 								<img
 									src="../img/crazy-food/savings-box-161876_1280.png"
@@ -62,6 +63,7 @@
 								<p id="currentCoinsText">0</p>
 								<img src="../img/crazy-food/coin.png" />
 							</div>
+							<label>Armes :</label>
 							<div class="weaponBuy" onclick="showCranDarret()" id="cutter">
 								<img
 									src="../img/crazy-food/construction-1296216_640.png"
@@ -108,36 +110,42 @@
 							</div>
 						</div>
 						<div id="playFrame">
-							<p id="monsterRemainingText">Monsters remaining: 10/10</p>
-							<div id="heatlhGroup">
-								<p id="healthNumber">10/10</p>
-								<div id="healthBar"></div>
+							<div id="innerGraphics">
+								<div id="heatlhGroup">
+									<p id="healthNumber">10/10</p>
+									<div id="healthBar"></div>
+								</div>
+								<img
+									src="../img//crazy-food/dog-bowl-162044_640.png"
+									id="dogBowl"
+									alt=""
+								/>
+								<input type="checkbox" id="evilMagicRumble" />
+								<img src="" alt="" id="mobPlaceHolder" onclick="mobHit()" />
+								<img
+									src="../img/crazy-food/explosion-153710_1280.png"
+									alt=""
+									id="hitEffect1"
+									class="hitEffect"
+								/>
+								<img
+									src="../img/crazy-food/explosion-153710_1280.png"
+									alt=""
+									id="hitEffect2"
+									class="hitEffect"
+								/>
+								<img
+									src="../img/crazy-food/explosion-153710_1280.png"
+									alt=""
+									id="hitEffect3"
+									class="hitEffect"
+								/>
 							</div>
-							<img
-								src="../img//crazy-food/dog-bowl-162044_640.png"
-								id="dogBowl"
-								alt=""
-							/>
-							<input type="checkbox" id="evilMagicRumble" />
-							<img src="" alt="" id="mobPlaceHolder" onclick="mobHit()" />
-							<img
-								src="../img/crazy-food/explosion-153710_1280.png"
-								alt=""
-								id="hitEffect1"
-								class="hitEffect"
-							/>
-							<img
-								src="../img/crazy-food/explosion-153710_1280.png"
-								alt=""
-								id="hitEffect2"
-								class="hitEffect"
-							/>
-							<img
-								src="../img/crazy-food/explosion-153710_1280.png"
-								alt=""
-								id="hitEffect3"
-								class="hitEffect"
-							/>
+							<div id="innerStats">
+								<p id="monsterRemainingText">Monsters remaining: 10/10</p>
+								<p id="Damage per click">Damage per click:</p>
+								<p id="lifeTimeKills">Life time kills:</p>
+							</div>
 						</div>
 					</div>
 					<div id="buttonBlock">
