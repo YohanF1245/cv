@@ -251,6 +251,19 @@ img {
 	top:1px;
 }
 @media screen and (max-width: 480px) {
+	header{
+		height: 15vh;
+
+	}
+	#navProjectBar{
+		height: 10vh;
+	}
+	#crazyFood{
+		height:65vh;
+	}
+	#appArea{
+		height: 75vh;
+	}
 	h1 {
 		font-size: 2rem;
 	}
@@ -259,8 +272,5 @@ img {
 	}
 	#crazyFoodMenu {
 		width: 45vw;
-	}
-	#cagnotte {
-		margin-bottom: 3vh;
 	}
 }
