@@ -1,3 +1,4 @@
+var currentLevel = 1;
 var monsterRemaining = 10;
 var currentMonster = 0;
 var mobList = [
@@ -9,7 +10,7 @@ var mobList = [
 ];
 var playerCoins = 0;
 var lifeTimeCoins = 0;
-var currentLevel = 1;
+var lifeTimeKills = 0;
 var maxLevel = 1;
 var monsterHealth = 1;
 var levelStatus = [null, 10, 10, 10, 10, 10];
@@ -97,6 +98,8 @@ function mobDeath() {
 	playerCoins++;
 	document.getElementById("currentCoinsText").innerHTML = playerCoins;
 	lifeTimeCoins++;
+	lifeTimeKills++;
+	document.getElementById("lifeTimeCoins").innerHTML = "Life time coins:"+lifeTimeCoins; 
 	if (monsterRemaining > 0) {
 		monsterRemaining--;
 		levelStatus[currentLevel] = monsterRemaining;
@@ -116,4 +119,45 @@ function unlockNextLevel() {
 		console.log("max level :" + idLevel);
 		document.getElementById(idLevel).style.display = "flex";
 	}
+}
+function save(){
+	Cookies.set("playerCoins",playerCoins);
+	Cookies.set("lifeTimeCoins",lifeTimeCoins);
+	Cookies.set("currentLevel",currentLevel);
+	Cookies.set("monsterRemaining",monsterRemaining);
+	Cookies.set("currentMonster",currentMonster);
+	Cookies.set("lifeTimeKills",lifeTimeKills);
+	Cookies.set("levelStatus",levelStatus);
+}
+function load(){
+	playerCoins= Cookies.get("playerCoins");
+	lifeTimeCoins= Cookies.get("lifeTimeCoins");
+	currentLevel = Cookies.get("currentLevel");
+	monsterRemaining = Cookies.get("monsterRemaining");
+	currentMonster = Cookies.get("currentMonster");
+	lifeTimeKills = Cookies.get("lifeTimeKills");
+	levelStatus = Cookies.get("levelStatus");
+	levelStatus[0]=null;
+	updateUI();
+	randMob();
+}
+function reset(){
+	playerCoins=0;
+	lifeTimeCoins=0;
+	currentLevel = 1;
+	monsterRemaining = 10;
+	currentMonster = 0;
+	lifeTimeKills = 0;
+	levelStatus = [null, 10, 10, 10, 10, 10];
+	save();
+	updateUI();
+}
+function updateUI(){
+	document.getElementById("currentCoinsText").innerHTML = playerCoins;
+	document.getElementById("lifeTimeCoins").innerHTML = "Life time coins:"+lifeTimeCoins; 
+	document.getElementById("radio"+currentLevel).checked = true;
+	document.getElementById("monsterRemainingText").innerHTML =
+		"Monsters remaining: " + monsterRemaining + "/10";
+	document.getElementById("lifeTimeKills").innerHTML = "Life time kills:"+lifeTimeKills; 
+	console.log(levelStatus);
 }
