@@ -44,7 +44,6 @@ header {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	border: 1px solid greenyellow;
 	background-color: aqua;
 	background-image: url("../img/crazy-food/bamboo-1283976_1280.jpg");
 	background-position: center;

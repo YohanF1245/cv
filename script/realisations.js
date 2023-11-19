@@ -101,6 +101,7 @@ function mobDeath() {
 	lifeTimeCoins++;
 	checkWeaponAvaible();
 	lifeTimeKills++;
+	document.getElementById("lifeTimeKills").innerHTML = "Life time kills:"+lifeTimeKills; 
 	document.getElementById("lifeTimeCoins").innerHTML = "Life time coins:"+lifeTimeCoins; 
 	if (monsterRemaining > 0) {
 		monsterRemaining--;
