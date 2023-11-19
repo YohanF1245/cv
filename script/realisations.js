@@ -25,7 +25,7 @@ function refreshLevels(toLevel) {
 	monsterRemaining = levelStatus[toLevel];
 	currentLevel = toLevel;
 	document.getElementById("monsterRemainingText").innerHTML =
-		"Monsters remaining: " + levelStatus[toLevel] + "/10";
+		"Monsters remaining: " + monsterRemaining + "/10";
 	randMob();
 }
 randMob();
@@ -128,6 +128,7 @@ function save(){
 	Cookies.set("currentMonster",currentMonster);
 	Cookies.set("lifeTimeKills",lifeTimeKills);
 	Cookies.set("levelStatus",levelStatus);
+	Cookies.set("maxLevel",maxLevel);
 }
 function load(){
 	playerCoins= Cookies.get("playerCoins");
@@ -136,12 +137,13 @@ function load(){
 	monsterRemaining = Cookies.get("monsterRemaining");
 	currentMonster = Cookies.get("currentMonster");
 	lifeTimeKills = Cookies.get("lifeTimeKills");
-	levelStatus = Cookies.get("levelStatus");
-	levelStatus[0]=null;
+	levelStatus = Cookies.get("levelStatus").split(",");
+	maxLevel = Cookies.get("maxLevel");
 	updateUI();
 	randMob();
 }
 function reset(){
+	maxLevel=1;
 	playerCoins=0;
 	lifeTimeCoins=0;
 	currentLevel = 1;
@@ -159,5 +161,5 @@ function updateUI(){
 	document.getElementById("monsterRemainingText").innerHTML =
 		"Monsters remaining: " + monsterRemaining + "/10";
 	document.getElementById("lifeTimeKills").innerHTML = "Life time kills:"+lifeTimeKills; 
-	console.log(levelStatus);
+	console.log(typeof levelStatus);
 }
