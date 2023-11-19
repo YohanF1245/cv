@@ -121,14 +121,14 @@ function unlockNextLevel() {
 	}
 }
 function save(){
-	Cookies.set("playerCoins",playerCoins);
-	Cookies.set("lifeTimeCoins",lifeTimeCoins);
-	Cookies.set("currentLevel",currentLevel);
-	Cookies.set("monsterRemaining",monsterRemaining);
-	Cookies.set("currentMonster",currentMonster);
-	Cookies.set("lifeTimeKills",lifeTimeKills);
-	Cookies.set("levelStatus",levelStatus);
-	Cookies.set("maxLevel",maxLevel);
+	Cookies.set("playerCoins",playerCoins, { expires: 365 });
+	Cookies.set("lifeTimeCoins",lifeTimeCoins, { expires: 365 });
+	Cookies.set("currentLevel",currentLevel, { expires: 365 });
+	Cookies.set("monsterRemaining",monsterRemaining, { expires: 365 });
+	Cookies.set("currentMonster",currentMonster, { expires: 365 });
+	Cookies.set("lifeTimeKills",lifeTimeKills, { expires: 365 });
+	Cookies.set("levelStatus",levelStatus, { expires: 365 });
+	Cookies.set("maxLevel",maxLevel, { expires: 365 });
 }
 function load(){
 	playerCoins= Cookies.get("playerCoins");
