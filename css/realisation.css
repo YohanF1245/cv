@@ -41,11 +41,13 @@ header {
 #crazyFood {
 	width: 80vw;
 	height: 65vh;
-	display:flex;
+	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	border: 1px solid greenyellow;
 	background-color: aqua;
+	background-image: url("../img/crazy-food/bamboo-1283976_1280.jpg");
+	background-position: center;
 }
 .imgMenu {
 	display: flex;
@@ -66,14 +68,17 @@ img {
 }
 #weaponBox {
 	width: 20vw;
-	border: 2px solid greenyellow;
+	border: 1px solid black;
+	height: fit-content;
+	background-color: white;
+	border-radius: 10px;
+	text-align: center;
 }
 
 .weaponBuy,
 #cagnotte {
 	display: flex;
 	flex-direction: row;
-	border: 1px solid orange;
 	justify-content: space-between;
 	padding: 10% 0%;
 }
@@ -96,19 +101,26 @@ img {
 	flex-direction: row;
 	justify-content: space-between;
 }
-#playFrame{
+#playFrame {
 	display: grid;
 }
 #innerGraphics {
 	background-image: url("../img/crazy-food/kitchen-7167309_1280.png");
 	background-size: cover;
+	border-radius: 10px;
 	width: 50vw;
 	height: 50vw;
 	position: relative;
 	justify-self: flex-start;
+	border: 1px solid black;
 }
-#innerStats{
+#innerStats {
+	background-color: white;
 	justify-self: center;
+	height: fit-content;
+	padding: 5px;
+	border-radius: 10px;
+	border: 1px solid black;
 }
 #dogBowl {
 	position: absolute;
@@ -173,16 +185,16 @@ img {
 	justify-content: space-evenly;
 	height: 70%;
 }
-#divRadio2,
-#divRadio3,
-#divRadio4,
-#divRadio5 {
-	/* display:none; */
+#labelLvl2,
+#labelLvl3,
+#labelLvl4,
+#labelLvl5 {
+	display:none; 
 }
 #evilMagicRumble {
 	display: none;
 }
-#evilMagicRumble:checked ~ #appArea{
+#evilMagicRumble:checked ~ #appArea {
 	background-color: #000000;
 }
 #evilMagicRumble:checked ~ #mobPlaceHolder {
@@ -227,10 +239,9 @@ img {
 	100% {
 		transform: translate(51%, -52%) rotate(-1deg);
 	}
-	
 }
-#buttonBlock{
-	display:flex;
+#buttonBlock {
+	display: flex;
 	justify-content: space-evenly;
 	margin-bottom: 3%;
 }
@@ -238,31 +249,31 @@ img {
 	width: 20%;
 	text-align: center;
 	box-shadow: 3px 4px 0px 0px #8a2a21;
-	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
-	background-color:#c62d1f;
-	border-radius:18px;
-	border:1px solid #d02718;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
+	background: linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+	background-color: #c62d1f;
+	border-radius: 18px;
+	border: 1px solid #d02718;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
 	font-size: 0.8rem;
-	padding:7px 10px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #810e05;
+	padding: 7px 10px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #810e05;
 }
 .crazyFoodButton:hover {
-	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
-	background-color:#f24437;
+	background: linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	background-color: #f24437;
 }
 /* .crazyFoodButton:active {
 	position:relative;
 	top:1px;
 } */
-.radioGroup>input[type="radio"]{
-	display:none;
+.radioGroup > input[type="radio"] {
+	display: none;
 }
-#labelLvl1,#labelLvl2,#labelLvl3,#labelLvl4,#labelLvl5 {
+.labelLvl{
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -278,44 +289,48 @@ img {
 	transition: 0.3s;
 	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
 	background-color: #19d256;
-  }
-  #radio1:checked ~ #labelLvl1{
+}
+#radio1:checked ~ #labelLvl1 {
+	background-color: #0a772e;
 	box-shadow: 0 0 rgba(0, 0, 0, 0.4);
 	border-bottom-width: 2px;
 	transform: translateY(2px);
-  }
-  #radio2:checked ~ #labelLvl2{
+}
+#radio2:checked ~ #labelLvl2 {
+	background-color: #0a772e;
 	box-shadow: 0 0 rgba(0, 0, 0, 0.4);
 	border-bottom-width: 2px;
 	transform: translateY(2px);
-  }
-  #radio3:checked ~ #labelLvl3{
+}
+#radio3:checked ~ #labelLvl3 {
+	background-color: #0a772e;
 	box-shadow: 0 0 rgba(0, 0, 0, 0.4);
 	border-bottom-width: 2px;
 	transform: translateY(2px);
-  }
-  #radio4:checked ~ #labelLvl4{
+}
+#radio4:checked ~ #labelLvl4 {
+	background-color: #0a772e;
 	box-shadow: 0 0 rgba(0, 0, 0, 0.4);
 	border-bottom-width: 2px;
 	transform: translateY(2px);
-  }
-  #radio5:checked ~ #labelLvl5{
+}
+#radio5:checked ~ #labelLvl5 {
+	background-color: #0a772e;
 	box-shadow: 0 0 rgba(0, 0, 0, 0.4);
 	border-bottom-width: 2px;
 	transform: translateY(2px);
-  }
+}
 @media screen and (max-width: 480px) {
-	header{
+	header {
 		height: 15vh;
-
 	}
-	#navProjectBar{
+	#navProjectBar {
 		height: 10vh;
 	}
-	#crazyFood{
-		height:65vh;
+	#crazyFood {
+		height: 65vh;
 	}
-	#appArea{
+	#appArea {
 		height: 75vh;
 	}
 	h1 {

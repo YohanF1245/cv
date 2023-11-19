@@ -1,6 +1,8 @@
 var currentLevel = 1;
 var monsterRemaining = 10;
 var currentMonster = 0;
+var weaponAcquired = 1;
+var damage = 1;
 var mobList = [
 	"monster-bananas.png",
 	"monster-cherry.png",
@@ -15,7 +17,6 @@ var maxLevel = 1;
 var monsterHealth = 1;
 var levelStatus = [null, 10, 10, 10, 10, 10];
 var radios = document.querySelectorAll('input[type=radio][name="radioLevel"]');
-
 
 radios.forEach((radio) =>
 	radio.addEventListener("change", () => refreshLevels(radio.value))
@@ -98,6 +99,7 @@ function mobDeath() {
 	playerCoins++;
 	document.getElementById("currentCoinsText").innerHTML = playerCoins;
 	lifeTimeCoins++;
+	checkWeaponAvaible();
 	lifeTimeKills++;
 	document.getElementById("lifeTimeCoins").innerHTML = "Life time coins:"+lifeTimeCoins; 
 	if (monsterRemaining > 0) {
@@ -108,6 +110,7 @@ function mobDeath() {
 		console.log("mob remaining :" + monsterRemaining);
 		if (monsterRemaining === 0) {
 			unlockNextLevel();
+			refreshLevels(maxLevel);
 		}
 	}
 	randMob();
@@ -115,9 +118,9 @@ function mobDeath() {
 function unlockNextLevel() {
 	if (maxLevel < 6) {
 		maxLevel++;
-		var idLevel = "divRadio" + maxLevel;
-		console.log("max level :" + idLevel);
+		var idLevel = "labelLvl" + maxLevel;
 		document.getElementById(idLevel).style.display = "flex";
+		document.getElementById("radio"+maxLevel).checked=true;
 	}
 }
 function save(){
@@ -150,9 +153,11 @@ function reset(){
 	monsterRemaining = 10;
 	currentMonster = 0;
 	lifeTimeKills = 0;
+	lifeTimeCoins = 0;
 	levelStatus = [null, 10, 10, 10, 10, 10];
 	save();
 	updateUI();
+	resetWeaponFrame()
 }
 function updateUI(){
 	document.getElementById("currentCoinsText").innerHTML = playerCoins;
@@ -162,4 +167,38 @@ function updateUI(){
 		"Monsters remaining: " + monsterRemaining + "/10";
 	document.getElementById("lifeTimeKills").innerHTML = "Life time kills:"+lifeTimeKills; 
 	console.log(typeof levelStatus);
+	refreshLevelDisplay();
+	checkWeaponAvaible()
+	
+}
+function refreshLevelDisplay(){
+	maxLevel = parseInt(maxLevel);
+	for (var i=1; i<maxLevel+1;i++){
+		console.log("max level = "+maxLevel+" turn:"+i);
+		document.getElementById("labelLvl"+i).style.display = "flex";
+	}
+}
+function checkWeaponAvaible(){
+	if(lifeTimeCoins>=5){
+		document.getElementById("cranDarret").style.display="flex";
+	}
+	if(lifeTimeCoins>=20){
+		document.getElementById("hokutoDeCuisine").style.display="flex";
+	}
+	if(lifeTimeCoins>=50){
+		document.getElementById("hachoir").style.display="flex";
+	}
+	if(lifeTimeCoins>=100){
+		document.getElementById("katana").style.display="flex";
+	}
+	if(lifeTimeCoins>=200){
+		document.getElementById("chainsaw").style.display="flex";
+	}
+}
+function resetWeaponFrame(){
+document.getElementById("cranDarret").style.display="none";
+document.getElementById("hokutoDeCuisine").style.display="none";
+document.getElementById("hachoir").style.display="none";
+document.getElementById("katana").style.display="none";
+document.getElementById("chainsaw").style.display="none";
 }
