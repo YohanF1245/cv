@@ -16,8 +16,8 @@ header {
 	height: 20vh;
 	background-image: url("../img/programation-banniere-desktop.png");
 }
-#weaponBox>label{
-	display:block;
+#weaponBox > label {
+	display: block;
 	border-radius: 11px 11px 0 0;
 	width: 100%;
 	background-color: lightgray;
@@ -44,10 +44,13 @@ header {
 	border: 1px solid red;
 	background-color: rgba(10, 10, 10, 0.767);
 }
+.modal {
+	display: none;
+}
 #crazyFood {
+	position: relative;
 	width: 80vw;
 	height: 65vh;
-	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	background-color: aqua;
@@ -194,7 +197,7 @@ img {
 #labelLvl3,
 #labelLvl4,
 #labelLvl5 {
-	display:none; 
+	display: none;
 }
 #evilMagicRumble {
 	display: none;
@@ -278,7 +281,7 @@ img {
 .radioGroup > input[type="radio"] {
 	display: none;
 }
-.labelLvl{
+.labelLvl {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -324,6 +327,44 @@ img {
 	box-shadow: 0 0 rgba(0, 0, 0, 0.4);
 	border-bottom-width: 2px;
 	transform: translateY(2px);
+}
+.in {
+	display: flex;
+	animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.out {
+	animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+	transform: scale(1);
+}
+.closeAppButton{
+	position:absolute;
+	top:-20px;
+	left:50%;
+	transform: translateX(-50%);
+}
+@keyframes unfoldIn {
+	0% {
+		transform: scaleY(0.005) scaleX(0);
+	}
+	50% {
+		transform: scaleY(0.005) scaleX(1);
+	}
+	100% {
+		transform: scaleY(1) scaleX(1);
+	}
+}
+
+@keyframes unfoldOut {
+	0% {
+		transform: scaleY(1) scaleX(1);
+	}
+	50% {
+		transform: scaleY(0.005) scaleX(1);
+	}
+	100% {
+		transform: scaleY(0.005) scaleX(0);
+		display: none;
+	}
 }
 @media screen and (max-width: 480px) {
 	header {
