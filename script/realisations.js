@@ -30,9 +30,8 @@ radios.forEach((radio) =>
 	radio.addEventListener("change", () => refreshLevels(radio.value))
 );
 function refreshLevels(toLevel) {
-	console.log(toLevel);
-	monsterRemaining = levelStatus[toLevel];
-	currentLevel = toLevel;
+	monsterRemaining = levelStatus[parseInt(toLevel)];
+	currentLevel = parseInt(toLevel);
 	document.getElementById("monsterRemainingText").innerHTML =
 		"Monsters remaining: " + monsterRemaining + "/10";
 	randMob();
@@ -144,7 +143,6 @@ function mobDeath() {
 		levelStatus[currentLevel] = monsterRemaining;
 		document.getElementById("monsterRemainingText").innerHTML =
 			"Monsters remaining: " + levelStatus[currentLevel] + "/10";
-		console.log("mob remaining :" + monsterRemaining);
 		if (monsterRemaining === 0) {
 			unlockNextLevel();
 			refreshLevels(maxLevel);
@@ -172,14 +170,14 @@ function save() {
 	Cookies.set("weaponListGot", weaponListGot, { expires: 365 });
 }
 function load() {
-	playerCoins = Cookies.get("playerCoins");
-	lifeTimeCoins = Cookies.get("lifeTimeCoins");
-	currentLevel = Cookies.get("currentLevel");
-	monsterRemaining = Cookies.get("monsterRemaining");
-	currentMonster = Cookies.get("currentMonster");
-	lifeTimeKills = Cookies.get("lifeTimeKills");
+	playerCoins = parseInt(Cookies.get("playerCoins"));
+	lifeTimeCoins = parseInt(Cookies.get("lifeTimeCoins"));
+	currentLevel = parseInt(Cookies.get("currentLevel"));
+	monsterRemaining = parseInt(Cookies.get("monsterRemaining"));
+	currentMonster = parseInt(Cookies.get("currentMonster"));
+	lifeTimeKills = parseInt(Cookies.get("lifeTimeKills"));
 	levelStatus = Cookies.get("levelStatus").split(",");
-	maxLevel = Cookies.get("maxLevel");
+	maxLevel = parseInt(Cookies.get("maxLevel"));
 	weaponListGot = Cookies.get("weaponListGot").split(",");
 	recalculateDmg();
 	updateUI();
@@ -209,14 +207,12 @@ function updateUI() {
 		"Monsters remaining: " + monsterRemaining + "/10";
 	document.getElementById("lifeTimeKills").innerHTML =
 		"Life time kills:" + lifeTimeKills;
-	console.log(typeof levelStatus);
 	refreshLevelDisplay();
 	checkWeaponAvaible();
 }
 function refreshLevelDisplay() {
 	maxLevel = parseInt(maxLevel);
 	for (var i = 1; i < maxLevel + 1; i++) {
-		console.log("max level = " + maxLevel + " turn:" + i);
 		document.getElementById("labelLvl" + i).style.display = "flex";
 	}
 }
@@ -247,11 +243,9 @@ function resetWeaponFrame() {
 function recalculateDmg(){
 	damage = 1;
 	for(var i =0; i<weaponListGot.length;i++){
-		console.log("weapon list got : "+weaponListGot);
 		damage = damage*weaponListGot[i];
 		if (parseInt(weaponListGot[i])===2){
 			document.getElementById(weaponPricdIdArray[i]).innerHTML = "&#10003";
-			console.log(weaponPricdIdArray[i+"= &#10003"]);
 		}
 	}
 	document.getElementById("DamagePerClick").innerHTML = "Damage per click:"+damage;
