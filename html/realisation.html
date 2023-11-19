@@ -8,7 +8,7 @@
 		<script src="../script/realisations.js" defer></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
-		<title>Mes réalisation</title>
+		<title>Mes réalisations</title>
 	</head>
 	<body>
 		<header>
@@ -64,7 +64,7 @@
 								<img src="../img/crazy-food/coin.png" />
 							</div>
 							<label>Armes :</label>
-							<div class="weaponBuy" onclick="showCranDarret()" id="cutter">
+							<div class="weaponBuy" onclick="gotCutter()" id="cutter">
 								<img
 									src="../img/crazy-food/construction-1296216_640.png"
 									alt=""
@@ -75,7 +75,7 @@
 							<div
 								class="weaponBuy"
 								id="cranDarret"
-								onclick="showHokutoDeCuisine()"
+								onclick="gotCranDarret()"
 							>
 								<img src="../img/crazy-food/jackknife-29321_640.png" alt="" />
 								<p id="priceCranDarret">20</p>
@@ -84,7 +84,7 @@
 							<div
 								class="weaponBuy"
 								id="hokutoDeCuisine"
-								onclick="showHachoir()"
+								onclick="gotHokuto()"
 							>
 								<img
 									src="../img/crazy-food/kitchen-knife-1135268_640.png"
@@ -93,17 +93,17 @@
 								<p id="priceHokuto">50</p>
 								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
-							<div class="weaponBuy" id="hachoir" onclick="showKatana()">
+							<div class="weaponBuy" id="hachoir" onclick="gotHachoir()">
 								<img src="../img/crazy-food/cleaver-159513_640.png" alt="" />
 								<p id="priceHachoir">100</p>
 								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
-							<div class="weaponBuy" id="katana" onclick="showChainsaw()">
+							<div class="weaponBuy" id="katana" onclick="gotKatana()">
 								<img src="../img/crazy-food/katana-150859_640.png" alt="" />
 								<p id="priceKatana">200</p>
 								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
-							<div class="weaponBuy" id="chainsaw" onclick="chaisawClick()">
+							<div class="weaponBuy" id="chainsaw" onclick="gotChainsaw()">
 								<img src="../img/crazy-food/chainsaw-24442_640.png" alt="" />
 								<p id="priceChainsaw">500</p>
 								<img src="../img/crazy-food/coin.png" alt="" />
@@ -143,7 +143,7 @@
 							</div>
 							<div id="innerStats">
 								<p id="monsterRemainingText">Monsters remaining: 10/10</p>
-								<p id="Damage per click">Damage per click:</p>
+								<p id="DamagePerClick">Damage per click:</p>
 								<p id="lifeTimeKills">Life time kills: 0</p>
 								<p id="lifeTimeCoins">Life time coins: 0</p>
 							</div>

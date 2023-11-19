@@ -16,6 +16,12 @@ header {
 	height: 20vh;
 	background-image: url("../img/programation-banniere-desktop.png");
 }
+#weaponBox>label{
+	display:block;
+	border-radius: 11px 11px 0 0;
+	width: 100%;
+	background-color: lightgray;
+}
 #crazyFoodMenu {
 	background-image: url("../img/crazy-food/salad-8385520_640.jpg");
 	background-size: cover;
