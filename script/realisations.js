@@ -1,5 +1,12 @@
 //cross app variables
 var currentApp ="";
+var appList = [
+	"crazyFood",
+	"calculator"
+]
+appList.forEach(el => {
+	document.getElementById(el).style.display = "none";
+});
 //crazy food variables
 var currentLevel = 1;
 var monsterRemaining = 10;
@@ -485,14 +492,15 @@ function showApp(app) {
 	if(currentApp.length>0){
 		hideApp(currentApp)
 	}
-	document.getElementById(app).classList.remove("modal");
+	// document.getElementById(app).classList.remove("modal");
 	document.getElementById(app).classList.remove("out");
 	document.getElementById(app).classList.add("in");
+	document.getElementById(app).style.display = "";
 	currentApp= app;
 }
 function hideApp(app) {
 	document.getElementById(app).classList.remove("in");
 	document.getElementById(app).classList.add("out");
-	document.getElementById(app).classList.add("modal");
+	// document.getElementById(app).classList.add("modal");
 	currentApp = "";
 }
