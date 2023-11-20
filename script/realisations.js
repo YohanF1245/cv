@@ -250,13 +250,13 @@ function recalculateDmg(){
 	}
 	document.getElementById("DamagePerClick").innerHTML = "Damage per click:"+damage;
 }
-function showCrazyFood(){
-	document.getElementById("crazyFood").classList.remove("modal");
-	document.getElementById("crazyFood").classList.remove("out");
-	document.getElementById("crazyFood").classList.add("in");
+function showApp(app){
+	document.getElementById(app).classList.remove("modal");
+	document.getElementById(app).classList.remove("out");
+	document.getElementById(app).classList.add("in");
 }
-function hideCrazyFood(){
-	document.getElementById("crazyFood").classList.add("in");
-		document.getElementById("crazyFood").classList.add("out");
-		document.getElementById("crazyFood").classList.add("modal");
+function hideApp(app){
+	document.getElementById(app).classList.add("in");
+		document.getElementById(app).classList.add("out");
+		document.getElementById(app).classList.add("modal");
 }

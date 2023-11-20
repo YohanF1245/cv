@@ -24,9 +24,10 @@ header {
 }
 #crazyFoodMenu {
 	background-image: url("../img/crazy-food/salad-8385520_640.jpg");
-	background-size: cover;
-	width: 20vw;
-	height: 90%;
+	
+}
+#calculatorMenu {
+	background-image: url("../img/calculator/calculator.jpg");
 }
 #appArea {
 	height: 60vh;
@@ -47,13 +48,16 @@ header {
 .modal {
 	display: none;
 }
-#crazyFood {
+.innerApp{
 	position: relative;
 	width: 80vw;
 	height: 65vh;
 	flex-direction: column;
 	justify-content: space-between;
 	background-color: aqua;
+}
+#crazyFood {
+	
 	background-image: url("../img/crazy-food/bamboo-1283976_1280.jpg");
 	background-position: center;
 }
@@ -63,6 +67,9 @@ header {
 	align-items: center;
 	border-radius: 25px;
 	border: 2px solid beige;
+	background-size: cover;
+	width: 20vw;
+	height: 90%;
 }
 .appTitle {
 	font-size: 1.2rem;
@@ -336,12 +343,37 @@ img {
 	animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 	transform: scale(1);
 }
+#calculator{
+	display:block;
+}
 .closeAppButton{
 	position:absolute;
 	top:-20px;
 	left:50%;
 	transform: translateX(-50%);
 }
+#calcScreen{
+	height:20%;
+	border:1px solid gray;
+}
+#gridKeyBoard>p{
+	border: 1px solid gray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#gridKeyBoard{
+	display: grid;
+	grid-template-columns: 15vw 15vw 15vw 15vw;
+	grid-template-rows: 15vw 15vw 15vw 15vw 15vw;
+	text-align: center;
+	margin-left: 10vw;
+	
+}
+.twoCells{
+	grid-column:span 2;
+}
+
 @keyframes unfoldIn {
 	0% {
 		transform: scaleY(0.005) scaleX(0);
@@ -385,7 +417,7 @@ img {
 	header {
 		background-image: url("../img/programation-banniere-mobile.png");
 	}
-	#crazyFoodMenu {
+	#crazyFoodMenu,#calculatorMenu {
 		width: 45vw;
 	}
 }
