@@ -344,7 +344,7 @@ img {
 	transform: scale(1);
 }
 #calculator{
-	display:block;
+	justify-content: space-evenly;
 }
 .closeAppButton{
 	position:absolute;
@@ -355,6 +355,11 @@ img {
 #calcScreen{
 	height:20%;
 	border:1px solid gray;
+	background-color: white;
+	text-align: right;
+	margin:0 10vw;
+	border-radius: 5px;
+	box-shadow:0 5px grey;
 }
 .calcKey{
 	border: 1px solid gray;
@@ -368,12 +373,30 @@ img {
 	grid-template-rows: 15vw 15vw 15vw 15vw 15vw;
 	text-align: center;
 	margin-left: 10vw;
+	gap:6px 1px;
 	
 }
 .twoCells{
 	grid-column:span 2;
 }
-
+.css-button-3d--sky {
+	color: #fff;
+	padding: 5px 10px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	outline: none;
+	border-radius: 5px;
+	border: none;
+	background: #3a86ff;
+	box-shadow: 0 5px #4433ff;
+  }
+  .css-button-3d--sky:hover {
+	box-shadow: 0 3px #4433ff;
+	top: 1px;
+  }
 @keyframes unfoldIn {
 	0% {
 		transform: scaleY(0.005) scaleX(0);

@@ -1,3 +1,5 @@
+//cross app variables
+var currentApp ="";
 //crazy food variables
 var currentLevel = 1;
 var monsterRemaining = 10;
@@ -31,6 +33,7 @@ var calcKeys = document.querySelectorAll('input[type=button][name="calcKey"]');
 console.log(calcKeys);
 var ans = "0";
 var mem = "0";
+var result;
 var operator = "";
 var operatorSelected = false;
 var isFloat = false;
@@ -50,122 +53,203 @@ function calcKeyPressed(key) {
 		case "CLEAR":
 			ans = "0";
 			mem = "0";
-			isFloat=false;
+			isFloat = false;
+			operator = "";
+
 			break;
 		case "RETURN":
 			if (mem.length > 1) {
-				if(mem.charAt(mem.length-1)==="."){
-					isFloat=false;
+				if (mem.charAt(mem.length - 1) === ".") {
+					isFloat = false;
 				}
 			}
-				mem = mem.slice(0, -1);
-				
+			mem = mem.slice(0, -1);
+
 			break;
 		case "1":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "1";
 			} else {
 				mem += "1";
 			}
 			break;
 		case "2":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "2";
 			} else {
 				mem += "2";
 			}
 			break;
 		case "3":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "3";
 			} else {
 				mem += "3";
 			}
 			break;
 		case "4":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "4";
 			} else {
 				mem += "4";
 			}
 			break;
 		case "5":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "5";
 			} else {
 				mem += "5";
 			}
 			break;
 		case "6":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "6";
 			} else {
 				mem += "6";
 			}
 			break;
 		case "7":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "7";
 			} else {
 				mem += "7";
 			}
 			break;
 		case "8":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "8";
 			} else {
 				mem += "8";
 			}
 			break;
 		case "9":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "9";
 			} else {
 				mem += "9";
 			}
 			break;
 		case "0":
-			if (mem === "0") {
+			if (mem === "0" || mem.includes("=")) {
 				mem = "0";
 			} else {
 				mem += "0";
 			}
 			break;
-			case ".":
-				if (isFloat === false) {
-					mem += ".";
-					isFloat = true;
+		case ".":
+			if (isFloat === false) {
+				mem += ".";
+				isFloat = true;
+			}
+			break;
+		case "+":
+			if (operatorSelected === false) {
+				operatorSelected = true;
+				if(mem.includes("=") ===true){
+					mem = mem.slice(2);
 				}
-				break;
-				case "+":
-				if (operatorSelected === false) {
-					operatorSelected = true;
-					operator="+";
+				ans = mem;
+				mem = "0";
+				operator = "+";
+				
+			}
+			break;
+		case "-":
+			if (operatorSelected === false) {
+				operatorSelected = true;
+				if(mem.includes("=") ===true){
+					mem = mem.slice(2);
 				}
-				break;
-				case "-":
-				if (operatorSelected === false) {
-					operatorSelected = true;
-					operator="-";
+				ans = mem;
+				mem = "0";
+				operator = "-";
+			}
+			break;
+		case "/":
+			if (operatorSelected === false) {
+				operatorSelected = true;
+				if(mem.includes("=") ===true){
+					mem = mem.slice(2);
 				}
-				break;
-				case "/":
-				if (operatorSelected === false) {
-					operatorSelected = true;
-					operator="/";
+				ans = mem;
+				mem = "0";
+				operator = "/";
+			}
+			break;
+		case "*":
+			if (operatorSelected === false) {
+				operatorSelected = true;
+				if(mem.includes("=") ===true){
+					mem = mem.slice(2);
 				}
-				break;
-				case "*":
-				if (operatorSelected === false) {
-					operatorSelected = true;
-					operator="*";
-				}
-				break;
+				ans = mem;
+				mem = "0";
+				operator = "*";
+			}
+			break;
+		case "=":
+			if(mem.includes("=")){
+				mem = mem.slice(2);
+			}
+			calc();
+			operatorSelected = false;
+			break;
 		default:
 			break;
 	}
+	refreshCalcScreen();
 	console.log("mem = " + mem);
-	console.log("last char" + mem.charAt(mem.length-1))
+	console.log("last char" + mem.charAt(mem.length - 1));
+}
+function calc() {
+	console.log("calculate ...");
+	var a;
+	var b;
+	if (ans.includes(".") === true) {
+		var a = parseFloat(ans);
+	} else {
+		var a = parseInt(ans);
+	}
+	if (mem.includes(".") === true) {
+		var b = parseFloat(mem);
+	} else {
+		var b = parseInt(mem);
+	}
+	switch (operator) {
+		case "+":
+			result = a + b;
+			console.log("result " + result);
+			mem = "= " + result;
+			break;
+		case "-":
+			result = a - b;
+			console.log("result " + result);
+			mem = "= " + result;
+			break;
+		case "*":
+			result = a * b;
+			console.log("result " + result);
+			mem = "= " + result;
+			break;
+		case "/":
+			if (b != 0) {
+				result = a / b;
+				console.log("result " + result);
+				mem = "= " + result;
+			} else {
+				window.alert("division by zero is not allowed");
+			}
+
+			break;
+		default:
+			break;
+	}
+	refreshCalcScreen();
+}
+function refreshCalcScreen() {
+	document.getElementById("textCalcAns").innerHTML = "ans = " + ans;
+	document.getElementById("operatorText").innerHTML = operator;
+	document.getElementById("textCurrentInput").innerHTML = mem;
 }
 //crazy food code
 radios.forEach((radio) =>
@@ -398,12 +482,17 @@ function recalculateDmg() {
 		"Damage per click:" + damage;
 }
 function showApp(app) {
+	if(currentApp.length>0){
+		hideApp(currentApp)
+	}
 	document.getElementById(app).classList.remove("modal");
 	document.getElementById(app).classList.remove("out");
 	document.getElementById(app).classList.add("in");
+	currentApp= app;
 }
 function hideApp(app) {
-	document.getElementById(app).classList.add("in");
+	document.getElementById(app).classList.remove("in");
 	document.getElementById(app).classList.add("out");
 	document.getElementById(app).classList.add("modal");
+	currentApp = "";
 }
