@@ -1,3 +1,4 @@
+//crazy food variables
 var currentLevel = 1;
 var monsterRemaining = 10;
 var currentMonster = 0;
@@ -8,7 +9,7 @@ const mobList = [
 	"monster-cherry.png",
 	"monster-coconut.png",
 	"monster-strawberry.png",
-	"monster-watermelon.png"
+	"monster-watermelon.png",
 ];
 const weaponPricdIdArray = [
 	"priceCutter",
@@ -16,7 +17,7 @@ const weaponPricdIdArray = [
 	"priceHokuto",
 	"priceHachoir",
 	"priceKatana",
-	"priceChainsaw"
+	"priceChainsaw",
 ];
 var playerCoins = 0;
 var lifeTimeCoins = 0;
@@ -25,7 +26,148 @@ var maxLevel = 1;
 var monsterHealth = 10;
 var levelStatus = [null, 10, 10, 10, 10, 10];
 var radios = document.querySelectorAll('input[type=radio][name="radioLevel"]');
+//calculator variables
+var calcKeys = document.querySelectorAll('input[type=button][name="calcKey"]');
+console.log(calcKeys);
+var ans = "0";
+var mem = "0";
+var operator = "";
+var operatorSelected = false;
+var isFloat = false;
+//calcultator code
+document
+	.querySelectorAll('input[type=button][name="calcKey"]')
+	.forEach((occurence) => {
+		var id = occurence.getAttribute("id");
+		occurence.addEventListener("click", function () {
+			calcKeyPressed(id);
+		});
+	});
 
+function calcKeyPressed(key) {
+	console.log("key pressed : " + key + " !");
+	switch (key) {
+		case "CLEAR":
+			ans = "0";
+			mem = "0";
+			isFloat=false;
+			break;
+		case "RETURN":
+			if (mem.length > 1) {
+				if(mem.charAt(mem.length-1)==="."){
+					isFloat=false;
+				}
+			}
+				mem = mem.slice(0, -1);
+				
+			break;
+		case "1":
+			if (mem === "0") {
+				mem = "1";
+			} else {
+				mem += "1";
+			}
+			break;
+		case "2":
+			if (mem === "0") {
+				mem = "2";
+			} else {
+				mem += "2";
+			}
+			break;
+		case "3":
+			if (mem === "0") {
+				mem = "3";
+			} else {
+				mem += "3";
+			}
+			break;
+		case "4":
+			if (mem === "0") {
+				mem = "4";
+			} else {
+				mem += "4";
+			}
+			break;
+		case "5":
+			if (mem === "0") {
+				mem = "5";
+			} else {
+				mem += "5";
+			}
+			break;
+		case "6":
+			if (mem === "0") {
+				mem = "6";
+			} else {
+				mem += "6";
+			}
+			break;
+		case "7":
+			if (mem === "0") {
+				mem = "7";
+			} else {
+				mem += "7";
+			}
+			break;
+		case "8":
+			if (mem === "0") {
+				mem = "8";
+			} else {
+				mem += "8";
+			}
+			break;
+		case "9":
+			if (mem === "0") {
+				mem = "9";
+			} else {
+				mem += "9";
+			}
+			break;
+		case "0":
+			if (mem === "0") {
+				mem = "0";
+			} else {
+				mem += "0";
+			}
+			break;
+			case ".":
+				if (isFloat === false) {
+					mem += ".";
+					isFloat = true;
+				}
+				break;
+				case "+":
+				if (operatorSelected === false) {
+					operatorSelected = true;
+					operator="+";
+				}
+				break;
+				case "-":
+				if (operatorSelected === false) {
+					operatorSelected = true;
+					operator="-";
+				}
+				break;
+				case "/":
+				if (operatorSelected === false) {
+					operatorSelected = true;
+					operator="/";
+				}
+				break;
+				case "*":
+				if (operatorSelected === false) {
+					operatorSelected = true;
+					operator="*";
+				}
+				break;
+		default:
+			break;
+	}
+	console.log("mem = " + mem);
+	console.log("last char" + mem.charAt(mem.length-1))
+}
+//crazy food code
 radios.forEach((radio) =>
 	radio.addEventListener("change", () => refreshLevels(radio.value))
 );
@@ -38,60 +180,64 @@ function refreshLevels(toLevel) {
 }
 randMob();
 function gotCutter() {
-	if(playerCoins>=5){
+	if (playerCoins >= 5) {
 		document.getElementById("priceCutter").innerHTML = "&#10003";
-	document.getElementById("priceCutter").style.color = "green";
-	weaponListGot[0] = 2;
-	playerCoins -=5;
-	document.getElementById("currentCoinsText").innerHTML = playerCoins;
-	recalculateDmg();
+		document.getElementById("priceCutter").style.color = "green";
+		weaponListGot[0] = 2;
+		playerCoins -= 5;
+		document.getElementById("currentCoinsText").innerHTML = playerCoins;
+		recalculateDmg();
 	}
-	
 }
 function gotCranDarret() {
-	if(playerCoins>=20){
-	document.getElementById("priceCranDarret").innerHTML = "&#10003";
-	document.getElementById("priceCranDarret").style.color = "green";
-	weaponListGot[1] = 2;
-	playerCoins -=20;
-	document.getElementById("currentCoinsText").innerHTML = playerCoins;
-	recalculateDmg();}
+	if (playerCoins >= 20) {
+		document.getElementById("priceCranDarret").innerHTML = "&#10003";
+		document.getElementById("priceCranDarret").style.color = "green";
+		weaponListGot[1] = 2;
+		playerCoins -= 20;
+		document.getElementById("currentCoinsText").innerHTML = playerCoins;
+		recalculateDmg();
+	}
 }
 function gotHokuto() {
-	if(playerCoins>=50){
-	weaponListGot[2] = 2;
-	playerCoins -=50;
-	document.getElementById("currentCoinsText").innerHTML = playerCoins;
-	document.getElementById("priceHokuto").innerHTML = "&#10003";
-	document.getElementById("priceHokuto").style.color = "green";
-	recalculateDmg();}
+	if (playerCoins >= 50) {
+		weaponListGot[2] = 2;
+		playerCoins -= 50;
+		document.getElementById("currentCoinsText").innerHTML = playerCoins;
+		document.getElementById("priceHokuto").innerHTML = "&#10003";
+		document.getElementById("priceHokuto").style.color = "green";
+		recalculateDmg();
+	}
 }
 function gotHachoir() {
-	if(playerCoins>=100){
-	weaponListGot[3] = 2;
-	playerCoins -=100;
-	document.getElementById("currentCoinsText").innerHTML = playerCoins;
-	document.getElementById("priceHachoir").innerHTML = "&#10003";
-	document.getElementById("priceHachoir").style.color = "green";
-	recalculateDmg();}
+	if (playerCoins >= 100) {
+		weaponListGot[3] = 2;
+		playerCoins -= 100;
+		document.getElementById("currentCoinsText").innerHTML = playerCoins;
+		document.getElementById("priceHachoir").innerHTML = "&#10003";
+		document.getElementById("priceHachoir").style.color = "green";
+		recalculateDmg();
+	}
 }
 function gotKatana() {
-	if(playerCoins>=200){
-	weaponListGot[4] = 2;
-	playerCoins -=200;
-	document.getElementById("currentCoinsText").innerHTML = playerCoins;
-	document.getElementById("priceKatana").innerHTML = "&#10003";
-	document.getElementById("priceKatana").style.color = "green";
-	recalculateDmg();}
+	if (playerCoins >= 200) {
+		weaponListGot[4] = 2;
+		playerCoins -= 200;
+		document.getElementById("currentCoinsText").innerHTML = playerCoins;
+		document.getElementById("priceKatana").innerHTML = "&#10003";
+		document.getElementById("priceKatana").style.color = "green";
+		recalculateDmg();
+	}
 }
 function gotChainsaw() {
-	if(playerCoins>=500){
-	weaponListGot[5] = 2;
-	playerCoins -=500;
-	document.getElementById("currentCoinsText").innerHTML = playerCoins;
-	document.getElementById("priceChainsaw").innerHTML = "&#10003";
-	document.getElementById("priceChainsaw ").style.color = "green";
-	recalculateDmg();}
+	if (playerCoins >= 500) {
+		weaponListGot[5] = 2;
+		playerCoins -= 500;
+		document.getElementById("currentCoinsText").innerHTML = playerCoins;
+		document.getElementById("priceChainsaw").innerHTML = "&#10003";
+		document.getElementById("priceChainsaw ").style.color = "green";
+		recalculateDmg();
+	}
 }
 function randMob() {
 	var randomizeNum = Math.floor(Math.random() * 5);
@@ -104,7 +250,7 @@ function randMob() {
 		"linear-gradient(100deg, rgba(77,164,13,1) 0%, rgba(95,255,0,0) 100%)";
 }
 function mobHit() {
-	monsterHealth = monsterHealth-damage;
+	monsterHealth = monsterHealth - damage;
 	document.getElementById("healthNumber").innerHTML =
 		monsterHealth + "/" + 10 * Math.pow(currentLevel, 2);
 	var healthPercent = (monsterHealth / 10) * 100;
@@ -240,23 +386,24 @@ function resetWeaponFrame() {
 	document.getElementById("katana").style.display = "none";
 	document.getElementById("chainsaw").style.display = "none";
 }
-function recalculateDmg(){
+function recalculateDmg() {
 	damage = 1;
-	for(var i =0; i<weaponListGot.length;i++){
-		damage = damage*weaponListGot[i];
-		if (parseInt(weaponListGot[i])===2){
+	for (var i = 0; i < weaponListGot.length; i++) {
+		damage = damage * weaponListGot[i];
+		if (parseInt(weaponListGot[i]) === 2) {
 			document.getElementById(weaponPricdIdArray[i]).innerHTML = "&#10003";
 		}
 	}
-	document.getElementById("DamagePerClick").innerHTML = "Damage per click:"+damage;
+	document.getElementById("DamagePerClick").innerHTML =
+		"Damage per click:" + damage;
 }
-function showApp(app){
+function showApp(app) {
 	document.getElementById(app).classList.remove("modal");
 	document.getElementById(app).classList.remove("out");
 	document.getElementById(app).classList.add("in");
 }
-function hideApp(app){
+function hideApp(app) {
 	document.getElementById(app).classList.add("in");
-		document.getElementById(app).classList.add("out");
-		document.getElementById(app).classList.add("modal");
+	document.getElementById(app).classList.add("out");
+	document.getElementById(app).classList.add("modal");
 }

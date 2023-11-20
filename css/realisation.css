@@ -356,7 +356,7 @@ img {
 	height:20%;
 	border:1px solid gray;
 }
-#gridKeyBoard>p{
+.calcKey{
 	border: 1px solid gray;
 	display: flex;
 	align-items: center;
