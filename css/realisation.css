@@ -1,3 +1,7 @@
+@font-face {
+	font-family: "Dosis";
+	src: url(../fonts/Dosis-VariableFont_wght.ttf);
+}
 h1 {
 	color: white;
 	font-size: 4rem;
@@ -24,7 +28,6 @@ header {
 }
 #crazyFoodMenu {
 	background-image: url("../img/crazy-food/salad-8385520_640.jpg");
-	
 }
 #calculatorMenu {
 	background-image: url("../img/calculator/calculator.jpg");
@@ -39,6 +42,7 @@ header {
 	align-items: center;
 }
 #navProjectBar {
+	overflow-x: scroll;
 	height: 20vh;
 	display: flex;
 	justify-content: center;
@@ -49,7 +53,7 @@ header {
 .modal {
 	display: none;
 }
-.innerApp{
+.innerApp {
 	position: fixed;
 	width: 80vw;
 	height: 65vh;
@@ -58,10 +62,13 @@ header {
 	background-color: aqua;
 }
 #crazyFood {
-	
 	background-image: url("../img/crazy-food/bamboo-1283976_1280.jpg");
 	background-position: center;
 }
+ #findWordMenu{
+	background-image: url("../img/find-word/adwords-793034_640.jpg");
+	background-position: center;
+ }
 .imgMenu {
 	display: flex;
 	justify-content: center;
@@ -346,41 +353,55 @@ img {
 	animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 	transform: scale(1);
 }
-#calculator{
+#calculator {
 	justify-content: space-evenly;
 }
-.closeAppButton{
-	position:absolute;
-	top:-20px;
-	left:50%;
+.closeAppButton {
+	position: absolute;
+	top: -20px;
+	left: 50%;
 	transform: translateX(-50%);
 }
-#calcScreen{
-	height:20%;
-	border:1px solid gray;
+#calcScreen {
+	display:flex;
+	flex-direction: column;
+	height: 20%;
+	border: 1px solid gray;
 	background-color: white;
 	text-align: right;
-	margin:0 10vw;
+	margin: 0 10vw;
 	border-radius: 5px;
-	box-shadow:0 5px grey;
+	box-shadow: 0 5px grey;
 }
-.calcKey{
+#textCurrentInput{
+	font-size: 1.5rem;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+#operatorText{
+	font-size:1.8rem; 
+}
+#calcScreen>p{
+	font-family: "Dosis";
+	width: 80%;
+	margin:auto;
+}
+.calcKey {
 	border: 1px solid gray;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-#gridKeyBoard{
+#gridKeyBoard {
 	display: grid;
 	grid-template-columns: 15vw 15vw 15vw 15vw;
 	grid-template-rows: 15vw 15vw 15vw 15vw 15vw;
 	text-align: center;
 	margin-left: 10vw;
-	gap:6px 1px;
-	
+	gap: 6px 1px;
 }
-.twoCells{
-	grid-column:span 2;
+.twoCells {
+	grid-column: span 2;
 }
 .css-button-3d--sky {
 	color: #fff;
@@ -395,11 +416,30 @@ img {
 	border: none;
 	background: #3a86ff;
 	box-shadow: 0 5px #4433ff;
-  }
-  .css-button-3d--sky:hover {
+}
+.css-button-3d--sky:hover {
 	box-shadow: 0 3px #4433ff;
 	top: 1px;
-  }
+}
+#wordFinder{
+	/* display: flex; */
+	
+}
+#wordGrid{
+	display:grid;
+	height: 60%;
+	grid-template-columns: auto auto auto auto auto  ;
+	grid-template-rows: auto auto auto auto auto auto;
+	gap:5px;
+}
+.letter{
+	box-sizing: border-box;
+	display:inline-block;
+	height: 100%;
+	width: 100%;
+	border:1px solid red;
+}
+
 @keyframes unfoldIn {
 	0% {
 		transform: scaleY(0.005) scaleX(0);
@@ -443,7 +483,9 @@ img {
 	header {
 		background-image: url("../img/programation-banniere-mobile.png");
 	}
-	#crazyFoodMenu,#calculatorMenu {
+	#crazyFoodMenu,
+	#calculatorMenu,
+	#findWordMenu {
 		width: 45vw;
 	}
 }

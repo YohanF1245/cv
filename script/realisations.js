@@ -1,10 +1,7 @@
 //cross app variables
-var currentApp ="";
-var appList = [
-	"crazyFood",
-	"calculator"
-]
-appList.forEach(el => {
+var currentApp = "";
+var appList = ["crazyFood", "calculator","wordFinder"];
+appList.forEach((el) => {
 	document.getElementById(el).style.display = "none";
 });
 //crazy food variables
@@ -44,6 +41,37 @@ var result;
 var operator = "";
 var operatorSelected = false;
 var isFloat = false;
+// word find variables
+	var wordToFind;
+	var currentPlaceInGrid =0;
+	var arrayGridWord = document.getElementsByClassName("letter");
+
+//test
+fetch("https://trouve-mot.fr/api/size/5")
+    .then((response) => response.json())
+    .then((words) => doSomething(Object.entries(words)[0][1]))
+
+function doSomething(str){
+	wordToFind = (Object.entries(str)[0][1]);
+	arrayGridWord[currentPlaceInGrid].innerHTML = wordToFind.charAt(0);
+	arrayGridWord[currentPlaceInGrid+1].innerHTML = wordToFind.charAt(1);
+	arrayGridWord[currentPlaceInGrid+2].innerHTML = wordToFind.charAt(2);
+	arrayGridWord[currentPlaceInGrid+3].innerHTML = wordToFind.charAt(3);
+	arrayGridWord[currentPlaceInGrid+4].innerHTML = wordToFind.charAt(4);
+}
+
+addEventListener("keydown", (event) => {
+	logKey(event.key);
+	console.log(event.code);
+	console.log();
+	console.log($("#wordGrid :nth-child("+currentPlaceInGrid+")").text());
+	arrayGridWord[currentPlaceInGrid].innerHTML = event.key;
+	currentPlaceInGrid++;
+});
+
+function logKey(e) {
+  console.log("keypressed: "+e);
+}
 //calcultator code
 document
 	.querySelectorAll('input[type=button][name="calcKey"]')
@@ -152,19 +180,18 @@ function calcKeyPressed(key) {
 		case "+":
 			if (operatorSelected === false) {
 				operatorSelected = true;
-				if(mem.includes("=") ===true){
+				if (mem.includes("=") === true) {
 					mem = mem.slice(2);
 				}
 				ans = mem;
 				mem = "0";
 				operator = "+";
-				
 			}
 			break;
 		case "-":
 			if (operatorSelected === false) {
 				operatorSelected = true;
-				if(mem.includes("=") ===true){
+				if (mem.includes("=") === true) {
 					mem = mem.slice(2);
 				}
 				ans = mem;
@@ -175,7 +202,7 @@ function calcKeyPressed(key) {
 		case "/":
 			if (operatorSelected === false) {
 				operatorSelected = true;
-				if(mem.includes("=") ===true){
+				if (mem.includes("=") === true) {
 					mem = mem.slice(2);
 				}
 				ans = mem;
@@ -186,7 +213,7 @@ function calcKeyPressed(key) {
 		case "*":
 			if (operatorSelected === false) {
 				operatorSelected = true;
-				if(mem.includes("=") ===true){
+				if (mem.includes("=") === true) {
 					mem = mem.slice(2);
 				}
 				ans = mem;
@@ -195,7 +222,7 @@ function calcKeyPressed(key) {
 			}
 			break;
 		case "=":
-			if(mem.includes("=")){
+			if (mem.includes("=")) {
 				mem = mem.slice(2);
 			}
 			calc();
@@ -489,14 +516,14 @@ function recalculateDmg() {
 		"Damage per click:" + damage;
 }
 function showApp(app) {
-	if(currentApp.length>0){
-		hideApp(currentApp)
+	if (currentApp.length > 0) {
+		hideApp(currentApp);
 	}
 	// document.getElementById(app).classList.remove("modal");
 	document.getElementById(app).classList.remove("out");
 	document.getElementById(app).classList.add("in");
 	document.getElementById(app).style.display = "";
-	currentApp= app;
+	currentApp = app;
 }
 function hideApp(app) {
 	document.getElementById(app).classList.remove("in");
