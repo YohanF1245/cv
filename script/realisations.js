@@ -48,6 +48,7 @@ var arrayGridWord = document.getElementsByClassName("letter");
 var userInputWTF = ["", "", "", "", ""];
 var currentKey = "";
 var currentline = 1;
+var regexALpha = /^([a-zA-Z ]+)$/;
 //test
 
 function getWord() {
@@ -64,6 +65,7 @@ function doSomething(str){
 	wordToFind = wordToFind.toUpperCase();
 	console.log(wordToFind);
 	userInputWTF[0] = wordToFind.charAt(0);
+	arrayGridWord[currentPlaceInGrid].innerHTML = wordToFind.charAt(0);
 	currentPlaceInGrid++;
 	// lauchWordFind(wordToFind);
 }
@@ -72,10 +74,7 @@ function lauchWordFind(str) {
 	if ((currentPlaceInGrid) % 5 != 0) {
 		arrayGridWord[currentPlaceInGrid].innerHTML = currentKey;
 	currentPlaceInGrid++;
-	} else {
-		currentLine++;
-		checkword();
-	}
+	} 
 	
 
 	// for (var i = 0; i < 6; i++){
@@ -99,7 +98,7 @@ function lauchWordFind(str) {
 function checkword(){
 	for (var i = 0; i < 5; i++){
 		if (wordToFind.includes(userInputWTF[i])) {
-			
+			arrayGridWord[currentline*5+i].style.backgroundColor = "red";
 		}
 	}
 	}
@@ -108,11 +107,17 @@ addEventListener("keydown", (event) => {
 	if (currentApp === "wordFinder") {
 		console.log("keypressed: " + event);
 	console.log(event.code);
-	console.log();
+	console.log("event key : "+event.key);
 		
 		currentKey = event.key;	
+		if(regexAlpha.text(currentKey) ===true){
+			lauchWordFind();
+		}else if(currentKey === "Enter"){
+			checkword();
+		}else if(currentKey === "Backspace"){
+
+		}
 		
-		lauchWordFind();
 	}
 });
 //calcultator code
