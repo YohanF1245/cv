@@ -88,6 +88,7 @@ function calcKeyPressed(key) {
 		case "CLEAR":
 			ans = "0";
 			mem = "0";
+			operatorSelected = false;
 			isFloat = false;
 			operator = "";
 
@@ -461,8 +462,11 @@ function reset() {
 	save();
 	updateUI();
 	resetWeaponFrame();
+	recalculateDmg();
+
 }
 function updateUI() {
+	document.getElementById("DamagePerClick").innerHTML = "Damage per click : " + damage;
 	document.getElementById("currentCoinsText").innerHTML = playerCoins;
 	document.getElementById("lifeTimeCoins").innerHTML =
 		"Life time coins:" + lifeTimeCoins;
@@ -479,8 +483,11 @@ function refreshLevelDisplay() {
 	for (var i = 1; i < maxLevel + 1; i++) {
 		document.getElementById("labelLvl" + i).style.display = "flex";
 	}
+	for (var i = maxLevel + 1; i < 6; i++){
+		document.getElementById("labelLvl" + i).style.display = "none";
+	}
 }
-function checkWeaponAvaible() {
+function checkWeaponAvaible() { 
 	if (lifeTimeCoins >= 5) {
 		document.getElementById("cranDarret").style.display = "flex";
 	}
@@ -503,7 +510,14 @@ function resetWeaponFrame() {
 	document.getElementById("hachoir").style.display = "none";
 	document.getElementById("katana").style.display = "none";
 	document.getElementById("chainsaw").style.display = "none";
-}
+	var tempWeaponList = document.getElementsByClassName("weaponP");
+	tempWeaponList[0].innerHTML ="5";	
+	tempWeaponList[1].innerHTML ="20";	
+	tempWeaponList[2].innerHTML ="50";	
+	tempWeaponList[3].innerHTML ="100";
+	tempWeaponList[4].innerHTML ="200";
+	tempWeaponList[5].innerHTML ="500";
+}	
 function recalculateDmg() {
 	damage = 1;
 	for (var i = 0; i < weaponListGot.length; i++) {

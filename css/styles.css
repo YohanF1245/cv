@@ -22,10 +22,11 @@ body {
 	z-index: 3;
 	border-radius: 50%;
 	border-bottom: 0;
-	top: 83.5vh;
+	top: 82.5vh;
+    
 }
 #toTheTopImg {
-	width: 10vw;
+	width: 3vw;
 	border-radius: 50%;
 	background-color: white;
 }
@@ -44,12 +45,14 @@ h1 {
 	background-color: white;
 	border-radius: 50px;
 	margin: auto;
-	padding: 15px 50px;
+	padding: 5px 50px;
 	display: flex;
 	justify-content: space-evenly;
+    width: 60%;
 }
 .contactIcon {
-	height: 50px;
+	height: 40px;
+    
 }
 .backGroundBlock {
 	background-color: white;
@@ -85,4 +88,37 @@ h1 {
 #buttonsDiv {
 	display: flex;
 	justify-content: space-evenly;
+}
+@media screen and (max-width: 480px){
+    #toTheTopArrow,
+.blocContact {
+	top: 90vh;
+	right: 50%;
+	transform: translate(50%, -50%);
+	position: fixed;
+	border: 5px solid beige;
+}
+#toTheTopArrow {
+	z-index: 3;
+	border-radius: 50%;
+	border-bottom: 0;
+	top: 83.5vh;
+}
+#toTheTopImg {
+	width: 10vw;
+	border-radius: 50%;
+	background-color: white;
+}
+.blocContact {
+	background-color: white;
+	border-radius: 50px;
+	margin: auto;
+	padding: 15px 50px;
+	display: flex;
+	justify-content: space-evenly;
+}
+.contactIcon {
+	height: 50px;
+    
+}
 }
