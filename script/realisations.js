@@ -45,7 +45,6 @@ var isFloat = false;
 	var wordToFind;
 	var currentPlaceInGrid =0;
 	var arrayGridWord = document.getElementsByClassName("letter");
-
 //test
 fetch("https://trouve-mot.fr/api/size/5")
     .then((response) => response.json())
@@ -60,17 +59,21 @@ function doSomething(str){
 	arrayGridWord[currentPlaceInGrid+4].innerHTML = wordToFind.charAt(4);
 }
 
-addEventListener("keydown", (event) => {
-	logKey(event.key);
-	console.log(event.code);
-	console.log();
-	console.log($("#wordGrid :nth-child("+currentPlaceInGrid+")").text());
-	arrayGridWord[currentPlaceInGrid].innerHTML = event.key;
-	currentPlaceInGrid++;
-});
+
+	addEventListener("keydown", (event) => {
+		logKey(event);
+	});
 
 function logKey(e) {
-  console.log("keypressed: "+e);
+	if (currentApp === "wordFinder") {
+		console.log("keypressed: " + e);
+	console.log(e.code);
+	console.log();
+	console.log($("#wordGrid :nth-child("+currentPlaceInGrid+")").text());
+	arrayGridWord[currentPlaceInGrid].innerHTML = e.key;
+	currentPlaceInGrid++;
+	}
+	
 }
 //calcultator code
 document
@@ -227,6 +230,7 @@ function calcKeyPressed(key) {
 				mem = mem.slice(2);
 			}
 			calc();
+			operator = "";
 			operatorSelected = false;
 			break;
 		default:
@@ -282,9 +286,11 @@ function calc() {
 	refreshCalcScreen();
 }
 function refreshCalcScreen() {
+	
 	document.getElementById("textCalcAns").innerHTML = "ans = " + ans;
 	document.getElementById("operatorText").innerHTML = operator;
 	document.getElementById("textCurrentInput").innerHTML = mem;
+
 }
 //crazy food code
 radios.forEach((radio) =>
