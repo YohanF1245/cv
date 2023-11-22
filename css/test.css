@@ -1,0 +1,145 @@
+#mainContainer{
+    width: 100vw;
+    height: 100vh;
+}
+#animStepOne{
+    display:none;
+    width: 50%;
+    border: 2px solid black;
+    transform-origin: 100% 50%; /*origine de la transformation X Y*/
+    animation: leftToRight 500ms; /*selection animation : nom + temps*/
+}
+#animStepTwo{
+    display:none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid black;
+    animation: maryPopIn 500ms;
+    animation-delay: 500ms;
+
+}
+#animStepThree{
+    display:none;
+    height: 200px;
+    width: 0px;
+    border: 2px solid black;
+    transform-origin: 50% 100%;
+    animation: topToBot 1000ms; 
+}
+@keyframes topToBot{
+    0% {
+        transform: scaleY(0);
+    }
+    10% {
+        transform: scaleY(0.1);
+    }
+    20% {
+        transform: scaleY(0.2);
+    }
+    30% {
+        transform: scaleY(0.3);
+    }
+    40% {
+        transform: scaleY(0.4);
+    }
+    50% {
+        transform: scaleY(0.5);
+    }
+    60% {
+        transform: scaleY(0.6);
+    }
+    70% {
+        transform: scaleY(0.7);
+    }
+    80% {
+        transform: scaleY(0.8);
+    }
+    90% {
+        transform: scaleY(0.9);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+@keyframes leftToRight{
+    0% {
+        transform: scaleX(0);
+    }
+    10% {
+        transform: scaleX(0.1);
+    }
+    20% {
+        transform: scaleX(0.2);
+    }
+    30% {
+        transform: scaleX(0.3);
+    }
+    40% {
+        transform: scaleX(0.4);
+    }
+    50% {
+        transform: scaleX(0.5);
+    }
+    60% {
+        transform: scaleX(0.6);
+    }
+    70% {
+        transform: scaleX(0.7);
+    }
+    80% {
+        transform: scaleX(0.8);
+    }
+    90% {
+        transform: scaleX(0.9);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+@keyframes maryPopIn{
+    0% {
+        transform: scaleX(0);
+        transform: scaleY(0);
+    }
+    10% {
+        transform: scaleX(0.1);
+        transform: scaleY(0.1);
+    }
+    20% {
+        transform: scaleX(0.2);
+        transform: scaleY(0.2);
+    }
+    30% {
+        transform: scaleX(0.3);
+        transform: scaleY(0.3);
+    }
+    40% {
+        transform: scaleX(0.4);
+        transform: scaleY(0.4);
+    }
+    50% {
+        transform: scaleX(0.5);
+        transform: scaleY(0.5);
+    }
+    60% {
+        transform: scaleX(0.6);
+        transform: scaleY(0.6);
+    }
+    70% {
+        transform: scaleX(0.7);
+        transform: scaleY(0.7);
+    }
+    80% {
+        transform: scaleX(0.8);
+        transform: scaleY(0.8);
+    }
+    90% {
+        transform: scaleX(0.9);
+        transform: scaleY(0.9);
+    }
+    100% {
+        transform: scaleX(1);
+        transform: scaleY(1);
+    }
+}
