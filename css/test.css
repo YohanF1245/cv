@@ -1,31 +1,104 @@
 #mainContainer{
     width: 100vw;
     height: 100vh;
+    position:relative;
 }
+
 #animStepOne{
     display:none;
-    width: 50%;
+    width: 400px;
     border: 2px solid black;
     transform-origin: 100% 50%; /*origine de la transformation X Y*/
     animation: leftToRight 500ms; /*selection animation : nom + temps*/
+    position: absolute;
+    left:15px;
+    top:5px;
 }
 #animStepTwo{
+    display:none;
+    
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: black;
+    animation: maryPopIn 500ms;
+    position: absolute;
+    
+}
+#animStepThree{
+    top:15px;
+    left:5px;
+    display:none;
+    height: 200px;
+    width: 0px;
+    border: 2px solid black;
+    transform-origin: 50% 0%;
+    animation: topToBot 500ms; 
+    position: absolute;
+}
+#animStepFour{
+    top:220px;
     display:none;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     border: 2px solid black;
+    background-color: black;
     animation: maryPopIn 500ms;
-    animation-delay: 500ms;
-
+    position: absolute;
 }
-#animStepThree{
+#animStepFive{
+    display:none;
+    width: 400px;
+    border: 2px solid black;
+    transform-origin: 0% 50%;
+    animation: leftToRight 500ms;
+    position: absolute;
+    top:225px;
+    left:15px;
+}
+#animStepSix{
+    top:220px;
+    left:420px;
+    display:none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: black;
+    animation: maryPopIn 500ms;
+    position: absolute;
+}
+#animStepSeven{
+    top:235px;
+    left:425px;
     display:none;
     height: 200px;
     width: 0px;
     border: 2px solid black;
-    transform-origin: 50% 100%;
-    animation: topToBot 1000ms; 
+    transform-origin: 50% 0%;
+    animation: topToBot 500ms; 
+    position: absolute;
+}
+#animStepEight{
+    top:425px;
+    left:360px;
+    display:none;
+    width: auto;
+    height: auto;
+    animation: maryPopIn 500ms;
+    position: absolute;
+    transform-origin: 50% 0%;
+}
+.test{
+    padding: 5px;
+    border:1px solid red;
+    background-color: lightcoral;
+    color:white;
+    display:block;
+    width: fit-content;
+    border-radius: 25px;
 }
 @keyframes topToBot{
     0% {
@@ -99,47 +172,36 @@
 }
 @keyframes maryPopIn{
     0% {
-        transform: scaleX(0);
-        transform: scaleY(0);
+        transform: scale(0);
     }
     10% {
-        transform: scaleX(0.1);
-        transform: scaleY(0.1);
+        transform: scale(0.1);
     }
     20% {
-        transform: scaleX(0.2);
-        transform: scaleY(0.2);
+        transform: scale(0.2);
     }
     30% {
-        transform: scaleX(0.3);
-        transform: scaleY(0.3);
+        transform: scale(0.3);
     }
     40% {
-        transform: scaleX(0.4);
-        transform: scaleY(0.4);
+        transform: scale(0.4);
     }
     50% {
-        transform: scaleX(0.5);
-        transform: scaleY(0.5);
+        transform: scale(0.5);
     }
     60% {
-        transform: scaleX(0.6);
-        transform: scaleY(0.6);
+        transform: scale(0.6);
     }
     70% {
-        transform: scaleX(0.7);
-        transform: scaleY(0.7);
+        transform: scale(0.7);
     }
     80% {
-        transform: scaleX(0.8);
-        transform: scaleY(0.8);
+        transform: scale(0.8);
     }
     90% {
-        transform: scaleX(0.9);
-        transform: scaleY(0.9);
+        transform: scale(0.9);
     }
     100% {
-        transform: scaleX(1);
-        transform: scaleY(1);
+        transform: scale(1);
     }
 }
