@@ -55,9 +55,9 @@ const regexAlpha = /^[a-z]+$/i;
 function getWord() {
 	fetch("https://trouve-mot.fr/api/size/5")
 		.then((response) => response.json())
-		.then((words) => doSomething(Object.entries(words)[0][1]));
+		.then((words) => normalizeWord(Object.entries(words)[0][1]));
 }
-function doSomething(str) {
+function normalizeWord(str) {
 	wordToFind = Object.entries(str)[0][1];
 	if (wordToFind.includes("œ")) {
 		getWord();
@@ -86,7 +86,10 @@ function wordWon() {
 		arrayGridWord[(currentline)*5 + ((iterations % 5))].style.backgroundColor =
 			colors[Math.floor(Math.random() * 5)];
 		console.log(Math.floor(Math.random() * 5));
-		if (iterations >= 50) clearInterval(interval);
+		if (iterations >= 50) {
+			clearInterval(interval);
+			document.getElementById("replayFind").style.display = "block";
+		}
 	}, 50);
 }
 
@@ -107,7 +110,8 @@ function checkword() {
 		wordWon();
 	}else{
 		currentline++;
-	userInputWTF[currentPlaceInGrid] = wordToFind.charAt(0);
+		userInputWTF = ["", "", "", "", ""]; 
+	userInputWTF[0] = wordToFind.charAt(0);
 	arrayGridWord[currentPlaceInGrid].innerHTML = wordToFind.charAt(0);
 	currentPlaceInGrid++;
 	}
@@ -115,25 +119,48 @@ function checkword() {
 }
 addEventListener("keydown", (event) => {
 	if (currentApp === "wordFinder") {
-		console.log("keypressed: " + event);
-		console.log(event.code);
-		console.log("event key : " + event.key);
-console.log("cureent place in grid : "+currentPlaceInGrid)
+		
 		currentKey = event.key;
 		if (regexAlpha.test(currentKey) === true && currentKey.length === 1) {
 			currentKey = currentKey.toUpperCase();
 			launchWordFind();
 		} else if (currentKey === "Enter") {
-			checkword();
+			var canGoCheck = true;
+			userInputWTF.forEach(element => {
+				if (element === "") {
+					canGoCheck = false;
+				}
+			});
+			if (canGoCheck === true) {
+				checkword();
+			}
 		} else if (currentKey === "Backspace") {
 			if ((currentline * 5 + (currentPlaceInGrid % 5 + 1) > currentline * 5 || enfOfLine.includes(currentline) === true) && currentPlaceInGrid>currentline*5+1 ){
 				currentPlaceInGrid--;
-				userInputWTF[currentPlaceInGrid] = "";
+				userInputWTF[currentPlaceInGrid%5] = "";
 				arrayGridWord[currentPlaceInGrid].innerHTML = "";
 			}
 		}
 	}
+	console.log("*-------------------------------*");
+		console.log("keypressed: " + event);
+		console.log("user input string" + userInputWTF);
+		console.log(event.code);
+		console.log("event key : " + event.key);
+		console.log("cureent place in grid : " + currentPlaceInGrid);
 });
+function replayWord(){
+	currentPlaceInGrid = 0;
+	userInputWTF = ["", "", "", "", ""];
+	currentKey = "";
+	currentline = 0;
+	document.getElementById("replayFind").style.display = "none";
+	for (var i = 0; i < arrayGridWord.length; i++){
+		arrayGridWord[i].style.backgroundColor = "white";
+		arrayGridWord[i].innerHTML = "";
+	}
+	getWord();
+}
 //calcultator code
 document
 	.querySelectorAll('input[type=button][name="calcKey"]')
