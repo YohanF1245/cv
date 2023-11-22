@@ -1,6 +1,6 @@
 //cross app variables
 var currentApp = "";
-var appList = ["crazyFood", "calculator","wordFinder"];
+var appList = ["crazyFood", "calculator", "wordFinder"];
 appList.forEach((el) => {
 	document.getElementById(el).style.display = "none";
 });
@@ -43,81 +43,95 @@ var operatorSelected = false;
 var isFloat = false;
 // word find variables
 var wordToFind;
-var currentPlaceInGrid =0;
+const enfOfLine = [4, 9, 14, 19, 24, 29];
+var currentPlaceInGrid = 0;
 var arrayGridWord = document.getElementsByClassName("letter");
 var userInputWTF = ["", "", "", "", ""];
 var currentKey = "";
-var currentline = 1;
-var regexALpha = /^([a-zA-Z ]+)$/;
+var currentline = 0;
+const regexAlpha = /^[a-z]+$/i;
 //test
 
 function getWord() {
 	fetch("https://trouve-mot.fr/api/size/5")
-    .then((response) => response.json())
-    .then((words) => doSomething(Object.entries(words)[0][1]))
+		.then((response) => response.json())
+		.then((words) => doSomething(Object.entries(words)[0][1]));
 }
-function doSomething(str){
-	wordToFind = (Object.entries(str)[0][1]);
+function doSomething(str) {
+	wordToFind = Object.entries(str)[0][1];
 	if (wordToFind.includes("œ")) {
 		getWord();
 	}
-	wordToFind = wordToFind.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+	wordToFind = wordToFind.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 	wordToFind = wordToFind.toUpperCase();
 	console.log(wordToFind);
 	userInputWTF[0] = wordToFind.charAt(0);
 	arrayGridWord[currentPlaceInGrid].innerHTML = wordToFind.charAt(0);
 	currentPlaceInGrid++;
-	// lauchWordFind(wordToFind);
+	// launchWordFind(wordToFind);
 }
 getWord();
-function lauchWordFind(str) {
-	if ((currentPlaceInGrid) % 5 != 0) {
+function launchWordFind(str) {
+	if (currentPlaceInGrid % 5 != 0) {
 		arrayGridWord[currentPlaceInGrid].innerHTML = currentKey;
-	currentPlaceInGrid++;
-	} 
-	
-
-	// for (var i = 0; i < 6; i++){
-	// 	arrayGridWord[i * 5 + 0].innerHTML = userInputWTF[0];
-	// 	arrayGridWord[i * 5 + 1].innerHTML = userInputWTF[1];
-	// 	arrayGridWord[i * 5 + 2].innerHTML = userInputWTF[2];
-	// 	arrayGridWord[i * 5 + 3].innerHTML = userInputWTF[3];
-	// 	arrayGridWord[i * 5 + 4].innerHTML = userInputWTF[4];
-	// 	for (var j = 0; j < 5; j++){
-	// 		var temp = i * 5 + j;
-	// 		if (userInputWTF[j] != "") {
-	// 			arrayGridWord[temp].innerHTML = currentKey;
-	// 			currentPlaceInGrid++;
-	// 		} else {
-	// 			currentPlaceInGrid++;
-	// 		}
-	// 		arrayGridWord[temp].innerHTML = temp; 
-	// 	}
-	// }
+		userInputWTF[currentPlaceInGrid % 5] = currentKey;
+		currentPlaceInGrid++;
+	}
 }
-function checkword(){
-	for (var i = 0; i < 5; i++){
-		if (wordToFind.includes(userInputWTF[i])) {
-			arrayGridWord[currentline*5+i].style.backgroundColor = "red";
+function wordWon() {
+	var iterations = 0;
+	var interval = setInterval(function () {
+		const colors = ["red", "yellow", "green", "blue", "orange", "purple"];
+		iterations++;
+		arrayGridWord[(currentline)*5 + ((iterations % 5))].style.backgroundColor =
+			colors[Math.floor(Math.random() * 5)];
+		console.log(Math.floor(Math.random() * 5));
+		if (iterations >= 50) clearInterval(interval);
+	}, 50);
+}
+
+function checkword() {
+	var tempGoodGuess = 0;
+	for (var i = 0; i < 5; i++) {
+		if (wordToFind.charAt(i) === userInputWTF[i]) {
+			arrayGridWord[currentline * 5 + i].style.backgroundColor = "red";
+			tempGoodGuess++;
+			console.log("temp good guess = " + tempGoodGuess);
+		} else if (wordToFind.includes(userInputWTF[i])) {
+			arrayGridWord[currentline * 5 + i].style.backgroundColor = "yellow";
+			console.log("step i " + i + " letter checked : " + userInputWTF[i]);
 		}
 	}
+	if (tempGoodGuess === 5) {
+		window.alert("WIN !!");
+		wordWon();
+	}else{
+		currentline++;
+	userInputWTF[currentPlaceInGrid] = wordToFind.charAt(0);
+	arrayGridWord[currentPlaceInGrid].innerHTML = wordToFind.charAt(0);
+	currentPlaceInGrid++;
 	}
+	
+}
 addEventListener("keydown", (event) => {
-	// logKey(event);
 	if (currentApp === "wordFinder") {
 		console.log("keypressed: " + event);
-	console.log(event.code);
-	console.log("event key : "+event.key);
-		
-		currentKey = event.key;	
-		if(regexAlpha.text(currentKey) ===true){
-			lauchWordFind();
-		}else if(currentKey === "Enter"){
+		console.log(event.code);
+		console.log("event key : " + event.key);
+console.log("cureent place in grid : "+currentPlaceInGrid)
+		currentKey = event.key;
+		if (regexAlpha.test(currentKey) === true && currentKey.length === 1) {
+			currentKey = currentKey.toUpperCase();
+			launchWordFind();
+		} else if (currentKey === "Enter") {
 			checkword();
-		}else if(currentKey === "Backspace"){
-
+		} else if (currentKey === "Backspace") {
+			if ((currentline * 5 + (currentPlaceInGrid % 5 + 1) > currentline * 5 || enfOfLine.includes(currentline) === true) && currentPlaceInGrid>currentline*5+1 ){
+				currentPlaceInGrid--;
+				userInputWTF[currentPlaceInGrid] = "";
+				arrayGridWord[currentPlaceInGrid].innerHTML = "";
+			}
 		}
-		
 	}
 });
 //calcultator code
@@ -331,11 +345,9 @@ function calc() {
 	refreshCalcScreen();
 }
 function refreshCalcScreen() {
-	
 	document.getElementById("textCalcAns").innerHTML = "ans = " + ans;
 	document.getElementById("operatorText").innerHTML = operator;
 	document.getElementById("textCurrentInput").innerHTML = mem;
-
 }
 //crazy food code
 radios.forEach((radio) =>
@@ -514,10 +526,10 @@ function reset() {
 	updateUI();
 	resetWeaponFrame();
 	recalculateDmg();
-
 }
 function updateUI() {
-	document.getElementById("DamagePerClick").innerHTML = "Damage per click : " + damage;
+	document.getElementById("DamagePerClick").innerHTML =
+		"Damage per click : " + damage;
 	document.getElementById("currentCoinsText").innerHTML = playerCoins;
 	document.getElementById("lifeTimeCoins").innerHTML =
 		"Life time coins:" + lifeTimeCoins;
@@ -534,11 +546,11 @@ function refreshLevelDisplay() {
 	for (var i = 1; i < maxLevel + 1; i++) {
 		document.getElementById("labelLvl" + i).style.display = "flex";
 	}
-	for (var i = maxLevel + 1; i < 6; i++){
+	for (var i = maxLevel + 1; i < 6; i++) {
 		document.getElementById("labelLvl" + i).style.display = "none";
 	}
 }
-function checkWeaponAvaible() { 
+function checkWeaponAvaible() {
 	if (lifeTimeCoins >= 5) {
 		document.getElementById("cranDarret").style.display = "flex";
 	}
@@ -562,13 +574,13 @@ function resetWeaponFrame() {
 	document.getElementById("katana").style.display = "none";
 	document.getElementById("chainsaw").style.display = "none";
 	var tempWeaponList = document.getElementsByClassName("weaponP");
-	tempWeaponList[0].innerHTML ="5";	
-	tempWeaponList[1].innerHTML ="20";	
-	tempWeaponList[2].innerHTML ="50";	
-	tempWeaponList[3].innerHTML ="100";
-	tempWeaponList[4].innerHTML ="200";
-	tempWeaponList[5].innerHTML ="500";
-}	
+	tempWeaponList[0].innerHTML = "5";
+	tempWeaponList[1].innerHTML = "20";
+	tempWeaponList[2].innerHTML = "50";
+	tempWeaponList[3].innerHTML = "100";
+	tempWeaponList[4].innerHTML = "200";
+	tempWeaponList[5].innerHTML = "500";
+}
 function recalculateDmg() {
 	damage = 1;
 	for (var i = 0; i < weaponListGot.length; i++) {
@@ -585,7 +597,7 @@ function showApp(app) {
 		hideApp(currentApp);
 	}
 	// document.getElementById(app).classList.remove("modal");
-	 document.getElementById(app).classList.remove("out");
+	document.getElementById(app).classList.remove("out");
 	document.getElementById(app).classList.add("in");
 	document.getElementById(app).style.display = "";
 	currentApp = app;
