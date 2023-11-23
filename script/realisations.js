@@ -191,6 +191,7 @@ function replayWord() {
 	currentline = 0;
 	document.getElementById("replayFind").style.display = "none";
 	document.getElementById("youWon").style.display = "none";
+	document.getElementById("endWord").style.display = "none";
 	for (var i = 0; i < arrayGridWord.length; i++) {
 		arrayGridWord[i].style.backgroundColor = "white";
 		arrayGridWord[i].innerHTML = "";
