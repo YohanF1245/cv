@@ -435,6 +435,7 @@ img {
 #wordFinder{
 	/* display: flex; */
 	
+	
 }
 #wordGrid{
 	display:grid;
@@ -474,6 +475,13 @@ img {
 		transform: scaleY(0.005) scaleX(0);
 		display: none;
 	}
+}
+#wordKeyBoard{
+	display:grid;
+	width: 80vw;
+	grid-template-columns:auto auto auto auto auto ;
+	gap:5px;
+	
 }
 @media screen and (max-width: 480px) {
 	header {

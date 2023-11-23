@@ -16,194 +16,310 @@
 		</header>
 		<main>
 			<div id="navProjectBar">
-				
 				<div id="crazyFoodMenu" class="imgMenu" onclick="showApp('crazyFood')">
 					<h2 class="appTitle">Crazy food</h2>
 				</div>
-				<div id="calculatorMenu" class="imgMenu" onclick="showApp('calculator')">
+				<div
+					id="calculatorMenu"
+					class="imgMenu"
+					onclick="showApp('calculator')"
+				>
 					<h2 class="appTitle">Calculator</h2>
 				</div>
 				<div id="findWordMenu" class="imgMenu" onclick="showApp('wordFinder')">
 					<h2 class="appTitle">Find Word</h2>
 				</div>
-				
 			</div>
 			<div id="appArea">
-				<div class="innerApp " id="crazyFood">
-						<img class="closeAppButton" src="../img/crazy-food/cross-circle-svgrepo-com.svg" alt="" onclick="hideApp('crazyFood')"/>
-						<div id="levelFrame">
-							<div class="radioGroup">
-								<input
-									type="radio"
-									id="radio1"
-									name="radioLevel"
-									value="1"
-									checked
+				<div class="innerApp" id="crazyFood">
+					<img
+						class="closeAppButton"
+						src="../img/crazy-food/cross-circle-svgrepo-com.svg"
+						alt=""
+						onclick="hideApp('crazyFood')"
+					/>
+					<div id="levelFrame">
+						<div class="radioGroup">
+							<input
+								type="radio"
+								id="radio1"
+								name="radioLevel"
+								value="1"
+								checked
+							/>
+							<label class="labelLvl" id="labelLvl1" for="radio1"
+								>Level 1</label
+							>
+						</div>
+						<div class="radioGroup" id="divRadio2">
+							<input type="radio" id="radio2" name="radioLevel" value="2" />
+							<label class="labelLvl" id="labelLvl2" for="radio2"
+								>Level 2</label
+							>
+						</div>
+						<div class="radioGroup" id="divRadio3">
+							<input type="radio" id="radio3" name="radioLevel" value="3" />
+							<label class="labelLvl" id="labelLvl3" for="radio3"
+								>Level 3</label
+							>
+						</div>
+						<div class="radioGroup" id="divRadio4">
+							<input type="radio" id="radio4" name="radioLevel" value="4" />
+							<label class="labelLvl" id="labelLvl4" for="radio4"
+								>Level 4</label
+							>
+						</div>
+						<div class="radioGroup" id="divRadio5">
+							<input type="radio" id="radio5" name="radioLevel" value="5" />
+							<label class="labelLvl" id="labelLvl5" for="radio5"
+								>Level 5</label
+							>
+						</div>
+					</div>
+					<div id="bottomBlock">
+						<div id="weaponBox">
+							<label>Cagotte:</label>
+							<div id="cagnotte">
+								<img
+									src="../img/crazy-food/savings-box-161876_1280.png"
+									alt=""
 								/>
-								<label class="labelLvl" id="labelLvl1" for="radio1"
-									>Level 1</label
-								>
+								<p id="currentCoinsText">0</p>
+								<img src="../img/crazy-food/coin.png" />
 							</div>
-							<div class="radioGroup" id="divRadio2">
-								<input type="radio" id="radio2" name="radioLevel" value="2" />
-								<label class="labelLvl" id="labelLvl2" for="radio2"
-									>Level 2</label
-								>
+							<label>Armes :</label>
+							<div class="weaponBuy" onclick="gotCutter()" id="cutter">
+								<img
+									src="../img/crazy-food/construction-1296216_640.png"
+									alt=""
+								/>
+								<p class="weaponP" id="priceCutter">5</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
-							<div class="radioGroup" id="divRadio3">
-								<input type="radio" id="radio3" name="radioLevel" value="3" />
-								<label class="labelLvl" id="labelLvl3" for="radio3"
-									>Level 3</label
-								>
+							<div class="weaponBuy" id="cranDarret" onclick="gotCranDarret()">
+								<img src="../img/crazy-food/jackknife-29321_640.png" alt="" />
+								<p class="weaponP" id="priceCranDarret">20</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
-							<div class="radioGroup" id="divRadio4">
-								<input type="radio" id="radio4" name="radioLevel" value="4" />
-								<label class="labelLvl" id="labelLvl4" for="radio4"
-									>Level 4</label
-								>
+							<div class="weaponBuy" id="hokutoDeCuisine" onclick="gotHokuto()">
+								<img
+									src="../img/crazy-food/kitchen-knife-1135268_640.png"
+									alt=""
+								/>
+								<p class="weaponP" id="priceHokuto">50</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
-							<div class="radioGroup" id="divRadio5">
-								<input type="radio" id="radio5" name="radioLevel" value="5" />
-								<label class="labelLvl" id="labelLvl5" for="radio5"
-									>Level 5</label
-								>
+							<div class="weaponBuy" id="hachoir" onclick="gotHachoir()">
+								<img src="../img/crazy-food/cleaver-159513_640.png" alt="" />
+								<p class="weaponP" id="priceHachoir">100</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
-						</div>
-						<div id="bottomBlock">
-							<div id="weaponBox">
-								<label>Cagotte:</label>
-								<div id="cagnotte">
-									<img
-										src="../img/crazy-food/savings-box-161876_1280.png"
-										alt=""
-									/>
-									<p id="currentCoinsText">0</p>
-									<img src="../img/crazy-food/coin.png" />
-								</div>
-								<label>Armes :</label>
-								<div class="weaponBuy" onclick="gotCutter()" id="cutter">
-									<img
-										src="../img/crazy-food/construction-1296216_640.png"
-										alt=""
-									/>
-									<p class="weaponP" id="priceCutter">5</p>
-									<img src="../img/crazy-food/coin.png" alt="" />
-								</div>
-								<div
-									class="weaponBuy"
-									id="cranDarret"
-									onclick="gotCranDarret()"
-								>
-									<img src="../img/crazy-food/jackknife-29321_640.png" alt="" />
-									<p class="weaponP" id="priceCranDarret">20</p>
-									<img src="../img/crazy-food/coin.png" alt="" />
-								</div>
-								<div
-									class="weaponBuy"
-									id="hokutoDeCuisine"
-									onclick="gotHokuto()"
-								>
-									<img
-										src="../img/crazy-food/kitchen-knife-1135268_640.png"
-										alt=""
-									/>
-									<p class="weaponP" id="priceHokuto">50</p>
-									<img src="../img/crazy-food/coin.png" alt="" />
-								</div>
-								<div class="weaponBuy" id="hachoir" onclick="gotHachoir()">
-									<img src="../img/crazy-food/cleaver-159513_640.png" alt="" />
-									<p class="weaponP" id="priceHachoir">100</p>
-									<img src="../img/crazy-food/coin.png" alt="" />
-								</div>
-								<div class="weaponBuy" id="katana" onclick="gotKatana()">
-									<img src="../img/crazy-food/katana-150859_640.png" alt="" />
-									<p class="weaponP" id="priceKatana">200</p>
-									<img src="../img/crazy-food/coin.png" alt="" />
-								</div>
-								<div class="weaponBuy" id="chainsaw" onclick="gotChainsaw()">
-									<img src="../img/crazy-food/chainsaw-24442_640.png" alt="" />
-									<p class="weaponP" id="priceChainsaw">500</p>
-									<img src="../img/crazy-food/coin.png" alt="" />
-								</div>
+							<div class="weaponBuy" id="katana" onclick="gotKatana()">
+								<img src="../img/crazy-food/katana-150859_640.png" alt="" />
+								<p class="weaponP" id="priceKatana">200</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
-							<div id="playFrame">
-								<div id="innerGraphics">
-									<div id="heatlhGroup">
-										<p id="healthNumber">10/10</p>
-										<div id="healthBar"></div>
-									</div>
-									<img
-										src="../img//crazy-food/dog-bowl-162044_640.png"
-										id="dogBowl"
-										alt=""
-									/>
-									<input type="checkbox" id="evilMagicRumble" />
-									<img src="" alt="" id="mobPlaceHolder" onclick="mobHit()" />
-									<img
-										src="../img/crazy-food/explosion-153710_1280.png"
-										alt=""
-										id="hitEffect1"
-										class="hitEffect"
-									/>
-									<img
-										src="../img/crazy-food/explosion-153710_1280.png"
-										alt=""
-										id="hitEffect2"
-										class="hitEffect"
-									/>
-									<img
-										src="../img/crazy-food/explosion-153710_1280.png"
-										alt=""
-										id="hitEffect3"
-										class="hitEffect"
-									/>
-								</div>
-								<div id="innerStats">
-									<p id="monsterRemainingText">Monsters remaining: 10/10</p>
-									<p id="DamagePerClick">Damage per click:</p>
-									<p id="lifeTimeKills">Life time kills: 0</p>
-									<p id="lifeTimeCoins">Life time coins: 0</p>
-								</div>
+							<div class="weaponBuy" id="chainsaw" onclick="gotChainsaw()">
+								<img src="../img/crazy-food/chainsaw-24442_640.png" alt="" />
+								<p class="weaponP" id="priceChainsaw">500</p>
+								<img src="../img/crazy-food/coin.png" alt="" />
 							</div>
 						</div>
-						<div id="buttonBlock">
-							<a class="crazyFoodButton" onclick="save()">SAVE</a>
-							<a class="crazyFoodButton" onclick="load()">LOAD</a>
-							<a class="crazyFoodButton" onclick="reset()">RESET</a>
+						<div id="playFrame">
+							<div id="innerGraphics">
+								<div id="heatlhGroup">
+									<p id="healthNumber">10/10</p>
+									<div id="healthBar"></div>
+								</div>
+								<img
+									src="../img//crazy-food/dog-bowl-162044_640.png"
+									id="dogBowl"
+									alt=""
+								/>
+								<input type="checkbox" id="evilMagicRumble" />
+								<img src="" alt="" id="mobPlaceHolder" onclick="mobHit()" />
+								<img
+									src="../img/crazy-food/explosion-153710_1280.png"
+									alt=""
+									id="hitEffect1"
+									class="hitEffect"
+								/>
+								<img
+									src="../img/crazy-food/explosion-153710_1280.png"
+									alt=""
+									id="hitEffect2"
+									class="hitEffect"
+								/>
+								<img
+									src="../img/crazy-food/explosion-153710_1280.png"
+									alt=""
+									id="hitEffect3"
+									class="hitEffect"
+								/>
+							</div>
+							<div id="innerStats">
+								<p id="monsterRemainingText">Monsters remaining: 10/10</p>
+								<p id="DamagePerClick">Damage per click:</p>
+								<p id="lifeTimeKills">Life time kills: 0</p>
+								<p id="lifeTimeCoins">Life time coins: 0</p>
+							</div>
 						</div>
-					
+					</div>
+					<div id="buttonBlock">
+						<a class="crazyFoodButton" onclick="save()">SAVE</a>
+						<a class="crazyFoodButton" onclick="load()">LOAD</a>
+						<a class="crazyFoodButton" onclick="reset()">RESET</a>
+					</div>
 				</div>
-				
-				<div class="innerApp " id="calculator">
-					<img class="closeAppButton" src="../img/crazy-food/cross-circle-svgrepo-com.svg" alt="" onclick="hideApp('calculator')" />
+
+				<div class="innerApp" id="calculator">
+					<img
+						class="closeAppButton"
+						src="../img/crazy-food/cross-circle-svgrepo-com.svg"
+						alt=""
+						onclick="hideApp('calculator')"
+					/>
 					<div id="calcScreen">
 						<p id="textCalcAns">Ans = 0</p>
 						<p id="operatorText"></p>
 						<p id="textCurrentInput">0</p>
 					</div>
 					<div id="gridKeyBoard">
-						<input type="button" name="calcKey" id="CLEAR" value="CLEAR" class="calcKey twoCells css-button-3d--sky"></input>
-						<input type="button" name="calcKey" id="RETURN" value="RETURN" class="calcKey twoCells css-button-3d--sky"></input>
-						<input type="button" name="calcKey" id="7" class="calcKey css-button-3d--sky" value="7"></input>
-						<input type="button" name="calcKey" id="8" class="calcKey css-button-3d--sky" value="8"></input>
-						<input type="button" name="calcKey" id="9" class="calcKey css-button-3d--sky" value="9"></input>
-						<input type="button" name="calcKey" id="/" class="calcKey css-button-3d--sky" value="/"></input>
-						<input type="button" name="calcKey" id="4" class="calcKey css-button-3d--sky" value="4"></input>
-						<input type="button" name="calcKey" id="5" class="calcKey css-button-3d--sky" value="5"></input>
-						<input type="button" name="calcKey" id="6" class="calcKey css-button-3d--sky" value="6"></input>
-						<input type="button" name="calcKey" id="*" class="calcKey css-button-3d--sky" value="*"></input>
-						<input type="button" name="calcKey" id="1" class="calcKey css-button-3d--sky" value="1"></input>
-						<input type="button" name="calcKey" id="2" class="calcKey css-button-3d--sky" value="2"></input>
-						<input type="button" name="calcKey" id="3" class="calcKey css-button-3d--sky" value="3"></input>
-						<input type="button" name="calcKey" id="-" class="calcKey css-button-3d--sky" value="-"></input>
-						<input type="button" name="calcKey" id="0" class="calcKey css-button-3d--sky" value="0"></input>
-						<input type="button" name="calcKey" id="." class="calcKey css-button-3d--sky" value="."></input>
-						<input type="button" name="calcKey" id="=" class="calcKey css-button-3d--sky" value="="></input>
-						<input type="button" name="calcKey" id="+" class="calcKey css-button-3d--sky" value="+"></input>
+						<input
+							type="button"
+							name="calcKey"
+							id="CLEAR"
+							value="CLEAR"
+							class="calcKey twoCells css-button-3d--sky"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="RETURN"
+							value="RETURN"
+							class="calcKey twoCells css-button-3d--sky"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="7"
+							class="calcKey css-button-3d--sky"
+							value="7"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="8"
+							class="calcKey css-button-3d--sky"
+							value="8"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="9"
+							class="calcKey css-button-3d--sky"
+							value="9"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="/"
+							class="calcKey css-button-3d--sky"
+							value="/"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="4"
+							class="calcKey css-button-3d--sky"
+							value="4"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="5"
+							class="calcKey css-button-3d--sky"
+							value="5"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="6"
+							class="calcKey css-button-3d--sky"
+							value="6"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="*"
+							class="calcKey css-button-3d--sky"
+							value="*"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="1"
+							class="calcKey css-button-3d--sky"
+							value="1"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="2"
+							class="calcKey css-button-3d--sky"
+							value="2"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="3"
+							class="calcKey css-button-3d--sky"
+							value="3"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="-"
+							class="calcKey css-button-3d--sky"
+							value="-"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="0"
+							class="calcKey css-button-3d--sky"
+							value="0"
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="."
+							class="calcKey css-button-3d--sky"
+							value="."
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="="
+							class="calcKey css-button-3d--sky"
+							value="="
+						/>
+						<input
+							type="button"
+							name="calcKey"
+							id="+"
+							class="calcKey css-button-3d--sky"
+							value="+"
+						/>
 					</div>
 				</div>
-				<div class="innerApp" id="wordFinder"  >
-					<img class="closeAppButton" src="../img/crazy-food/cross-circle-svgrepo-com.svg" alt="" onclick="hideApp('wordFinder')" />
+				<div class="innerApp" id="wordFinder">
+					<img
+						class="closeAppButton"
+						src="../img/crazy-food/cross-circle-svgrepo-com.svg"
+						alt=""
+						onclick="hideApp('wordFinder')"
+					/>
 					<div id="wordGrid">
 						<p class="letter"></p>
 						<p class="letter"></p>
@@ -235,8 +351,214 @@
 						<p class="letter"></p>
 						<p class="letter"></p>
 						<p class="letter"></p>
-					</div>				
-					<input type="button" id="replayFind" value="REPLAY" onclick="replayWord()"> 
+					</div>
+					<input
+						type="button"
+						id="replayFind"
+						value="REPLAY"
+						onclick="replayWord()"
+					/>
+					<div id="wordKeyBoard">
+						<input
+							type="button"
+							name="keyboardWord"
+							id="buttonA"
+							class="keyboardword css-button-3d--sky"
+							value="A"
+							onclick="keyPressedActions('A')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonB"
+							class="keyboardword css-button-3d--sky"
+							value="B"
+							onclick="keyPressedActions('B')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonC"
+							class="keyboardword css-button-3d--sky"
+							value="C"
+							onclick="keyPressedActions('C')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonD"
+							class="keyboardword css-button-3d--sky"
+							value="D"
+							onclick="keyPressedActions('D')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonE"
+							class="keyboardword css-button-3d--sky"
+							value="E"
+							onclick="keyPressedActions('E')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonF"
+							class="keyboardword css-button-3d--sky"
+							value="F"
+							onclick="keyPressedActions('F')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonG"
+							class="keyboardword css-button-3d--sky"
+							value="G"
+							onclick="keyPressedActions('G')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonH"
+							class="keyboardword css-button-3d--sky"
+							value="H"
+							onclick="keyPressedActions('H')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonI"
+							class="keyboardword css-button-3d--sky"
+							value="I"
+							onclick="keyPressedActions('I')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonJ"
+							class="keyboardword css-button-3d--sky"
+							value="J"
+							onclick="keyPressedActions('J')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonK"
+							class="keyboardword css-button-3d--sky"
+							value="K"
+							onclick="keyPressedActions('K')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonL"
+							class="keyboardword css-button-3d--sky"
+							value="L"
+							onclick="keyPressedActions('L')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonM"
+							class="keyboardword css-button-3d--sky"
+							value="M"
+							onclick="keyPressedActions('M')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonN"
+							class="keyboardword css-button-3d--sky"
+							value="N"
+							onclick="keyPressedActions('N')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonO"
+							class="keyboardword css-button-3d--sky"
+							value="O"
+							onclick="keyPressedActions('O')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonP"
+							class="keyboardword css-button-3d--sky"
+							value="P"
+							onclick="keyPressedActions('P')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonQ"
+							class="keyboardword css-button-3d--sky"
+							value="Q"
+							onclick="keyPressedActions('Q')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonR"
+							class="keyboardword css-button-3d--sky"
+							value="R"
+							onclick="keyPressedActions('R')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonS"
+							class="keyboardword css-button-3d--sky"
+							value="S"
+							onclick="keyPressedActions('S')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonT"
+							class="keyboardword css-button-3d--sky"
+							value="T"
+							onclick="keyPressedActions('T')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonU"
+							class="keyboardword css-button-3d--sky"
+							value="U"
+							onclick="keyPressedActions('U')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonV"
+							class="keyboardword css-button-3d--sky"
+							value="V"
+							onclick="keyPressedActions('V')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonW"
+							class="keyboardword css-button-3d--sky"
+							value="W"
+							onclick="keyPressedActions('W')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonX"
+							class="keyboardword css-button-3d--sky"
+							value="X"
+							onclick="keyPressedActions('X')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonY"
+							class="keyboardword css-button-3d--sky"
+							value="Y"
+							onclick="keyPressedActions('Y')"
+						/><input
+							type="button"
+							name="keyboardWord"
+							id="buttonZ"
+							class="keyboardword css-button-3d--sky"
+							value="Z"
+							onclick="keyPressedActions('Z')"
+						/>
+						<input
+							type="button"
+							name="keyboardWord"
+							id="buttonEnter"
+							class="keyboardword css-button-3d--sky twoCells"
+							value="Enter" 
+							onclick="keyPressedActions('Enter')"
+						/>
+						<input
+							type="button"
+							name="keyboardWord"
+							id="buttonBackpase"
+							class="keyboardword css-button-3d--sky twoCells"
+							value="Backspace"
+							onclick="keyPressedActions('Backspace')"
+						/>
+					</div>
 				</div>
 			</div>
 		</main>

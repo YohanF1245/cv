@@ -1,3 +1,19 @@
+//generate alphabet inputs
+const alphaB = "abcdefghijklmnopqrstuvwxyz";
+
+var htmlLine = "";
+var fullHtml = "";
+for (var i = 0; i < 26; i++) {
+	htmlLine =
+		'<input type="button" name="keyboardWord" id="button' +
+		alphaB.charAt(i).toUpperCase() +
+	'" class="keyboardword css-button-3d--sky\" value="' +
+		alphaB.charAt(i).toUpperCase() +
+		'" onclick =\"keyPressedActions(\''+alphaB.charAt(i).toUpperCase()+'\')\">';
+	fullHtml += htmlLine;
+}
+console.log(fullHtml);
+
 //cross app variables
 var currentApp = "";
 var appList = ["crazyFood", "calculator", "wordFinder"];
@@ -33,7 +49,9 @@ var monsterHealth = 10;
 var levelStatus = [null, 10, 10, 10, 10, 10];
 var radios = document.querySelectorAll('input[type=radio][name="radioLevel"]');
 //calculator variables
-var calcKeys = document.querySelectorAll('input[type=button][name="calcKey"]');
+var calcKeys = document.querySelectorAll(
+	'input[type=button][name="keyboardWord"]'
+);
 console.log(calcKeys);
 var ans = "0";
 var mem = "0";
@@ -50,6 +68,9 @@ var userInputWTF = ["", "", "", "", ""];
 var currentKey = "";
 var currentline = 0;
 const regexAlpha = /^[a-z]+$/i;
+const letterButtons = document.querySelectorAll(
+	'input[type=button][name="calcKey"]'
+);
 //test
 
 function getWord() {
@@ -83,7 +104,7 @@ function wordWon() {
 	var interval = setInterval(function () {
 		const colors = ["red", "yellow", "green", "blue", "orange", "purple"];
 		iterations++;
-		arrayGridWord[(currentline)*5 + ((iterations % 5))].style.backgroundColor =
+		arrayGridWord[currentline * 5 + (iterations % 5)].style.backgroundColor =
 			colors[Math.floor(Math.random() * 5)];
 		console.log(Math.floor(Math.random() * 5));
 		if (iterations >= 50) {
@@ -95,6 +116,7 @@ function wordWon() {
 
 function checkword() {
 	var tempGoodGuess = 0;
+	i;
 	for (var i = 0; i < 5; i++) {
 		if (wordToFind.charAt(i) === userInputWTF[i]) {
 			arrayGridWord[currentline * 5 + i].style.backgroundColor = "red";
@@ -108,54 +130,65 @@ function checkword() {
 	if (tempGoodGuess === 5) {
 		window.alert("WIN !!");
 		wordWon();
-	}else{
-		currentline++;
-		userInputWTF = ["", "", "", "", ""]; 
-	userInputWTF[0] = wordToFind.charAt(0);
-	arrayGridWord[currentPlaceInGrid].innerHTML = wordToFind.charAt(0);
-	currentPlaceInGrid++;
+	} else {
+		userInputWTF = ["", "", "", "", ""];
+		if (currentline != 5) {
+			currentline++;
+			userInputWTF[0] = wordToFind.charAt(0);
+			arrayGridWord[currentPlaceInGrid].innerHTML = wordToFind.charAt(0);
+			currentPlaceInGrid++;
+		} else {
+			replayWord();
+		}
 	}
-	
 }
 addEventListener("keydown", (event) => {
 	if (currentApp === "wordFinder") {
-		
 		currentKey = event.key;
-		if (regexAlpha.test(currentKey) === true && currentKey.length === 1) {
-			currentKey = currentKey.toUpperCase();
-			launchWordFind();
-		} else if (currentKey === "Enter") {
-			var canGoCheck = true;
-			userInputWTF.forEach(element => {
-				if (element === "") {
-					canGoCheck = false;
-				}
-			});
-			if (canGoCheck === true) {
-				checkword();
-			}
-		} else if (currentKey === "Backspace") {
-			if ((currentline * 5 + (currentPlaceInGrid % 5 + 1) > currentline * 5 || enfOfLine.includes(currentline) === true) && currentPlaceInGrid>currentline*5+1 ){
-				currentPlaceInGrid--;
-				userInputWTF[currentPlaceInGrid%5] = "";
-				arrayGridWord[currentPlaceInGrid].innerHTML = "";
-			}
-		}
+		keyPressedActions(currentKey);
 	}
 	console.log("*-------------------------------*");
-		console.log("keypressed: " + event);
-		console.log("user input string" + userInputWTF);
-		console.log(event.code);
-		console.log("event key : " + event.key);
-		console.log("cureent place in grid : " + currentPlaceInGrid);
+	console.log("keypressed: " + event);
+	console.log("user input string" + userInputWTF);
+	console.log(event.code);
+	console.log("event key : " + event.key);
+	console.log("cureent place in grid : " + currentPlaceInGrid);
 });
-function replayWord(){
+function keyPressedActions(keyPressed) {
+	currentKey = keyPressed;
+	console.log("type of current : " + typeof currentKey);
+	if (regexAlpha.test(currentKey) === true && currentKey.length === 1) {
+		currentKey = currentKey.toUpperCase();
+		launchWordFind();
+	} else if (currentKey === "Enter") {
+		var canGoCheck = true;
+		userInputWTF.forEach((element) => {
+			if (element === "") {
+				canGoCheck = false;
+			}
+		});
+		if (canGoCheck === true) {
+			checkword();
+		}
+	} else if (currentKey === "Backspace") {
+		if (
+			(currentline * 5 + ((currentPlaceInGrid % 5) + 1) > currentline * 5 ||
+				enfOfLine.includes(currentline) === true) &&
+			currentPlaceInGrid > currentline * 5 + 1
+		) {
+			currentPlaceInGrid--;
+			userInputWTF[currentPlaceInGrid % 5] = "";
+			arrayGridWord[currentPlaceInGrid].innerHTML = "";
+		}
+	}
+}
+function replayWord() {
 	currentPlaceInGrid = 0;
 	userInputWTF = ["", "", "", "", ""];
 	currentKey = "";
 	currentline = 0;
 	document.getElementById("replayFind").style.display = "none";
-	for (var i = 0; i < arrayGridWord.length; i++){
+	for (var i = 0; i < arrayGridWord.length; i++) {
 		arrayGridWord[i].style.backgroundColor = "white";
 		arrayGridWord[i].innerHTML = "";
 	}
