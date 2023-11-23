@@ -450,8 +450,25 @@ img {
 	height: 100%;
 	width: 100%;
 	border:1px solid red;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+	font-weight: bold;
 }
-
+#endWord,#youWon{
+	background-color: white;
+	display:none;
+	width: 60%;
+	font-size:1.5rem;
+	border:1px solid red;
+	border-radius: 25px;
+	text-align: center;
+	position: absolute;
+	bottom:70%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
 @keyframes unfoldIn {
 	0% {
 		transform: scaleY(0.005) scaleX(0);

@@ -110,13 +110,13 @@ function wordWon() {
 		if (iterations >= 50) {
 			clearInterval(interval);
 			document.getElementById("replayFind").style.display = "block";
+			document.getElementById("youWon").style.display = "block";
 		}
 	}, 50);
 }
 
 function checkword() {
 	var tempGoodGuess = 0;
-	i;
 	for (var i = 0; i < 5; i++) {
 		if (wordToFind.charAt(i) === userInputWTF[i]) {
 			arrayGridWord[currentline * 5 + i].style.backgroundColor = "red";
@@ -138,7 +138,9 @@ function checkword() {
 			arrayGridWord[currentPlaceInGrid].innerHTML = wordToFind.charAt(0);
 			currentPlaceInGrid++;
 		} else {
-			replayWord();
+			document.getElementById("replayFind").style.display = "block";
+			document.getElementById("endWord").innerHTML = "Lost ! The words was " + wordToFind;
+			document.getElementById("endWord").style.display = "block";
 		}
 	}
 }
@@ -188,6 +190,7 @@ function replayWord() {
 	currentKey = "";
 	currentline = 0;
 	document.getElementById("replayFind").style.display = "none";
+	document.getElementById("youWon").style.display = "none";
 	for (var i = 0; i < arrayGridWord.length; i++) {
 		arrayGridWord[i].style.backgroundColor = "white";
 		arrayGridWord[i].innerHTML = "";
