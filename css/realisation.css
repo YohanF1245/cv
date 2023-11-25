@@ -55,8 +55,8 @@ header {
 }
 .innerApp {
 	position: fixed;
-	width: 80vw;
-	height: 65vh;
+	width: 100vw;
+	height: 75vh;
 	flex-direction: column;
 	justify-content: space-between;
 	background-color: aqua;
@@ -397,7 +397,7 @@ img {
 	grid-template-columns: 15vw 15vw 15vw 15vw;
 	grid-template-rows: 15vw 15vw 15vw 15vw 15vw;
 	text-align: center;
-	margin-left: 10vw;
+	margin-left: 20vw;
 	gap: 6px 1px;
 }
 .twoCells {
@@ -405,6 +405,7 @@ img {
 }
 .css-button-3d--sky {
 	color: #fff;
+	height: auto;
 	padding: 5px 10px;
 	font-weight: bold;
 	cursor: pointer;
@@ -439,9 +440,9 @@ img {
 }
 #wordGrid{
 	display:grid;
-	height: 60%;
+	height: 40%;
 	grid-template-columns: auto auto auto auto auto  ;
-	grid-template-rows: auto auto auto auto auto auto;
+	grid-template-rows: 15% auto auto auto auto auto;
 	gap:5px;
 }
 .letter{
@@ -453,7 +454,7 @@ img {
 	display:flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	font-weight: bold;
 }
 #endWord,#youWon{
@@ -495,9 +496,12 @@ img {
 }
 #wordKeyBoard{
 	display:grid;
-	width: 80vw;
+	width: 100vw;
+	height:60%;
 	grid-template-columns:auto auto auto auto auto ;
+	grid-template-rows:auto auto auto auto auto auto;
 	gap:5px;
+	margin-bottom: 10px;
 	
 }
 @media screen and (max-width: 480px) {
@@ -508,7 +512,7 @@ img {
 		height: 10vh;
 	}
 	#crazyFood {
-		height: 65vh;
+		height: 75vh;
 	}
 	#appArea {
 		height: 75vh;

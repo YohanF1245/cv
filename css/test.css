@@ -1,9 +1,16 @@
-#mainContainer{
-    width: 100vw;
-    height: 100vh;
+#section1{
+    width: 50vw;
+    height:100vh;
     position:relative;
 }
-
+.right,.left{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    border: 1px solid red;
+    box-sizing: border-box;
+    letter-spacing: 0rem;
+}
 #animStepOne{
     display:none;
     width: 400px;
@@ -16,7 +23,6 @@
 }
 #animStepTwo{
     display:none;
-    
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -24,7 +30,6 @@
     background-color: black;
     animation: maryPopIn 500ms;
     position: absolute;
-    
 }
 #animStepThree{
     top:15px;
