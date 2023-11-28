@@ -5,6 +5,7 @@ var canva = document.getElementById("frameApp");
 var ctx = canva.getContext("2d");
 var playMatrix;
 var tertrominos = ["i", "j", "o", "s", "z", "l", "t"];
+var topDraw = [0,0,0];
 var tetraJ = [
 	[0, 1, 0],
 	[0, 1, 0],
@@ -15,7 +16,15 @@ function kekw() {
 		document.getElementById("navigateurSupported").innerHTML = "supoprtey";
 	}
 	ctx.fillStyle = "rgb(200, 0, 0)";
-
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+                 if (tetraJ[j][k] === 1){
+                    if(topDraw[j] === 0){
+                        topDraw[j]=i;
+                    }
+                 }
+		}
+    }
 	for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
                 ctx.clearRect(x+(20*i), y+(20*j), 20, 20);
