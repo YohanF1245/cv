@@ -1,5 +1,5 @@
 var y = 0;
-var x = 0;
+var x = 70;
 var hitboxes = [380, 380, 380, 380, 380, 380, 380, 380, 380, 380];
 var canva = document.getElementById("frameApp");
 var ctx = canva.getContext("2d");
@@ -42,13 +42,20 @@ var ji = [
 	[0, 1, 0],
 	[1, 1, 0]
 ];
-var tetraminos = [laBarre, ji, o, s, z, l, t];
+var tetraminos = [laBarre, z, s, t, o, l, ji];
+var colors = ["lightblue","red","green","purple","yellow","orange","blue"];
 var playerTetra;
+var pieceHitbox;
 console.log(tetraminos);
-randTetra;
+randTetra();
+function calcPieceHitbox(piece){
+	
+}
 function randTetra() {
     var tempT = Math.floor(Math.random() * 6);
+	console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
     playerTetra = tetraminos[tempT];
+	
 }
 function kekw() {
 	if (canva.getContext) {
@@ -75,6 +82,9 @@ function kekw() {
 		}
 	}
 	y++;
+	checkMatrix();
+	console.log("*----------------------------------------------------------*");
+	console.log(playMatrix)
 	for (var i = 0; i < 3; i++) {
 		for (var j = 0; j < 3; j++) {
 			if (playerTetra[i][j] === 1) {
@@ -82,9 +92,24 @@ function kekw() {
 				if (y === hitboxes[Math.floor(x / 20)]) {
 					hitboxes[Math.floor(x / 20)] = hitboxes[Math.floor(x / 20)] - 20;
 					y = 0;
+					randTetra()
 				}
 			}
 		}
+	}
+}
+function checkMatrix(){
+	var playerPosMatrixX = Math.floor(x/20);
+	var playerPosMatrixY = Math.floor(y/20);var iHasBock=false;
+	for(var i = playerTetra.length; i === 0; i--){
+		for(var j=0; j<playerTetra.length ; j++){
+			console.log("comuting hitboxes"+playerTetra.length)
+			if(playerTetra[i-1][j] ===1){
+				playMatrix[playerPosMatrixX+i][playerPosMatrixY+j]=1;
+				;
+			}
+		}
+		
 	}
 }
 function moveRight() {
