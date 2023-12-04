@@ -1,6 +1,7 @@
 var y = 0;
-var x = 70;
+var x = 60;
 var hitboxes = [380, 380, 380, 380, 380, 380, 380, 380, 380, 380];
+var matrixHitboxes =[20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
 var canva = document.getElementById("frameApp");
 var ctx = canva.getContext("2d");
 var playMatrix = new Array(20).fill(Array(10).fill(0));
@@ -42,6 +43,7 @@ var ji = [
 	[0, 1, 0],
 	[1, 1, 0]
 ];
+var thisTetra;
 var tetraminos = [laBarre, z, s, t, o, l, ji];
 var colors = ["lightblue","red","green","purple","yellow","orange","blue"];
 var playerTetra;
@@ -53,6 +55,7 @@ function calcPieceHitbox(piece){
 }
 function randTetra() {
     var tempT = Math.floor(Math.random() * 6);
+	thisTetra = colors [tempT];
 	console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
     playerTetra = tetraminos[tempT];
 	
@@ -61,21 +64,9 @@ function kekw() {
 	if (canva.getContext) {
 		document.getElementById("navigateurSupported").innerHTML = "supoprtey";
 	}
-	ctx.fillStyle = "rgb(200, 0, 0)";
-	console.log("*---------------------------*");
-	for (var i = 0; i < 3; i++) {
-		for (var j = 0; j < 3; j++) {
-			console.log(playerTetra[i][j]);
-			if (playerTetra[i][j] === 1) {
-				if (topDraw[j] === 0) {
-					topDraw[j] = i;
-				}
-			}
-		}
-	}
-	console.log(topDraw);
-	for (var i = 0; i < 3; i++) {
-		for (var j = 0; j < 3; j++) {
+	ctx.fillStyle = ""+thisTetra;
+	for (var i = 0; i < playerTetra.length; i++) {
+		for (var j = 0; j < playerTetra.length; j++) {
 			if (playerTetra[i][j] === 1) {
 				ctx.clearRect(x + 20 * j, y + 20 * i, 20, 20);
 			}
@@ -85,8 +76,8 @@ function kekw() {
 	checkMatrix();
 	console.log("*----------------------------------------------------------*");
 	console.log(playMatrix)
-	for (var i = 0; i < 3; i++) {
-		for (var j = 0; j < 3; j++) {
+	for (var i = 0; i < playerTetra.length; i++) {
+		for (var j = 0; j < playerTetra.length; j++) {
 			if (playerTetra[i][j] === 1) {
 				ctx.fillRect(x + 20 * j, y + 20 * i, 20, 20);
 				if (y === hitboxes[Math.floor(x / 20)]) {
@@ -100,13 +91,33 @@ function kekw() {
 }
 function checkMatrix(){
 	var playerPosMatrixX = Math.floor(x/20);
-	var playerPosMatrixY = Math.floor(y/20);var iHasBock=false;
-	for(var i = playerTetra.length; i === 0; i--){
-		for(var j=0; j<playerTetra.length ; j++){
-			console.log("comuting hitboxes"+playerTetra.length)
+	var playerPosMatrixY = Math.floor(y/20);
+	console.log("playerTetralengt : "+playerTetra.length+" posX "+playerPosMatrixX+" posY"+playerPosMatrixY);
+	var iHasBock=false;
+	var lastLineWithBlocks=0;
+	var k = playerTetra.length;
+	for(var i = k; i>0 ; i++){
+		for(var j = k; j>0 ; j++){
+			console.log("last line with block :"+lastLineWithBlocks);
+			if(playerTetra[(i-1)][(j-1)]===1){
+				console.log("last line with block :"+lastLineWithBlocks);
+				lastLineWithBlocks=i;
+				console.log("last line with block :"+lastLineWithBlocks);
+			}
+		}
+	}
+	console.log("last line with block :"+lastLineWithBlocks);
+	k = playerTetra.length;
+	var tempHB;
+
+	for(var i = k; i >  0; i--){
+		console.log("i = "+i+" k="+k);
+		for(var j=0; j<k ; j++){
+			console.log("computing hitboxes"+playerTetra.length);
 			if(playerTetra[i-1][j] ===1){
-				playMatrix[playerPosMatrixX+i][playerPosMatrixY+j]=1;
-				;
+				playMatrix[playerPosMatrixY+i][playerPosMatrixX+j]=1;
+				console.log("put x"+(playerPosMatrixY+i)+" and y "+(playerPosMatrixX+j) );
+				
 			}
 		}
 		
@@ -114,14 +125,14 @@ function checkMatrix(){
 }
 function moveRight() {
 	if (x < 180) {
-		for (var i = 0; i < 3; i++) {
-			for (var j = 0; j < 3; j++) {
+		for (var i = 0; i < playerTetra.length; i++) {
+			for (var j = 0; j < playerTetra.length; j++) {
 				ctx.clearRect(x + 20 * i, y + 20 * j, 20, 20);
 			}
 		}
 		x += 20;
-		for (var i = 0; i < 3; i++) {
-			for (var j = 0; j < 3; j++) {
+		for (var i = 0; i < playerTetra.length; i++) {
+			for (var j = 0; j < playerTetra.length; j++) {
 				if (playerTetra[i][j] === 1) {
 					ctx.fillRect(x + 20 * j, y + 20 * i, 20, 20);
 				}
@@ -131,14 +142,14 @@ function moveRight() {
 }
 function moveLeft() {
 	if (x < 180) {
-		for (var i = 0; i < 3; i++) {
-			for (var j = 0; j < 3; j++) {
+		for (var i = 0; i < playerTetra.length; i++) {
+			for (var j = 0; j < playerTetra.length; j++) {
 				ctx.clearRect(x + 20 * i, y + 20 * j, 20, 20);
 			}
 		}
 		x -= 20;
-		for (var i = 0; i < 3; i++) {
-			for (var j = 0; j < 3; j++) {
+		for (var i = 0; i < playerTetra.length; i++) {
+			for (var j = 0; j < playerTetra.length; j++) {
 				if (playerTetra[j][i] === 1) {
 					ctx.fillRect(x + 20 * i, y + 20 * j, 20, 20);
 				}
