@@ -1,3 +1,4 @@
+console.log("ca charge?");
 var y = 0;
 var x = 60;
 var hitboxes = [380, 380, 380, 380, 380, 380, 380, 380, 380, 380];
@@ -7,6 +8,8 @@ var ctx = canva.getContext("2d");
 var playMatrix = new Array(20).fill(Array(10).fill(0));
 console.log(playMatrix);
 var topDraw = [0, 0, 0];
+var playerPosMatrixX;
+var playerPosMatrixY;
 var laBarre = [
 	[0, 1, 0, 0],
 	[0, 1, 0, 0],
@@ -76,6 +79,7 @@ function kekw() {
 	checkMatrix();
 	console.log("*----------------------------------------------------------*");
 	console.log(playMatrix)
+	
 	for (var i = 0; i < playerTetra.length; i++) {
 		for (var j = 0; j < playerTetra.length; j++) {
 			if (playerTetra[i][j] === 1) {
@@ -85,27 +89,33 @@ function kekw() {
 					y = 0;
 					randTetra()
 				}
+				if (playerPosMatrixY === 18) {
+					y = 0;
+					x = 60;
+					randTetra();
+				}
 			}
 		}
 	}
 }
 function checkMatrix(){
-	var playerPosMatrixX = Math.floor(x/20);
-	var playerPosMatrixY = Math.floor(y/20);
+	playerPosMatrixX = Math.floor(x/20);
+	playerPosMatrixY = Math.floor(y/20);
 	console.log("playerTetralengt : "+playerTetra.length+" posX "+playerPosMatrixX+" posY"+playerPosMatrixY);
 	var iHasBock=false;
 	var lastLineWithBlocks=0;
 	var k = playerTetra.length;
-	for(var i = k; i>0 ; i++){
-		for(var j = k; j>0 ; j++){
+	for(var i = k; i>0 ; i--){
+		for(var j = k; j>0 ; j--){
 			console.log("last line with block :"+lastLineWithBlocks);
-			if(playerTetra[(i-1)][(j-1)]===1){
+			if(playerTetra[i-1][j-1]===1){
 				console.log("last line with block :"+lastLineWithBlocks);
 				lastLineWithBlocks=i;
 				console.log("last line with block :"+lastLineWithBlocks);
 			}
 		}
 	}
+	
 	console.log("last line with block :"+lastLineWithBlocks);
 	k = playerTetra.length;
 	var tempHB;
