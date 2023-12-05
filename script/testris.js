@@ -107,11 +107,7 @@ function kekw() {
 				// 	randTetra()
 				// }
 				console.log("checking player posmatrix" +  matrixHitboxes[playerPosMatrixX] + " lastlineWithBlocks " + lastLineWithBlocks);
-				if (playerPosMatrixY === matrixHitboxes[playerPosMatrixX]-playerTetra.length+lastLineWithBlocks) {
-					y = 0;
-					x = 60;
-					randTetra();
-				}
+				
 			}
 		}
 	}
@@ -128,9 +124,16 @@ function checkMatrix(){
 		for(var j=0; j<k ; j++){
 			console.log("computing hitboxes"+playerTetra.length);
 			if(playerTetra[i-1][j] ===1){
-				playMatrix[playerPosMatrixY+i][playerPosMatrixX+j]=1;
-				console.log("put x"+(playerPosMatrixY+i)+" and y "+(playerPosMatrixX+j) );
+				console.log("xy : "+x +"/"+ y+"player X "+playerPosMatrixX+" player Y"+playerPosMatrixY);
 				
+				console.log("put x"+(playerPosMatrixX+j)+" and y "+(playerPosMatrixY+i) );
+				if (playerPosMatrixY === matrixHitboxes[playerPosMatrixX]-playerTetra.length+(playerTetra.length-lastLineWithBlocks-1)) {
+					playMatrix[playerPosMatrixY+j][playerPosMatrixX+i]=1;
+					y = 0;
+					x = 60;
+					randTetra();
+					
+				}
 			}
 		}
 		
