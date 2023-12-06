@@ -6,10 +6,8 @@ var matrixHitboxes = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
 var canva = document.getElementById("frameApp");
 var ctx = canva.getContext("2d");
 var playMatrixd = new Array(20).fill(Array(10).fill(0));
-var playMatrix = 	[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-					
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+var playMatrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],			
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,7 +24,8 @@ var playMatrix = 	[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
 console.log(playMatrix);
 var topDraw = [0, 0, 0];
 var playerPosMatrixX;
@@ -79,6 +78,7 @@ var colors = [
 	"orange",
 	"blue",
 ];
+var colorIndex;
 var playerTetra;
 var pieceHitbox;
 // console.log(tetraminos);
@@ -87,6 +87,7 @@ function calcPieceHitbox(piece) {}
 function randTetra() {
 	var tempT = Math.floor(Math.random() * 6);
 	thisTetra = colors[tempT];
+	colorIndex = tempT;
 	// console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
 	playerTetra = tetraminos[tempT];
 	calcLastLineWithBlocks();
@@ -145,12 +146,44 @@ function checkMatrix() {
 		playerPosMatrixY ===
 		matrixHitboxes[playerPosMatrixX] -
 			playerTetra.length +
-			(playerTetra.length - lastLineWithBlocks - 1)
+			(playerTetra.length - lastLineWithBlocks - 1) 
 	) {
 		y = 0;
 		x = 60;
 		populateMatrix();
+		redrawMatrix();
+
 		randTetra();
+	}
+	for (var i = 0; i < playerTetra.length; i++){
+		console.log(lastLineWithBlocks);
+		for (var j = 0; j < lastLineWithBlocks+1; j++){
+			if (playerTetra[i][j] === 1 && playMatrix[playerPosMatrixY + j+1][playerPosMatrixX + i] >0) {
+				y = 0;
+				x = 60;
+				populateMatrix();
+				redrawMatrix();
+				randTetra();
+		
+		
+			}
+		}
+			
+	
+	}
+	
+}
+function redrawMatrix() {
+	for (var i = 0; i < 20; i++){
+		for (var j = 0; j < 10; j++){
+			if (playMatrix[i][j] > 0) {
+				var tempColor = colors[playMatrix[i][j] - 1];
+				var tempX = j * 20;
+				var tempY = i * 20;
+				ctx.fillStyle = "" + tempColor;
+				ctx.fillRect(tempX, tempY, 20, 20);
+			}
+		}
 	}
 }
 function populateMatrix() {
@@ -165,8 +198,7 @@ function populateMatrix() {
 			var b = playerPosMatrixX + i;
 			console.log("populatio of ["+a+"]["+b+"] = "+playerTetra[j][i])
 			if (playerTetra[j][i] === 1) {
-				
-				playMatrix[a][b] = 1;
+				playMatrix[a][b] = colorIndex+1;
 				console.log(playMatrix);
 			}
 			console.log("*******------------------------------***********************")
