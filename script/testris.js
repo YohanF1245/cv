@@ -5,7 +5,28 @@ var hitboxes = [380, 380, 380, 380, 380, 380, 380, 380, 380, 380];
 var matrixHitboxes = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
 var canva = document.getElementById("frameApp");
 var ctx = canva.getContext("2d");
-var playMatrix = new Array(20).fill(Array(10).fill(0));
+var playMatrixd = new Array(20).fill(Array(10).fill(0));
+var playMatrix = 	[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+					
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 console.log(playMatrix);
 var topDraw = [0, 0, 0];
 var playerPosMatrixX;
@@ -14,66 +35,71 @@ var lastLineWithBlocks;
 var laBarre = [
 	[0, 1, 0, 0],
 	[0, 1, 0, 0],
-    [0, 1, 0, 0],
-    [0, 1, 0, 0]
+	[0, 1, 0, 0],
+	[0, 1, 0, 0],
 ];
 var z = [
 	[0, 1, 1],
 	[1, 1, 0],
-	[0, 0, 0]
+	[0, 0, 0],
 ];
 var s = [
 	[1, 1, 0],
 	[0, 1, 1],
-	[0, 0, 0]
+	[0, 0, 0],
 ];
 var t = [
 	[0, 1, 0],
 	[1, 1, 1],
-	[0, 0, 0]
+	[0, 0, 0],
 ];
 var o = [
 	[0, 1, 1],
 	[0, 1, 1],
-	[0, 0, 0]
+	[0, 0, 0],
 ];
 var l = [
 	[0, 1, 0],
 	[0, 1, 0],
-	[0, 1, 1]
+	[0, 1, 1],
 ];
 var ji = [
 	[0, 1, 0],
 	[0, 1, 0],
-	[1, 1, 0]
+	[1, 1, 0],
 ];
 var thisTetra;
 var tetraminos = [laBarre, z, s, t, o, l, ji];
-var colors = ["lightblue","red","green","purple","yellow","orange","blue"];
+var colors = [
+	"lightblue",
+	"red",
+	"green",
+	"purple",
+	"yellow",
+	"orange",
+	"blue",
+];
 var playerTetra;
 var pieceHitbox;
-console.log(tetraminos);
+// console.log(tetraminos);
 randTetra();
-function calcPieceHitbox(piece){
-	
-}
+function calcPieceHitbox(piece) {}
 function randTetra() {
-    var tempT = Math.floor(Math.random() * 6);
-	thisTetra = colors [tempT];
-	console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
+	var tempT = Math.floor(Math.random() * 6);
+	thisTetra = colors[tempT];
+	// console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
 	playerTetra = tetraminos[tempT];
 	calcLastLineWithBlocks();
-	
 }
 function calcLastLineWithBlocks() {
 	var k = playerTetra.length;
-	for(var i = k; i>0 ; i--){
-		for(var j = k; j>0 ; j--){
-			console.log("last line with block :"+lastLineWithBlocks);
-			if(playerTetra[i-1][j-1]===1){
-				console.log("last line with block :"+lastLineWithBlocks);
-				lastLineWithBlocks=i-1;
-				console.log("last line with block :" + lastLineWithBlocks);
+	for (var i = k; i > 0; i--) {
+		for (var j = k; j > 0; j--) {
+			// console.log("last line with block :"+lastLineWithBlocks);
+			if (playerTetra[i - 1][j - 1] === 1) {
+				// console.log("last line with block :"+lastLineWithBlocks);
+				lastLineWithBlocks = i - 1;
+				// console.log("last line with block :" + lastLineWithBlocks);
 				i = 0;
 				j = 0;
 			}
@@ -84,7 +110,7 @@ function kekw() {
 	if (canva.getContext) {
 		document.getElementById("navigateurSupported").innerHTML = "supoprtey";
 	}
-	ctx.fillStyle = ""+thisTetra;
+	ctx.fillStyle = "" + thisTetra;
 	for (var i = 0; i < playerTetra.length; i++) {
 		for (var j = 0; j < playerTetra.length; j++) {
 			if (playerTetra[i][j] === 1) {
@@ -94,9 +120,9 @@ function kekw() {
 	}
 	y++;
 	checkMatrix();
-	console.log("*----------------------------------------------------------*");
-	console.log(playMatrix)
-	
+	// console.log("*----------------------------------------------------------*");
+	// console.log(playMatrix)
+
 	for (var i = 0; i < playerTetra.length; i++) {
 		for (var j = 0; j < playerTetra.length; j++) {
 			if (playerTetra[i][j] === 1) {
@@ -106,41 +132,49 @@ function kekw() {
 				// 	y = 0;
 				// 	randTetra()
 				// }
-				console.log("checking player posmatrix" +  matrixHitboxes[playerPosMatrixX] + " lastlineWithBlocks " + lastLineWithBlocks);
-				
+				// console.log("checking player posmatrix" +  matrixHitboxes[playerPosMatrixX] + " lastlineWithBlocks " + lastLineWithBlocks);
 			}
 		}
 	}
 }
-function checkMatrix(){
-	playerPosMatrixX = Math.floor(x/20);
-	playerPosMatrixY = Math.floor(y/20);
-	console.log("playerTetralengt : "+playerTetra.length+" posX "+playerPosMatrixX+" posY"+playerPosMatrixY);
-	var iHasBock=false;
-	var k = playerTetra.length;
-	var tempHB;
-	for(var i = lastLineWithBlocks; i >  0; i--){
-		console.log("i = "+i+" k="+k);
-		for(var j=0; j<k ; j++){
-			console.log("computing hitboxes"+playerTetra.length);
-			if(playerTetra[i-1][j] ===1){
-				console.log("xy : "+x +"/"+ y+"player X "+playerPosMatrixX+" player Y"+playerPosMatrixY);
+function checkMatrix() {
+	playerPosMatrixX = Math.floor(x / 20);
+	playerPosMatrixY = Math.floor(y / 20);
+	// console.log("playerTetralengt : "+playerTetra.length+" posX "+playerPosMatrixX+" posY"+playerPosMatrixY);
+	if (
+		playerPosMatrixY ===
+		matrixHitboxes[playerPosMatrixX] -
+			playerTetra.length +
+			(playerTetra.length - lastLineWithBlocks - 1)
+	) {
+		y = 0;
+		x = 60;
+		populateMatrix();
+		randTetra();
+	}
+}
+function populateMatrix() {
+	for (var i = 0; i < playerTetra.length; i++){
+		for (var j = 0; j <= lastLineWithBlocks; j++){
+			console.log("*******------------------------------***********************")
+			console.log("iterations : i " + i + " j" + j);
+			console.log("playerTetra.length " + playerTetra.length);
+			console.log("lastlinewith block : " + lastLineWithBlocks);
+			console.log("player pos x " + playerPosMatrixX + " player pos y " + playerPosMatrixY)
+			var a = playerPosMatrixY + j;
+			var b = playerPosMatrixX + i;
+			console.log("populatio of ["+a+"]["+b+"] = "+playerTetra[j][i])
+			if (playerTetra[j][i] === 1) {
 				
-				console.log("put x"+(playerPosMatrixX+j)+" and y "+(playerPosMatrixY+i) );
-				if (playerPosMatrixY === matrixHitboxes[playerPosMatrixX]-playerTetra.length+(playerTetra.length-lastLineWithBlocks-1)) {
-					playMatrix[playerPosMatrixY+j][playerPosMatrixX+i]=1;
-					y = 0;
-					x = 60;
-					randTetra();
-					
-				}
+				playMatrix[a][b] = 1;
+				console.log(playMatrix);
 			}
+			console.log("*******------------------------------***********************")
 		}
-		
 	}
 }
 function moveRight() {
-	if (x < 180) {
+	if (x < 200 - playerTetra.length * 20) {
 		for (var i = 0; i < playerTetra.length; i++) {
 			for (var j = 0; j < playerTetra.length; j++) {
 				ctx.clearRect(x + 20 * i, y + 20 * j, 20, 20);
@@ -157,7 +191,7 @@ function moveRight() {
 	}
 }
 function moveLeft() {
-	if (x < 180) {
+	if (x > 0) {
 		for (var i = 0; i < playerTetra.length; i++) {
 			for (var j = 0; j < playerTetra.length; j++) {
 				ctx.clearRect(x + 20 * i, y + 20 * j, 20, 20);
