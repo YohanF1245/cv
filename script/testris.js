@@ -25,7 +25,7 @@ var playMatrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
 console.log(playMatrix);
 var topDraw = [0, 0, 0];
 var playerPosMatrixX;
@@ -108,6 +108,8 @@ function calcLastLineWithBlocks() {
 	}
 }
 function kekw() {
+	playerPosMatrixX = Math.floor(x / 20);
+	playerPosMatrixY = Math.floor(y / 20);
 	if (canva.getContext) {
 		document.getElementById("navigateurSupported").innerHTML = "supoprtey";
 	}
@@ -138,9 +140,32 @@ function kekw() {
 		}
 	}
 }
+function rotatePiece() {
+	var tempTetra;
+	if (playerTetra.length === 3) {
+		tempTetra = [[0, 0, 0],
+			[0, 0, 0],
+			[0,0,0],]
+	} else {
+		tempTetra = [[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0,0,0,0]]
+	}
+	ctx.clearRect(x , y, playerTetra.length*20, playerTetra.length*20);
+	for (var i = 0; i < playerTetra.length; i++){
+		for (var j = 0; j < playerTetra.length; j++){
+			
+			tempTetra[i][j] = playerTetra[j][i];
+			console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		}
+	}
+	console.log(tempTetra);
+	playerTetra = tempTetra;
+	calcLastLineWithBlocks();
+}
 function checkMatrix() {
-	playerPosMatrixX = Math.floor(x / 20);
-	playerPosMatrixY = Math.floor(y / 20);
+	
 	// console.log("playerTetralengt : "+playerTetra.length+" posX "+playerPosMatrixX+" posY"+playerPosMatrixY);
 	if (
 		playerPosMatrixY ===
@@ -148,21 +173,22 @@ function checkMatrix() {
 			playerTetra.length +
 			(playerTetra.length - lastLineWithBlocks - 1) 
 	) {
-		y = 0;
-		x = 60;
+		
 		populateMatrix();
 		redrawMatrix();
-
+		y = 0;
+		x = 60;
 		randTetra();
 	}
 	for (var i = 0; i < playerTetra.length; i++){
 		console.log(lastLineWithBlocks);
 		for (var j = 0; j < lastLineWithBlocks+1; j++){
 			if (playerTetra[i][j] === 1 && playMatrix[playerPosMatrixY + j+1][playerPosMatrixX + i] >0) {
-				y = 0;
-				x = 60;
+				
 				populateMatrix();
 				redrawMatrix();
+				y = 0;
+				x = 60;
 				randTetra();
 		
 		
@@ -245,6 +271,8 @@ addEventListener("keydown", (event) => {
 		moveRight();
 	} else if (event.key === "ArrowLeft") {
 		moveLeft();
+	} else if (event.key === "o") {
+		rotatePiece();
 	}
 	console.log("*-------------------------------*");
 	console.log("key keypressed: " + event.key);
