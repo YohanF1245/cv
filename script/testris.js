@@ -6,26 +6,28 @@ var matrixHitboxes = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
 var canva = document.getElementById("frameApp");
 var ctx = canva.getContext("2d");
 var playMatrixd = new Array(20).fill(Array(10).fill(0));
-var playMatrix = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],			
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+var playMatrix = [
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+];
 console.log(playMatrix);
 var topDraw = [0, 0, 0];
 var playerPosMatrixX;
@@ -87,7 +89,7 @@ function calcPieceHitbox(piece) {}
 function randTetra() {
 	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 	y = 0;
-				x = 60;
+	x = 60;
 	var tempT = Math.floor(Math.random() * 6);
 	thisTetra = colors[tempT];
 	colorIndex = tempT;
@@ -126,7 +128,7 @@ function kekw() {
 		}
 	}
 	y++;
-	
+
 	// console.log("*----------------------------------------------------------*");
 	// console.log(playMatrix)
 
@@ -139,29 +141,37 @@ function kekw() {
 					// y = 0;
 					// // randTetra()
 				}
-				console.log("checking player posmatrix" +  matrixHitboxes[playerPosMatrixX] + " lastlineWithBlocks " + lastLineWithBlocks);
+				console.log(
+					"checking player posmatrix" +
+						matrixHitboxes[playerPosMatrixX] +
+						" lastlineWithBlocks " +
+						lastLineWithBlocks
+				);
 			}
 		}
-	}checkMatrix();
+	}
+	checkMatrix();
 }
 function rotatePiece() {
 	var tempTetra;
 	if (playerTetra.length === 3) {
-		tempTetra = [[0, 0, 0],
+		tempTetra = [
 			[0, 0, 0],
-			[0,0,0],]
+			[0, 0, 0],
+			[0, 0, 0],
+		];
 	} else {
-		tempTetra = [[0, 0, 0, 0],
+		tempTetra = [
 			[0, 0, 0, 0],
 			[0, 0, 0, 0],
-			[0,0,0,0]]
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+		];
 	}
-	ctx.clearRect(x , y, playerTetra.length*20, playerTetra.length*20);
-	for (var i = 0; i < playerTetra.length; i++){
-		for (var j = 0; j < playerTetra.length; j++){
-			
+	ctx.clearRect(x, y, playerTetra.length * 20, playerTetra.length * 20);
+	for (var i = 0; i < playerTetra.length; i++) {
+		for (var j = 0; j < playerTetra.length; j++) {
 			tempTetra[i][j] = playerTetra[j][i];
-			
 		}
 	}
 	console.log(tempTetra);
@@ -169,37 +179,37 @@ function rotatePiece() {
 	calcLastLineWithBlocks();
 }
 function checkMatrix() {
-	
 	// console.log("playerTetralengt : "+playerTetra.length+" posX "+playerPosMatrixX+" posY"+playerPosMatrixY);
 	if (
 		playerPosMatrixY ===
 		matrixHitboxes[playerPosMatrixX] -
 			playerTetra.length +
-			(playerTetra.length - lastLineWithBlocks - 1) 
+			(playerTetra.length - lastLineWithBlocks - 1)
 	) {
-		
 		populateMatrix();
 	} else {
-		for (var i = 0; i < playerTetra.length; i++){
-		console.log(lastLineWithBlocks);
-		for (var j = 0; j < lastLineWithBlocks+1; j++){
-			if (playerTetra[i][j] === 1 && playMatrix[playerPosMatrixY + j+1][playerPosMatrixX + i] >0) {
-				i = 20;
-				j = 20;
-				populateMatrix();
-				
+		var populateMatrixBool = false
+		for (var i = 0; i < playerTetra.length ; i++) {
+			console.log(lastLineWithBlocks);
+			for (var j = 0; j < lastLineWithBlocks + 1; j++) {
+				if (
+					playerTetra[i][j] === 1 &&
+					playMatrix[playerPosMatrixY + j + 1][playerPosMatrixX + i] > 0
+				) {
+					i = 20;
+					j = 20;
+					populateMatrixBool = true;
+				}
 			}
-		}
 			
-	
+		}if (populateMatrixBool === true) {
+				populateMatrix();
+			}
 	}
-	}
-	
-	
 }
 function redrawMatrix() {
-	for (var i = 0; i < 20; i++){
-		for (var j = 0; j < 10; j++){
+	for (var i = 0; i < 20; i++) {
+		for (var j = 0; j < 10; j++) {
 			if (playMatrix[i][j] > 0) {
 				var tempColor = colors[playMatrix[i][j] - 1];
 				var tempX = j * 20;
@@ -213,8 +223,8 @@ function redrawMatrix() {
 }
 function populateMatrix() {
 	clearInterval(intervalid);
-	for (var i = 0; i < playerTetra.length; i++){
-		for (var j = 0; j <= lastLineWithBlocks; j++){
+	for (var i = 0; i < playerTetra.length; i++) {
+		for (var j = 0; j <= lastLineWithBlocks; j++) {
 			// console.log("*******------------------------------***********************")
 			// console.log("iterations : i " + i + " j" + j);
 			// console.log("playerTetra.length " + playerTetra.length);
@@ -224,14 +234,22 @@ function populateMatrix() {
 			var b = playerPosMatrixX + i;
 			// console.log("populatio of ["+a+"]["+b+"] = "+playerTetra[j][i])
 			if (playerTetra[j][i] === 1) {
-				playMatrix[a][b] = (colorIndex + 1);
-				console.log("/////////////////////////////////------------//////////////////////////");
-				console.log("added playmatrix[" + a + "][" + b + "] = " + (colorIndex + 1))
+				playMatrix[a][b] = colorIndex + 1;
+				console.log(
+					"/////////////////////////////////------------//////////////////////////"
+				);
+				console.log(
+					"added playmatrix[" + a + "][" + b + "] = " + (colorIndex + 1)
+				);
 				console.log(typeof colorIndex);
-				console.log("/////////////////////////////////------------//////////////////////////");
+				console.log(
+					"/////////////////////////////////------------//////////////////////////"
+				);
 				console.log(playMatrix);
 			}
-			console.log("*******------------------------------***********************")
+			console.log(
+				"*******------------------------------***********************"
+			);
 		}
 	}
 	redrawMatrix();
