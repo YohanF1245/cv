@@ -85,12 +85,16 @@ var pieceHitbox;
 randTetra();
 function calcPieceHitbox(piece) {}
 function randTetra() {
+	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+	y = 0;
+				x = 60;
 	var tempT = Math.floor(Math.random() * 6);
 	thisTetra = colors[tempT];
 	colorIndex = tempT;
 	// console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
 	playerTetra = tetraminos[tempT];
 	calcLastLineWithBlocks();
+	intervalid = setInterval(kekw, 16);
 }
 function calcLastLineWithBlocks() {
 	var k = playerTetra.length;
@@ -122,7 +126,7 @@ function kekw() {
 		}
 	}
 	y++;
-	checkMatrix();
+	
 	// console.log("*----------------------------------------------------------*");
 	// console.log(playMatrix)
 
@@ -130,15 +134,15 @@ function kekw() {
 		for (var j = 0; j < playerTetra.length; j++) {
 			if (playerTetra[i][j] === 1) {
 				ctx.fillRect(x + 20 * j, y + 20 * i, 20, 20);
-				// if (y === hitboxes[Math.floor(x / 20)]) {
-				// 	hitboxes[Math.floor(x / 20)] = hitboxes[Math.floor(x / 20)] - 20;
-				// 	y = 0;
-				// 	randTetra()
-				// }
-				// console.log("checking player posmatrix" +  matrixHitboxes[playerPosMatrixX] + " lastlineWithBlocks " + lastLineWithBlocks);
+				if (y === hitboxes[Math.floor(x / 20)]) {
+					// hitboxes[Math.floor(x / 20)] = hitboxes[Math.floor(x / 20)] - 20;
+					// y = 0;
+					// // randTetra()
+				}
+				console.log("checking player posmatrix" +  matrixHitboxes[playerPosMatrixX] + " lastlineWithBlocks " + lastLineWithBlocks);
 			}
 		}
-	}
+	}checkMatrix();
 }
 function rotatePiece() {
 	var tempTetra;
@@ -157,7 +161,7 @@ function rotatePiece() {
 		for (var j = 0; j < playerTetra.length; j++){
 			
 			tempTetra[i][j] = playerTetra[j][i];
-			console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			
 		}
 	}
 	console.log(tempTetra);
@@ -175,28 +179,22 @@ function checkMatrix() {
 	) {
 		
 		populateMatrix();
-		redrawMatrix();
-		y = 0;
-		x = 60;
-		randTetra();
-	}
-	for (var i = 0; i < playerTetra.length; i++){
+	} else {
+		for (var i = 0; i < playerTetra.length; i++){
 		console.log(lastLineWithBlocks);
 		for (var j = 0; j < lastLineWithBlocks+1; j++){
 			if (playerTetra[i][j] === 1 && playMatrix[playerPosMatrixY + j+1][playerPosMatrixX + i] >0) {
-				
+				i = 20;
+				j = 20;
 				populateMatrix();
-				redrawMatrix();
-				y = 0;
-				x = 60;
-				randTetra();
-		
-		
+				
 			}
 		}
 			
 	
 	}
+	}
+	
 	
 }
 function redrawMatrix() {
@@ -211,25 +209,32 @@ function redrawMatrix() {
 			}
 		}
 	}
+	randTetra();
 }
 function populateMatrix() {
+	clearInterval(intervalid);
 	for (var i = 0; i < playerTetra.length; i++){
 		for (var j = 0; j <= lastLineWithBlocks; j++){
-			console.log("*******------------------------------***********************")
-			console.log("iterations : i " + i + " j" + j);
-			console.log("playerTetra.length " + playerTetra.length);
-			console.log("lastlinewith block : " + lastLineWithBlocks);
-			console.log("player pos x " + playerPosMatrixX + " player pos y " + playerPosMatrixY)
+			// console.log("*******------------------------------***********************")
+			// console.log("iterations : i " + i + " j" + j);
+			// console.log("playerTetra.length " + playerTetra.length);
+			// console.log("lastlinewith block : " + lastLineWithBlocks);
+			// console.log("player pos x " + playerPosMatrixX + " player pos y " + playerPosMatrixY)
 			var a = playerPosMatrixY + j;
 			var b = playerPosMatrixX + i;
-			console.log("populatio of ["+a+"]["+b+"] = "+playerTetra[j][i])
+			// console.log("populatio of ["+a+"]["+b+"] = "+playerTetra[j][i])
 			if (playerTetra[j][i] === 1) {
-				playMatrix[a][b] = colorIndex+1;
+				playMatrix[a][b] = (colorIndex + 1);
+				console.log("/////////////////////////////////------------//////////////////////////");
+				console.log("added playmatrix[" + a + "][" + b + "] = " + (colorIndex + 1))
+				console.log(typeof colorIndex);
+				console.log("/////////////////////////////////------------//////////////////////////");
 				console.log(playMatrix);
 			}
 			console.log("*******------------------------------***********************")
 		}
 	}
+	redrawMatrix();
 }
 function moveRight() {
 	if (x < 200 - playerTetra.length * 20) {
@@ -265,7 +270,7 @@ function moveLeft() {
 		}
 	}
 }
-setInterval(kekw, 16);
+var intervalid;
 addEventListener("keydown", (event) => {
 	if (event.key === "ArrowRight") {
 		moveRight();
