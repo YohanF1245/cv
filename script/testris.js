@@ -162,29 +162,18 @@ function kekw() {
 	checkMatrix();
 }
 function rotatePiece() {
-	var tempTetra;
-	if (playerTetra.length === 3) {
-		tempTetra = [
-			[0, 0, 0],
-			[0, 0, 0],
-			[0, 0, 0],
-		];
-	} else {
-		tempTetra = [
-			[0, 0, 0, 0],
-			[0, 0, 0, 0],
-			[0, 0, 0, 0],
-			[0, 0, 0, 0],
-		];
-	}
+	const N = playerTetra.length - 1;   // use a constant
+    // use arrow functions and nested map;
+    const result = playerTetra.map((row, i) => 
+         row.map((val, j) => playerTetra[N - j][i])
+    );
+    playerTetra.length = 0;       // hold original array reference
+    playerTetra.push(...result);  // Spread operator
+   
+	leftBox();
+	rightBox();
 	ctx.clearRect(x, y, playerTetra.length * 20, playerTetra.length * 20);
-	for (var i = 0; i < playerTetra.length; i++) {
-		for (var j = 0; j < playerTetra.length; j++) {
-			tempTetra[i][j] = playerTetra[j][i];
-		}
-	}
-	// console.log(tempTetra);
-	playerTetra = tempTetra;
+	
 	calcLastLineWithBlocks();
 }
 function checkMatrix() {
