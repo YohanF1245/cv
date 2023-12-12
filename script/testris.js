@@ -100,7 +100,7 @@ function randTetra() {
 	calcLastLineWithBlocks();
 	 
 	intervalid = setInterval(kekw, 16);
-	castShadow();
+	// castShadow();
 	
 
 }
@@ -222,43 +222,53 @@ function pauseGame() {
 		isPause = false;
 	}
 }
-function castShadow() { 
-	console.log("shadow being cast");
-	playerPosMatrixX = Math.floor(x / 20);
-	lockCoords = 0;
-	for (var i = playerTetra.length-1; i >= 0; i--) {
-		for (var j = playerTetra.length-1; j >= 0; j--){
-			console.log("i = " + i + " j =" + j);
-			if (playerTetra[i][j] === 1) {
-				lockCoords = ((calcCord(playerPosMatrixX) - 1) - (playerTetra.length - j));
-				console.log("player pos matrix"+playerPosMatrixX)
-				j=-1;
-			}
-		}
-	}console.log("lock coords"+lockCoords)
-		for (var i = 0; i < playerTetra.length; i++) {
-			for (var j = 0; j < playerTetra.length; j++) {
-				if (playerTetra[i][j] === 1) {
-					// ctx.globalAlpha = 0.5;
-					ctx.fillRect(x + 20 * j, lockCoords + 20 * i, 20, 20);
-					console.log("draw rec");
-					// ctx.globalAlpha = 1.0;
-				}
-			}
-		}
+// function castShadow() { 
 	
-
-	}
-
-	function calcCord(tempX) {
-		var tempMaxHeight;
-	for (var i = 19; i >= 0; i--){
-		if (playMatrix[i][tempX]>0) {
-			tempMaxHeight = i;
-		}
-		} 
-		return (tempMaxHeight);
-}
+// 	console.log("shadow being cast");
+// 	playerPosMatrixX = Math.floor(x / 20);
+// 	lockCoords = 0;
+// 	for (var i = playerTetra.length-1; i >= 0; i--) {
+// 		for (var j = playerTetra.length-1; j >= 0; j--){
+// 			console.log("i = " + i + " j =" + j);
+// 			if (playerTetra[i][j] === 1) {
+// 				lockCoords = ((calcCord(playerPosMatrixX) - 1) - (playerTetra.length - j));
+// 				console.log("player pos matrix"+playerPosMatrixX)
+// 				j=-1;
+// 			}
+// 		}
+// 	} console.log("lock coords" + lockCoords)
+// 	for (var i = 0; i < playerTetra.length; i++) {
+// 		for (var j = 0; j < playerTetra.length; j++) {
+// 			if (playerTetra[i][j] === 1) {
+// 				 ctx.globalAlpha = 0.3;
+// 				ctx.clearRect(x + 20 * j, (lockCoords*20) + 20 * i, 20, 20);
+// 				console.log("draw rec"+(x+20*j)+" , "+(lockCoords +20 *i));
+// 				 ctx.globalAlpha = 1.0;
+// 			}
+// 		}
+// 	}
+// 	for (var i = 0; i < playerTetra.length; i++) {
+// 		for (var j = 0; j < playerTetra.length; j++) {
+// 			if (playerTetra[i][j] === 1) {
+// 				 ctx.globalAlpha = 0.3;
+// 				ctx.fillRect(x + 20 * j, (lockCoords*20) + 20 * i, 20, 20);
+// 				console.log("draw rec"+(x+20*j)+" , "+((lockCoords*20) +20 *i));
+// 				 ctx.globalAlpha = 1.0;
+// 			}
+// 		}
+// 	}
+// 	}
+// 	function calcCord(tempX) {
+// 		var tempMaxHeight = 19;
+// 		for (var i = 19; i >= 0; i--){
+// 		console.log("playmatrix"+i+" "+tempX)
+// 		if (playMatrix[i][tempX]>0) {
+// 			tempMaxHeight = i;
+// 		}
+// 		console.log("maxheigt"+tempMaxHeight)
+// 		} 
+// 		return (tempMaxHeight);
+// }
 
 function redrawMatrix() {
 	for (var i = 0; i < 20; i++) {
