@@ -196,10 +196,10 @@ function checkMatrix() {
 	} else {
 		var populateMatrixBool = false
 		for (var i = 0; i < playerTetra.length; i++) {
-			// console.log(lastLineWithBlocks);
+			console.log("lastline with block"+lastLineWithBlocks);
 			for (var j = 0; j < lastLineWithBlocks + 1; j++) {
 				if (
-					playerTetra[i][j] === 1 &&
+					playerTetra[j][i] === 1 &&
 					playMatrix[playerPosMatrixY + j + 1][playerPosMatrixX + i] > 0
 				) {
 					i = 20;
