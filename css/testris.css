@@ -1,3 +1,31 @@
 #frameApp{
     border: 1px solid black;
 }
+.divAction{
+    display:flex;
+    justify-content: space-between;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#mainWindow{
+    display:flex;
+    justify-content: center;
+}
+#pauseButton{
+    background-color: red;
+    width: 50vw;
+    height: 15vw;
+}
+#pauseId{
+    display:flex;
+    justify-content: center;
+}
+.actionButton{
+    width: 30vw;
+    height: 25vw;
+    background-color: aqua;
+    border-radius: 25%;
+}

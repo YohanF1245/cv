@@ -8,17 +8,20 @@
     <title>Document</title>
 </head>
 <body onload="kekw()">
-    <canvas id="frameApp" width="200px" height="400" >
+    <div id="mainWindow">
+<canvas id="frameApp" width="200px" height="400" >
 
     </canvas>
+    </div>
+    
     <!-- HTML !-->
-    <div>
-<button class="button-62" role="button" onclick="pauseGame()">PAUSE</button>
+    <div id="pauseId">
+<button id="pauseButton" role="button" onclick="pauseGame()">PAUSE</button>
 </div>
-    <div >
-        <button class="button-62" role="button" onclick="moveLeft()">LEFT</button>
-        <button class="button-62" role="button" onclick="moveRight()">RIGHT</button>
-        <button class="button-62" role="button" onclick="rotatePiece()">ROTATE</button>
+    <div class="divAction">
+        <button class="actionButton" role="button" onclick="moveLeft()">LEFT</button>
+        <button class="actionButton" role="button" onclick="moveRight()">RIGHT</button>
+        <button class="actionButton" role="button" onclick="rotatePiece()">ROTATE</button>
     </div>
     <div>
         <p> </p>

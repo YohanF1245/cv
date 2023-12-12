@@ -28,6 +28,8 @@ var playMatrix = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
+var leftBoxOffset = 0;
+var rightBoxOffset = 0;
 console.log(playMatrix);
 var topDraw = [0, 0, 0];
 var playerPosMatrixX;
@@ -98,11 +100,11 @@ function randTetra() {
 	// console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
 	playerTetra = tetraminos[tempT];
 	calcLastLineWithBlocks();
-	 
-	intervalid = setInterval(kekw, 16);
-	// castShadow();
-	
 
+	intervalid = setInterval(kekw, 16);
+	leftBox();
+	rightBox();
+	// castShadow();
 }
 function calcLastLineWithBlocks() {
 	var k = playerTetra.length;
@@ -189,14 +191,14 @@ function checkMatrix() {
 	if (
 		playerPosMatrixY ===
 		matrixHitboxes[playerPosMatrixX] -
-		playerTetra.length +
-		(playerTetra.length - lastLineWithBlocks - 1)
+			playerTetra.length +
+			(playerTetra.length - lastLineWithBlocks - 1)
 	) {
 		populateMatrix();
 	} else {
-		var populateMatrixBool = false
+		var populateMatrixBool = false;
 		for (var i = 0; i < playerTetra.length; i++) {
-			console.log("lastline with block"+lastLineWithBlocks);
+			console.log("lastline with block" + lastLineWithBlocks);
 			for (var j = 0; j < lastLineWithBlocks + 1; j++) {
 				if (
 					playerTetra[j][i] === 1 &&
@@ -207,11 +209,27 @@ function checkMatrix() {
 					populateMatrixBool = true;
 				}
 			}
-		} if (populateMatrixBool === true) {
+		}
+		if (populateMatrixBool === true) {
 			populateMatrix();
-			
 		}
 	}
+}
+function leftBox() {
+	var firstRowWithBlocks = 0;
+	for (var i = 0; i < playerTetra.length; i++) {
+		for (var j = 0; j < playerTetra.length; j++) {
+			if (playerTetra[j][i] != 0) {
+				firstRowWithBlocks = i;
+				i = 5;
+				j = 5;
+			}
+		}
+	}
+	leftBoxOffset = firstRowWithBlocks;
+}
+function rightBox() {
+	
 }
 function pauseGame() {
 	if (isPause === false) {
@@ -222,8 +240,8 @@ function pauseGame() {
 		isPause = false;
 	}
 }
-// function castShadow() { 
-	
+// function castShadow() {
+
 // 	console.log("shadow being cast");
 // 	playerPosMatrixX = Math.floor(x / 20);
 // 	lockCoords = 0;
@@ -266,7 +284,7 @@ function pauseGame() {
 // 			tempMaxHeight = i;
 // 		}
 // 		console.log("maxheigt"+tempMaxHeight)
-// 		} 
+// 		}
 // 		return (tempMaxHeight);
 // }
 
@@ -298,18 +316,18 @@ function populateMatrix() {
 			// console.log("populatio of ["+a+"]["+b+"] = "+playerTetra[j][i])
 			if (playerTetra[j][i] === 1) {
 				playMatrix[a][b] = colorIndex + 1;
-			// 	console.log(
-			// 		"/////////////////////////////////------------//////////////////////////"
-			// 	);
-			// 	console.log(
-			// 		"added playmatrix[" + a + "][" + b + "] = " + (colorIndex + 1)
-			// 	);
-			// 	console.log(typeof colorIndex);
-			// 	console.log(
-			// 		"/////////////////////////////////------------//////////////////////////"
-			// 	);
-			// 	console.log(playMatrix);
-			 }
+				// 	console.log(
+				// 		"/////////////////////////////////------------//////////////////////////"
+				// 	);
+				// 	console.log(
+				// 		"added playmatrix[" + a + "][" + b + "] = " + (colorIndex + 1)
+				// 	);
+				// 	console.log(typeof colorIndex);
+				// 	console.log(
+				// 		"/////////////////////////////////------------//////////////////////////"
+				// 	);
+				// 	console.log(playMatrix);
+			}
 			// console.log(
 			// 	"*******------------------------------***********************"
 			// );
@@ -335,7 +353,7 @@ function moveRight() {
 	}
 }
 function moveLeft() {
-	if (x > 0) {
+	if (x > (0-leftBoxOffset*20)) {
 		for (var i = 0; i < playerTetra.length; i++) {
 			for (var j = 0; j < playerTetra.length; j++) {
 				ctx.clearRect(x + 20 * i, y + 20 * j, 20, 20);
