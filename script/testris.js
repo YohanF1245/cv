@@ -33,6 +33,7 @@ var topDraw = [0, 0, 0];
 var playerPosMatrixX;
 var playerPosMatrixY;
 var lastLineWithBlocks;
+var isPause = false;
 var laBarre = [
 	[0, 1, 0, 0],
 	[0, 1, 0, 0],
@@ -69,6 +70,7 @@ var ji = [
 	[0, 1, 0],
 	[1, 1, 0],
 ];
+var lockCoords;
 var thisTetra;
 var tetraminos = [laBarre, z, s, t, o, l, ji];
 var colors = [
@@ -87,7 +89,7 @@ var pieceHitbox;
 randTetra();
 function calcPieceHitbox(piece) {}
 function randTetra() {
-	console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+	// console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 	y = 0;
 	x = 60;
 	var tempT = Math.floor(Math.random() * 6);
@@ -96,7 +98,11 @@ function randTetra() {
 	// console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
 	playerTetra = tetraminos[tempT];
 	calcLastLineWithBlocks();
+	 
 	intervalid = setInterval(kekw, 16);
+	castShadow();
+	
+
 }
 function calcLastLineWithBlocks() {
 	var k = playerTetra.length;
@@ -141,12 +147,12 @@ function kekw() {
 					// y = 0;
 					// // randTetra()
 				}
-				console.log(
-					"checking player posmatrix" +
-						matrixHitboxes[playerPosMatrixX] +
-						" lastlineWithBlocks " +
-						lastLineWithBlocks
-				);
+				// console.log(
+				// 	"checking player posmatrix" +
+				// 		matrixHitboxes[playerPosMatrixX] +
+				// 		" lastlineWithBlocks " +
+				// 		lastLineWithBlocks
+				// );
 			}
 		}
 	}
@@ -174,7 +180,7 @@ function rotatePiece() {
 			tempTetra[i][j] = playerTetra[j][i];
 		}
 	}
-	console.log(tempTetra);
+	// console.log(tempTetra);
 	playerTetra = tempTetra;
 	calcLastLineWithBlocks();
 }
@@ -183,14 +189,14 @@ function checkMatrix() {
 	if (
 		playerPosMatrixY ===
 		matrixHitboxes[playerPosMatrixX] -
-			playerTetra.length +
-			(playerTetra.length - lastLineWithBlocks - 1)
+		playerTetra.length +
+		(playerTetra.length - lastLineWithBlocks - 1)
 	) {
 		populateMatrix();
 	} else {
 		var populateMatrixBool = false
-		for (var i = 0; i < playerTetra.length ; i++) {
-			console.log(lastLineWithBlocks);
+		for (var i = 0; i < playerTetra.length; i++) {
+			// console.log(lastLineWithBlocks);
 			for (var j = 0; j < lastLineWithBlocks + 1; j++) {
 				if (
 					playerTetra[i][j] === 1 &&
@@ -201,12 +207,59 @@ function checkMatrix() {
 					populateMatrixBool = true;
 				}
 			}
+		} if (populateMatrixBool === true) {
+			populateMatrix();
 			
-		}if (populateMatrixBool === true) {
-				populateMatrix();
-			}
+		}
 	}
 }
+function pauseGame() {
+	if (isPause === false) {
+		clearInterval(intervalid);
+		isPause = true;
+	} else {
+		intervalid = setInterval(kekw, 16);
+		isPause = false;
+	}
+}
+function castShadow() { 
+	console.log("shadow being cast");
+	playerPosMatrixX = Math.floor(x / 20);
+	lockCoords = 0;
+	for (var i = playerTetra.length-1; i >= 0; i--) {
+		for (var j = playerTetra.length-1; j >= 0; j--){
+			console.log("i = " + i + " j =" + j);
+			if (playerTetra[i][j] === 1) {
+				lockCoords = ((calcCord(playerPosMatrixX) - 1) - (playerTetra.length - j));
+				console.log("player pos matrix"+playerPosMatrixX)
+				j=-1;
+			}
+		}
+	}console.log("lock coords"+lockCoords)
+		for (var i = 0; i < playerTetra.length; i++) {
+			for (var j = 0; j < playerTetra.length; j++) {
+				if (playerTetra[i][j] === 1) {
+					// ctx.globalAlpha = 0.5;
+					ctx.fillRect(x + 20 * j, lockCoords + 20 * i, 20, 20);
+					console.log("draw rec");
+					// ctx.globalAlpha = 1.0;
+				}
+			}
+		}
+	
+
+	}
+
+	function calcCord(tempX) {
+		var tempMaxHeight;
+	for (var i = 19; i >= 0; i--){
+		if (playMatrix[i][tempX]>0) {
+			tempMaxHeight = i;
+		}
+		} 
+		return (tempMaxHeight);
+}
+
 function redrawMatrix() {
 	for (var i = 0; i < 20; i++) {
 		for (var j = 0; j < 10; j++) {
@@ -235,21 +288,21 @@ function populateMatrix() {
 			// console.log("populatio of ["+a+"]["+b+"] = "+playerTetra[j][i])
 			if (playerTetra[j][i] === 1) {
 				playMatrix[a][b] = colorIndex + 1;
-				console.log(
-					"/////////////////////////////////------------//////////////////////////"
-				);
-				console.log(
-					"added playmatrix[" + a + "][" + b + "] = " + (colorIndex + 1)
-				);
-				console.log(typeof colorIndex);
-				console.log(
-					"/////////////////////////////////------------//////////////////////////"
-				);
-				console.log(playMatrix);
-			}
-			console.log(
-				"*******------------------------------***********************"
-			);
+			// 	console.log(
+			// 		"/////////////////////////////////------------//////////////////////////"
+			// 	);
+			// 	console.log(
+			// 		"added playmatrix[" + a + "][" + b + "] = " + (colorIndex + 1)
+			// 	);
+			// 	console.log(typeof colorIndex);
+			// 	console.log(
+			// 		"/////////////////////////////////------------//////////////////////////"
+			// 	);
+			// 	console.log(playMatrix);
+			 }
+			// console.log(
+			// 	"*******------------------------------***********************"
+			// );
 		}
 	}
 	redrawMatrix();
