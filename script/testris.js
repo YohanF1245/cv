@@ -27,6 +27,7 @@ var playMatrix = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	[9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
 ];
 var leftBoxOffset = 0;
 var rightBoxOffset = 0;
@@ -94,7 +95,7 @@ function randTetra() {
 	// console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 	y = 0;
 	x = 60;
-	var tempT = Math.floor(Math.random() * 6);
+	var tempT = Math.floor(Math.random() * 7);
 	thisTetra = colors[tempT];
 	colorIndex = tempT;
 	// console.log("randomize tetra : "+tempT+" : "+tetraminos[tempT]);
@@ -189,12 +190,10 @@ function rotatePiece() {
 function checkMatrix() {
 	// console.log("playerTetralengt : "+playerTetra.length+" posX "+playerPosMatrixX+" posY"+playerPosMatrixY);
 	if (
-		playerPosMatrixY ===
-		matrixHitboxes[playerPosMatrixX] -
-			playerTetra.length +
-			(playerTetra.length - lastLineWithBlocks - 1)
+		y === (8000-((playerTetra.length-lastLineWithBlocks)*20))
 	) {
 		populateMatrix();
+		console.log(playMatrix);
 	} else {
 		var populateMatrixBool = false;
 		for (var i = 0; i < playerTetra.length; i++) {
@@ -229,7 +228,20 @@ function leftBox() {
 	leftBoxOffset = firstRowWithBlocks;
 }
 function rightBox() {
-	
+	var lastColWithBlock = playerTetra.length - 1;
+	for (var i = playerTetra.length -1 ; i > 0; i--){
+		for (var j = 0; j < playerTetra.length; j++){
+			if (playerTetra[i][j] != 0) {
+				lastColWithBlock = i; 
+					console.log("check [" + j + "]" + "[" + i + "]")
+				i = -1;
+				j = 5;
+				
+			}
+			
+		}
+	}
+	rightBoxOffset = lastColWithBlock;
 }
 function pauseGame() {
 	if (isPause === false) {
@@ -336,7 +348,8 @@ function populateMatrix() {
 	redrawMatrix();
 }
 function moveRight() {
-	if (x < 200 - playerTetra.length * 20) {
+	if (x < 200 - playerTetra.length * 20 + (rightBoxOffset-1) * 20) {
+		console.log("rightboxoffset "+rightBoxOffset)
 		for (var i = 0; i < playerTetra.length; i++) {
 			for (var j = 0; j < playerTetra.length; j++) {
 				ctx.clearRect(x + 20 * i, y + 20 * j, 20, 20);
