@@ -200,18 +200,7 @@ function checkMatrix() {
 			}
 		}
 		if (populateMatrixBool === true) {
-			for(var i=0; i<playMatrix.length; i++){
-				var lineCheck = true;
-				for(var j=0; j<10;j++){
-					if(playMatrix[i][j] === 0 || playMatrix[i][j]===9){
-						lineCheck = false;
-					}
-					
-				}if (lineCheck) {
-					removeLine(i);
-					console.log("play matrix i ="+playMatrix[i]);
-				} 
-			}
+			
 			populateMatrix();
 		}
 	// }
@@ -358,6 +347,18 @@ function populateMatrix() {
 			// 	"*******------------------------------***********************"
 			// );
 		}
+	}
+	for(var i=0; i<playMatrix.length; i++){
+		var lineCheck = true;
+		for(var j=0; j<10;j++){
+			if(playMatrix[i][j] === 0 || playMatrix[i][j]===9){
+				lineCheck = false;
+			}
+			
+		}if (lineCheck) {
+			removeLine(i);
+			console.log("play matrix i ="+playMatrix[i]);
+		} 
 	}
 	redrawMatrix();
 }
