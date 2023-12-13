@@ -210,8 +210,7 @@ function checkMatrix() {
 				}if (lineCheck) {
 					removeLine(i);
 					console.log("play matrix i ="+playMatrix[i]);
-				}
-				
+				} 
 			}
 			populateMatrix();
 		}
