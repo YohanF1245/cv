@@ -179,12 +179,12 @@ function rotatePiece() {
 }
 function checkMatrix() {
 	// console.log("playerTetralengt : "+playerTetra.length+" posX "+playerPosMatrixX+" posY"+playerPosMatrixY);
-	if (
-		y === (8000-((playerTetra.length-lastLineWithBlocks)*20))
-	) {
-		populateMatrix();
-		console.log(playMatrix);
-	} else {
+	// if (
+	// 	y === (8000-((playerTetra.length-lastLineWithBlocks)*20))
+	// ) {
+	// 	populateMatrix();
+	// 	console.log(playMatrix);
+	// } else {
 		var populateMatrixBool = false;
 		for (var i = 0; i < playerTetra.length; i++) {
 			console.log("lastline with block" + lastLineWithBlocks);
@@ -206,20 +206,26 @@ function checkMatrix() {
 					if(playMatrix[i][j] === 0 || playMatrix[i][j]===9){
 						lineCheck = false;
 					}
-				}
-				if(lineCheck){
+					if (lineCheck) {
 					removeLine(i);
 					console.log("play matrix i ="+playMatrix[i]);
 					
 				}
+				}
+				
 			}
 			populateMatrix();
 		}
-	}
+	// }
 }
 function removeLine(i){
 	playMatrix.splice(i--,1);
-					playMatrix.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);}
+	playMatrix.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+	console.log(playMatrix);
+}
+					
+					
 function leftBox() {
 	var firstRowWithBlocks = 0;
 	for (var i = 0; i < playerTetra.length; i++) {
@@ -315,12 +321,17 @@ function redrawMatrix() {
 				var tempY = i * 20;
 				ctx.fillStyle = "" + tempColor;
 				ctx.fillRect(tempX, tempY, 20, 20);
+			} else {
+				var tempX = j * 20;
+				var tempY = i * 20;
+				ctx.clearRect(tempX, tempY, 20, 20);
 			}
 		}
 	}
 	randTetra();
 }
 function populateMatrix() {
+	console.log("populateMatrix");
 	clearInterval(intervalid);
 	for (var i = 0; i < playerTetra.length; i++) {
 		for (var j = 0; j <= lastLineWithBlocks; j++) {
