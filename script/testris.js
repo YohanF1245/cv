@@ -206,11 +206,10 @@ function checkMatrix() {
 					if(playMatrix[i][j] === 0 || playMatrix[i][j]===9){
 						lineCheck = false;
 					}
-					if (lineCheck) {
+					
+				}if (lineCheck) {
 					removeLine(i);
 					console.log("play matrix i ="+playMatrix[i]);
-					
-				}
 				}
 				
 			}
@@ -221,7 +220,6 @@ function checkMatrix() {
 function removeLine(i){
 	playMatrix.splice(i--,1);
 	playMatrix.unshift([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-
 	console.log(playMatrix);
 }
 					
