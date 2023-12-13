@@ -14,12 +14,12 @@ body{
     display:flex;
     justify-content: center;
 }
-#pauseButton{
+#button50{
     background-color: red;
     width: 50vw;
     height: 15vw;
 }
-#pauseId{
+.div50{
     display:flex;
     justify-content: center;
 }

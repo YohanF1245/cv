@@ -9,21 +9,29 @@
 </head>
 <body onload="kekw()">
     <div id="mainWindow">
-        
-<canvas id="frameApp" width="200px" height="400" >
+       <div>
+         <canvas id="frameApp" width="200px" height="400" ></canvas>
+       </div>
+       <div id="statWindow">
+            <p>LINES:</p>
+            <p id="amoutOfLines"></p>
+       </div>
 
     </canvas>
     </div>
     
     <!-- HTML !-->
-    <div id="pauseId">
-<button id="pauseButton" role="button" onclick="pauseGame()">PAUSE</button>
+    <div class="div50">
+<button id="button50" role="button" onclick="pauseGame()">PAUSE</button>
 </div>
     <div class="divAction">
         <button class="actionButton" role="button" onclick="moveLeft()">LEFT</button>
         <button class="actionButton" role="button" onclick="rotatePiece()">ROTATE</button>
         <button class="actionButton" role="button" onclick="moveRight()">RIGHT</button>
     </div>
+    <div class="div50">
+        <button id="button50" role="button" onclick="resetGame()">RESET</button>
+        </div>
     <div>
         <p> </p>
     </div>
