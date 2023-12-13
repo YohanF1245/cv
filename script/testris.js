@@ -169,11 +169,12 @@ function rotatePiece() {
     );
     playerTetra.length = 0;       // hold original array reference
     playerTetra.push(...result);  // Spread operator
-   
-	leftBox();
-	rightBox();
-	ctx.clearRect(x, y, playerTetra.length * 20, playerTetra.length * 20);
+   console.log("right offset ="+rightBoxOffset+" leff offest "+leftBoxOffset);
 	
+	ctx.clearRect(x, y, playerTetra.length * 20, playerTetra.length * 20);
+	console.log("-----------------------------------------------");
+	console.log(playerTetra);
+	console.log("right offset ="+rightBoxOffset+" leff offest "+leftBoxOffset);
 	calcLastLineWithBlocks();
 }
 function checkMatrix() {
@@ -199,10 +200,26 @@ function checkMatrix() {
 			}
 		}
 		if (populateMatrixBool === true) {
+			for(var i=0; i<playMatrix.length; i++){
+				var lineCheck = true;
+				for(var j=0; j<10;j++){
+					if(playMatrix[i][j] === 0 || playMatrix[i][j]===9){
+						lineCheck = false;
+					}
+				}
+				if(lineCheck){
+					removeLine(i);
+					console.log("play matrix i ="+playMatrix[i]);
+					
+				}
+			}
 			populateMatrix();
 		}
 	}
 }
+function removeLine(i){
+	playMatrix.splice(i--,1);
+					playMatrix.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);}
 function leftBox() {
 	var firstRowWithBlocks = 0;
 	for (var i = 0; i < playerTetra.length; i++) {
@@ -337,6 +354,8 @@ function populateMatrix() {
 	redrawMatrix();
 }
 function moveRight() {
+	leftBox();
+	rightBox();
 	if (x < 200 - playerTetra.length * 20 + (rightBoxOffset-1) * 20) {
 		console.log("rightboxoffset "+rightBoxOffset)
 		for (var i = 0; i < playerTetra.length; i++) {
@@ -355,6 +374,8 @@ function moveRight() {
 	}
 }
 function moveLeft() {
+	leftBox();
+	rightBox();
 	if (x > (0-leftBoxOffset*20)) {
 		for (var i = 0; i < playerTetra.length; i++) {
 			for (var j = 0; j < playerTetra.length; j++) {
