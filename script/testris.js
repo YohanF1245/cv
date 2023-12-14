@@ -140,6 +140,8 @@ function rotatePiece() {
 	);
 	playerTetra.length = 0;
 	playerTetra.push(...result);
+	leftBox();
+	rightBox();
 	ctx.clearRect(x, y, playerTetra.length * 20, playerTetra.length * 20);
 	calcLastLineWithBlocks();
 }
@@ -179,19 +181,21 @@ function leftBox() {
 		}
 	}
 	leftBoxOffset = firstRowWithBlocks;
+	console.log("leftboxoffset " + leftBoxOffset);
 }
 function rightBox() {
-	var lastColWithBlock = playerTetra.length - 1;
+	var lastColWithBlock = playerTetra.length ;
 	for (var i = playerTetra.length - 1; i > 0; i--) {
 		for (var j = 0; j < playerTetra.length; j++) {
-			if (playerTetra[i][j] != 0) {
+			if (playerTetra[j][i] != 0) {
 				lastColWithBlock = i;
 				i = -1;
 				j = 5;
 			}
 		}
 	}
-	rightBoxOffset = lastColWithBlock;
+	rightBoxOffset = lastColWithBlock+1;
+	console.log("rightboxoffset " + rightBoxOffset);
 }
 function redrawMatrix() {
 	for (var i = 0; i < 20; i++) {
@@ -233,7 +237,6 @@ function populateMatrix() {
 			removeLine(i);
 			lines++;
 			document.getElementById("amoutOfLines").innerHTML = lines;
-			console.log("play matrix i =" + playMatrix[i]);
 		}
 	}
 	redrawMatrix();
@@ -241,7 +244,7 @@ function populateMatrix() {
 function moveRight() {
 	leftBox();
 	rightBox();
-	if (x < 200 - playerTetra.length * 20 + (rightBoxOffset - 1) * 20) {
+	if (x < 200 - ((rightBoxOffset) * 20)) {
 		for (var i = 0; i < playerTetra.length; i++) {
 			for (var j = 0; j < playerTetra.length; j++) {
 				ctx.clearRect(x + 20 * i, y + 20 * j, 20, 20);
