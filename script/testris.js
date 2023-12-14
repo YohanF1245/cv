@@ -134,16 +134,28 @@ function kekw() {
 	checkMatrix();
 }
 function rotatePiece() {
-	const N = playerTetra.length - 1;
-	const result = playerTetra.map((row, i) =>
-		row.map((val, j) => playerTetra[N - j][i])
-	);
-	playerTetra.length = 0;
-	playerTetra.push(...result);
-	leftBox();
-	rightBox();
-	ctx.clearRect(x, y, playerTetra.length * 20, playerTetra.length * 20);
-	calcLastLineWithBlocks();
+	console.log("x = "+x)
+	if (playerTetra != o) {
+		const N = playerTetra.length - 1;
+		const result = playerTetra.map((row, i) =>
+			row.map((val, j) => playerTetra[N - j][i])
+		);
+		playerTetra.length = 0;
+		playerTetra.push(...result);
+		leftBox();
+		rightBox();
+		ctx.clearRect(x, y, playerTetra.length * 20, playerTetra.length * 20);
+		calcLastLineWithBlocks();
+		if (x < 0) {
+			x = 0;
+		}
+		if (playerTetra.length === 3 && x > 140) {
+			x = 140;
+		}
+		if (playerTetra.length === 4 && x > 120) {
+			x = 120;
+		}
+	}
 }
 function checkMatrix() {
 	var populateMatrixBool = false;
@@ -162,7 +174,6 @@ function checkMatrix() {
 	if (populateMatrixBool === true) {
 		populateMatrix();
 	}
-	// }
 }
 function removeLine(i) {
 	playMatrix.splice(i--, 1);
@@ -184,7 +195,7 @@ function leftBox() {
 	console.log("leftboxoffset " + leftBoxOffset);
 }
 function rightBox() {
-	var lastColWithBlock = playerTetra.length ;
+	var lastColWithBlock = playerTetra.length;
 	for (var i = playerTetra.length - 1; i > 0; i--) {
 		for (var j = 0; j < playerTetra.length; j++) {
 			if (playerTetra[j][i] != 0) {
@@ -194,7 +205,7 @@ function rightBox() {
 			}
 		}
 	}
-	rightBoxOffset = lastColWithBlock+1;
+	rightBoxOffset = lastColWithBlock + 1;
 	console.log("rightboxoffset " + rightBoxOffset);
 }
 function redrawMatrix() {
@@ -213,7 +224,12 @@ function redrawMatrix() {
 			}
 		}
 	}
-	randTetra();
+	if (x === 60 && y === 1) {
+		document.getElementById("gameOver").style.display = "block";
+	} else {
+		randTetra();
+	}
+	
 }
 function populateMatrix() {
 	clearInterval(intervalid);
@@ -244,7 +260,7 @@ function populateMatrix() {
 function moveRight() {
 	leftBox();
 	rightBox();
-	if (x < 200 - ((rightBoxOffset) * 20)) {
+	if (x < 200 - rightBoxOffset * 20) {
 		for (var i = 0; i < playerTetra.length; i++) {
 			for (var j = 0; j < playerTetra.length; j++) {
 				ctx.clearRect(x + 20 * i, y + 20 * j, 20, 20);
@@ -290,32 +306,33 @@ function pauseGame() {
 }
 function resetGame() {
 	clearInterval(intervalid);
+	document.getElementById("gameOver").style.display = "none";
 	y = 0;
 	x = 60;
 	lines = 0;
 	playMatrix = [
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-];
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+	];
 	leftBoxOffset = 0;
 	rightBoxOffset = 0;
 	isPause = false;
