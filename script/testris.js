@@ -27,6 +27,7 @@ var playMatrix = [
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	[9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
 ];
+var batchPieces = [];
 var leftBoxOffset = 0;
 var rightBoxOffset = 0;
 var playerPosMatrixX;
@@ -85,6 +86,16 @@ var colorIndex;
 var playerTetra;
 var pieceHitbox;
 randTetra();
+function genTetraBatch() {
+	var tempTetrArray = tetraminos;
+	while (batchPieces =! 0) {
+		var tempT = Math.floor(Math.random() * tempTetrArray);
+		batchPieces.push(tempTetrArray[tempT]);
+		tempTetrArray.splice((tempT - 1), 1);
+		console.log("temptrarray "+tempTetrArray);
+	}
+	console.log("batch piece"+batchPieces);
+}
 function randTetra() {
 	y = 0;
 	x = 60;
